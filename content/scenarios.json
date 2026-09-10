@@ -1,0 +1,610 @@
+[
+  {
+    "id": "scn-fully-denied-claim",
+    "slug": "fully-denied-claim",
+    "name": "Fully Denied Claim",
+    "category": "Denial",
+    "statusTags": ["fully-denied"],
+    "problemTags": ["denial"],
+    "whatHappened": "The carrier has denied the claim outright — no payment, no approved scope. This is different from a partial denial or underpayment: the carrier is saying there's nothing to pay for at all.",
+    "whatToCheck": [
+      "The exact reason given in the denial letter (coverage issue vs. no damage found vs. pre-existing/wear and tear)",
+      "Whether the denial is about coverage (is this a covered peril at all) or amount (they don't think there's damage)",
+      "What documentation exists in the file already",
+      "Whether an inspection actually happened and what it found"
+    ],
+    "possibleSolutions": [
+      "If the denial is based on \"no damage found\" — request reinspection with new or overlooked documentation",
+      "If the denial cites wear and tear, age, or pre-existing damage — gather documentation that distinguishes storm damage from those causes",
+      "If the denial is a genuine coverage dispute — this is likely outside what reinspection or appraisal can fix; escalate",
+      "If the file is thin — build it out with documentation before pushing back"
+    ],
+    "recommendedFirstMove": "Read the denial letter closely and sort it into one of two buckets: a dispute about whether there's covered damage (documentation/reinspection territory) or a dispute about whether it's covered at all (an escalation/coverage question).",
+    "supportingDocumentation": ["Denial letter", "Original inspection report or estimate", "Photos", "Any prior correspondence"],
+    "whatToSayWrite": "To the client: acknowledge the denial, explain in plain terms what it's based on, and let them know you're reviewing next steps — avoid promising an outcome. To the adjuster: ask for the specific basis for the denial in writing if it isn't already clear.",
+    "relatedTemplates": ["adjuster-follow-up", "client-stalled-claim-message", "documentation-request"],
+    "followUp": "Within 3-5 business days of receiving the denial",
+    "ifUnsuccessful": "If the carrier holds the denial after documentation is submitted, evaluate reinspection (if damage-based) or escalate (if coverage-based).",
+    "escalationPoint": "Any full denial that appears to hinge on a coverage question rather than documentation should go to your lead early — don't spend a week building a documentation case for a dispute documentation can't resolve.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-partial-roof-approval",
+    "slug": "partial-roof-approval",
+    "name": "Partial Roof Approval",
+    "category": "Partial Denial",
+    "statusTags": ["partial-approval"],
+    "problemTags": ["partial-denial"],
+    "whatHappened": "The carrier approved part of the roof (often one slope, or the main structure) but denied or excluded another part — a different slope, a garage, a detached structure, or specific line items.",
+    "whatToCheck": [
+      "Exactly what was approved vs. denied, item by item",
+      "The stated reason for excluding the denied portion",
+      "Whether the same storm event caused damage to both the approved and denied areas",
+      "Whether the denied portion has its own supporting documentation"
+    ],
+    "possibleSolutions": [
+      "If the excluded area has documented damage that wasn't considered — request reinspection focused specifically on that area",
+      "If the carrier's stated reason is material-related (e.g., discontinued shingle, unavailable match) — see the Material Unavailable / Discontinued scenario",
+      "If it's a scope/quantity disagreement on the denied portion — push the estimate with a direct comparison",
+      "If negotiation stalls — appraisal is often a good fit once the approved portion shows the carrier already accepts the loss"
+    ],
+    "recommendedFirstMove": "Isolate the denied portion from the approved portion and treat it as its own mini-case — what's the stated reason, and what evidence would directly answer it?",
+    "supportingDocumentation": ["Full itemized estimate showing approved vs. denied", "Photos of the denied area specifically", "Any material/matching documentation if relevant"],
+    "whatToSayWrite": "To the client: explain that part of the claim was approved and part is still being worked, without promising the denied portion will be covered. To the adjuster: ask specifically why the excluded area was treated differently from the approved area.",
+    "relatedTemplates": ["reinspection-request", "documentation-request"],
+    "followUp": "1-2 weeks after submitting additional information on the denied portion",
+    "ifUnsuccessful": "If the carrier maintains the split after documentation, consider appraisal — the fact that they've already accepted part of the loss often works in your favor.",
+    "escalationPoint": "Escalate if the carrier's reasoning for the split doesn't hold up on its face (e.g., same storm, same roof, no coherent explanation for the difference).",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-low-scope-underpayment",
+    "slug": "low-scope-underpayment",
+    "name": "Low Scope / Underpayment",
+    "category": "Underpayment",
+    "statusTags": ["underpaid"],
+    "problemTags": ["low-scope", "wrong-quantity"],
+    "whatHappened": "The carrier approved the claim but the scope or dollar amount is lower than what the actual repair requires — missing line items, undercounted quantities, or underpriced work.",
+    "whatToCheck": [
+      "Where exactly your estimate and the carrier's estimate diverge — scope, quantity, or pricing",
+      "Whether missing items were simply overlooked or deliberately excluded",
+      "Whether quantities were measured correctly",
+      "Pricing source the carrier used vs. what's standard locally"
+    ],
+    "possibleSolutions": [
+      "Push the existing estimate with a clear item-by-item comparison",
+      "Request a supplement for specific missing or undercounted items",
+      "If it's a broad, unresolved gap — appraisal",
+      "Gather manufacturer, code, or measurement documentation to support the disputed items"
+    ],
+    "recommendedFirstMove": "Build a side-by-side comparison of your estimate and theirs, and identify which differences are factual (a measurement, a missing item) versus judgment calls (pricing, necessity).",
+    "supportingDocumentation": ["Side-by-side estimate comparison", "Measurements", "Photos", "Manufacturer/code documentation for disputed items"],
+    "whatToSayWrite": "To the adjuster: lead with the factual discrepancies (missing items, wrong quantities) before the judgment calls — those are usually easier to resolve first.",
+    "relatedTemplates": ["documentation-request", "adjuster-follow-up"],
+    "followUp": "1-2 weeks after sending the comparison",
+    "ifUnsuccessful": "If the carrier won't move on a well-documented comparison, this is a strong appraisal candidate.",
+    "escalationPoint": "Escalate if the gap is large enough that it materially affects whether the repair can be completed as scoped.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-wear-and-tear-argument",
+    "slug": "wear-and-tear-argument",
+    "name": "Carrier Says Damage Is Wear and Tear",
+    "category": "Denial Basis",
+    "statusTags": ["partial-approval", "fully-denied"],
+    "problemTags": ["wear-and-tear-argument"],
+    "whatHappened": "The carrier is denying or limiting the claim on the basis that the damage is normal wear and tear rather than storm-caused, which is typically excluded from coverage.",
+    "whatToCheck": [
+      "What specifically the carrier is pointing to as evidence of wear and tear",
+      "Whether there's a clear storm event with a date and documented weather data for the property",
+      "Whether the damage pattern is consistent with impact/wind rather than gradual deterioration",
+      "The age and condition of the roof prior to the storm, if known"
+    ],
+    "possibleSolutions": [
+      "Gather storm documentation (weather reports, hail/wind data) tying damage to a specific date",
+      "Get an independent assessment distinguishing storm damage from wear patterns",
+      "Use photo documentation showing impact-consistent damage (bruising, fractures) vs. gradual wear",
+      "If the carrier won't reconsider with solid documentation, this may be appraisal-appropriate since it's a dispute over cause/amount"
+    ],
+    "recommendedFirstMove": "Pull storm/weather documentation for the date of loss and pair it with photos that show damage consistent with that event, not gradual wear.",
+    "supportingDocumentation": ["Storm/weather report for the date of loss", "Close-up photos showing impact patterns", "Roof age/condition history if available", "Independent inspection notes"],
+    "whatToSayWrite": "To the adjuster: present the storm data and photo evidence together as a single package — don't send it piecemeal. To the client: explain this is a common carrier argument and that you're building the documentation to address it directly.",
+    "relatedTemplates": ["documentation-request", "adjuster-follow-up"],
+    "followUp": "1-2 weeks after submitting storm/damage documentation",
+    "ifUnsuccessful": "If the carrier maintains the wear-and-tear position after solid documentation, this is a reasonable candidate for appraisal.",
+    "escalationPoint": "Escalate if the carrier's wear-and-tear argument seems to be a blanket position rather than claim-specific — that pattern is worth flagging to your lead.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-prior-damage-argument",
+    "slug": "prior-damage-argument",
+    "name": "Carrier Says Damage Is Prior / Pre-Existing",
+    "category": "Denial Basis",
+    "statusTags": ["partial-approval", "fully-denied"],
+    "problemTags": ["prior-damage-argument"],
+    "whatHappened": "The carrier is attributing the damage to a prior event (an earlier storm, a previous claim, or damage that existed before the policy period) rather than the current claimed loss.",
+    "whatToCheck": [
+      "Whether there's a documented prior claim on this property",
+      "The date of the alleged prior damage vs. the current date of loss",
+      "Whether the client has records of a prior repair or lack thereof",
+      "Any inconsistency in the carrier's timeline"
+    ],
+    "possibleSolutions": [
+      "Request the carrier's basis for the prior-damage claim in writing (claim number, date, source)",
+      "Gather documentation showing the roof's condition before the current date of loss, if available",
+      "Interview the client about the property's claim history",
+      "If the timeline doesn't hold up, push back directly with the documented current-event evidence"
+    ],
+    "recommendedFirstMove": "Ask the carrier to specify exactly what prior event or claim they're referring to — a vague \"pre-existing\" assertion is much weaker than a documented one, and often falls apart once you ask for specifics.",
+    "supportingDocumentation": ["Storm/weather report for the current date of loss", "Any prior inspection or claim records", "Photos", "Client statement on property history"],
+    "whatToSayWrite": "To the adjuster: ask directly for the specific prior claim or event they're citing, in writing. To the client: ask about any prior roof work or claims on the property so you're not caught off guard.",
+    "relatedTemplates": ["documentation-request", "adjuster-follow-up"],
+    "followUp": "1-2 weeks after requesting specifics from the carrier",
+    "ifUnsuccessful": "If the carrier won't specify or the claim stalls, this is a reasonable appraisal candidate since it's fundamentally a dispute over cause and amount.",
+    "escalationPoint": "Escalate if the client discloses a real prior claim that complicates the current one — better to loop in your lead early than be surprised later.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-reinspection-denied",
+    "slug": "reinspection-denied",
+    "name": "Reinspection Request Denied",
+    "category": "Reinspection",
+    "statusTags": ["reinspection-needed", "claim-stalled"],
+    "problemTags": ["reinspection-denied"],
+    "whatHappened": "You requested a reinspection and the carrier refused — either explicitly declining or simply not scheduling one after repeated requests.",
+    "whatToCheck": [
+      "Whether the carrier gave a stated reason for declining",
+      "How many times reinspection has been requested and over what timeframe",
+      "Whether the original request clearly identified the disputed items and included documentation",
+      "Whether the dispute is really about amount rather than needing a fresh look"
+    ],
+    "possibleSolutions": [
+      "If the request was vague, resubmit with a sharper, better-documented ask",
+      "If the carrier has flatly refused, this is a strong signal to move toward appraisal instead",
+      "Escalate internally if this is unusual for that carrier or adjuster"
+    ],
+    "recommendedFirstMove": "Confirm the original reinspection request was specific and well-documented. If it was, a flat refusal is a strong signal to stop pursuing reinspection and consider appraisal instead — don't keep re-requesting the same thing.",
+    "supportingDocumentation": ["Copy of the original reinspection request", "Carrier's response (or lack of one)", "Photos and documentation that were included"],
+    "whatToSayWrite": "To the adjuster: ask them to confirm in writing that reinspection is declined, and why. To the client: let them know reinspection wasn't granted and you're evaluating the next path.",
+    "relatedTemplates": ["reinspection-follow-up", "internal-escalation-message"],
+    "followUp": "Immediately after a clear denial — don't let this sit",
+    "ifUnsuccessful": "Move to appraisal or escalate, depending on claim value and complexity.",
+    "escalationPoint": "Escalate any flat, unexplained reinspection refusal to your lead — this pattern is worth tracking by carrier.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-reinspection-delayed",
+    "slug": "reinspection-delayed",
+    "name": "Reinspection Delayed",
+    "category": "Reinspection",
+    "statusTags": ["reinspection-requested", "claim-stalled"],
+    "problemTags": ["reinspection-delayed"],
+    "whatHappened": "A reinspection was requested and not explicitly denied, but it's been scheduled and rescheduled, or simply hasn't happened, well past a reasonable timeframe.",
+    "whatToCheck": [
+      "How long it's been since the reinspection was requested or last scheduled",
+      "Whether the delay is on the carrier's side, the client's availability, or something else",
+      "Whether there's a scheduled date currently on the books"
+    ],
+    "possibleSolutions": [
+      "Follow up directly with the adjuster for a firm date",
+      "If the client's availability is the holdup, work with them to lock in a window",
+      "If delays continue without explanation, escalate internally"
+    ],
+    "recommendedFirstMove": "Send a direct, dated follow-up asking for a firm reinspection date — vague check-ins tend to get vague answers.",
+    "supportingDocumentation": ["Timeline of requests and any scheduled/rescheduled dates"],
+    "whatToSayWrite": "To the adjuster: ask for a specific date, not just confirmation it's \"in the queue.\" To the client: confirm their availability so scheduling isn't the holdup.",
+    "relatedTemplates": ["reinspection-follow-up"],
+    "followUp": "Every 1-2 weeks until a firm date is set",
+    "ifUnsuccessful": "If delays continue past a reasonable point (use your judgment based on claim urgency), escalate internally.",
+    "escalationPoint": "Escalate if a reinspection has been delayed more than once without a clear reason.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-adjuster-not-responding",
+    "slug": "adjuster-not-responding",
+    "name": "Adjuster Not Responding",
+    "category": "Communication",
+    "statusTags": ["adjuster-unresponsive", "claim-stalled"],
+    "problemTags": ["adjuster-not-responding"],
+    "whatHappened": "The assigned adjuster has gone quiet — not returning calls or emails — and the claim isn't moving.",
+    "whatToCheck": [
+      "How long it's been since the last response",
+      "How many follow-up attempts have been made and through what channels",
+      "Whether there's a supervisor or alternate contact on file",
+      "Whether the adjuster may have changed (reassignment, leave, turnover)"
+    ],
+    "possibleSolutions": [
+      "Send one more clear, dated follow-up through the primary channel",
+      "Try an alternate channel (phone if you've only emailed, or vice versa)",
+      "Contact the carrier's general claims line to check on adjuster status",
+      "Escalate to a supervisor if there's still no response after reasonable attempts"
+    ],
+    "recommendedFirstMove": "Check your follow-up history first — if you've made 2+ genuine attempts over a reasonable window with no response, it's time to go up a level rather than sending a third similar message.",
+    "supportingDocumentation": ["Log of prior contact attempts and dates"],
+    "whatToSayWrite": "Keep follow-ups short, specific, and dated — state exactly what you need and by when, so a supervisor reading the thread later can see the pattern clearly.",
+    "relatedTemplates": ["adjuster-follow-up", "internal-escalation-message"],
+    "followUp": "Every 3-5 business days while unresponsive",
+    "ifUnsuccessful": "Escalate to the carrier's supervisor line and loop in your own lead.",
+    "escalationPoint": "Escalate after 2+ unanswered follow-ups over 1-2 weeks, sooner if the claim is time-sensitive.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-adjuster-no-additional-damage",
+    "slug": "adjuster-says-no-additional-damage",
+    "name": "Adjuster Says No Additional Damage",
+    "category": "Denial Basis",
+    "statusTags": ["partial-approval"],
+    "problemTags": ["missing-damage", "denial"],
+    "whatHappened": "You've identified damage beyond what the carrier approved, but the adjuster maintains there's nothing further to pay for.",
+    "whatToCheck": [
+      "Whether the additional damage was actually inspected or just dismissed verbally",
+      "Whether you have clear photo/measurement documentation of the specific additional damage",
+      "Whether the adjuster gave any specific reasoning or just a blanket \"no\""
+    ],
+    "possibleSolutions": [
+      "Request reinspection focused specifically on the additional damage, with documentation attached",
+      "If reinspection is refused, submit the documentation directly as a reconsideration request",
+      "If the carrier still won't budge, this is appraisal territory"
+    ],
+    "recommendedFirstMove": "Put together clear, specific documentation of exactly what additional damage exists and where — a vague \"there's more damage\" claim is easy to dismiss; a marked-up photo set isn't.",
+    "supportingDocumentation": ["Photos of the specific additional damage, clearly marked", "Measurements", "Comparison to the approved scope"],
+    "whatToSayWrite": "To the adjuster: be specific — name the exact areas and items, not a general assertion that more damage exists.",
+    "relatedTemplates": ["reinspection-request", "documentation-request"],
+    "followUp": "1-2 weeks after submitting documentation",
+    "ifUnsuccessful": "Move to appraisal if the carrier maintains its position after specific, documented evidence.",
+    "escalationPoint": "Escalate if the adjuster declines to even review documentation you submit.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-client-insurance-dropped-claim",
+    "slug": "client-says-insurance-dropped-claim",
+    "name": "Client Says Insurance \"Dropped\" the Claim",
+    "category": "Client Communication",
+    "statusTags": ["claim-stalled"],
+    "problemTags": ["claim-dropped-closed"],
+    "whatHappened": "The client believes the carrier closed or abandoned the claim — this may be accurate (the claim was formally closed) or a misunderstanding (it's just stalled or between steps).",
+    "whatToCheck": [
+      "The claim's actual current status directly with the carrier — don't rely on the client's read of it",
+      "Whether there's a formal closure letter or notice",
+      "The last actual activity date on the claim"
+    ],
+    "possibleSolutions": [
+      "If the claim is genuinely closed — determine why and whether it can be reopened",
+      "If it's just stalled, reassure and update the client with the real status and next step",
+      "If communication broke down, get a direct update from the carrier before saying anything further to the client"
+    ],
+    "recommendedFirstMove": "Verify the actual claim status with the carrier before responding to the client — don't confirm or deny what the client believes until you know.",
+    "supportingDocumentation": ["Any closure notice from the carrier", "Timeline of claim activity"],
+    "whatToSayWrite": "To the client: acknowledge their concern, let them know you're checking the actual status, and follow up with facts rather than reassurance alone.",
+    "relatedTemplates": ["client-stalled-claim-message", "adjuster-follow-up"],
+    "followUp": "Within 2-3 business days of the client raising this",
+    "ifUnsuccessful": "If the claim was formally closed, escalate internally to determine the best path to reopen or appeal.",
+    "escalationPoint": "Escalate any formally closed claim to your lead before taking further action.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-client-hesitant",
+    "slug": "client-hesitant-to-move-forward",
+    "name": "Client Hesitant to Move Forward",
+    "category": "Client Communication",
+    "statusTags": [],
+    "problemTags": ["client-not-responding", "other"],
+    "whatHappened": "The client is dragging their feet on a needed next step — signing something, scheduling access, agreeing to appraisal, or another decision point — often due to confusion, cost concerns, or general uncertainty.",
+    "whatToCheck": [
+      "What specifically the client seems uncertain or concerned about",
+      "Whether they fully understand what's being asked of them and why",
+      "Whether there's a cost or commitment they're worried about"
+    ],
+    "possibleSolutions": [
+      "Have a direct conversation to understand the actual hesitation, not just note it as \"unresponsive\"",
+      "Re-explain the next step in plain terms and what happens if it doesn't happen",
+      "Address specific concerns (cost, timeline, process) directly rather than repeating the same ask"
+    ],
+    "recommendedFirstMove": "Reach out with a plain-language explanation of the next step and ask directly what's giving them pause — hesitation usually has a specific cause that a form follow-up won't surface.",
+    "supportingDocumentation": ["N/A — this is primarily a communication issue"],
+    "whatToSayWrite": "Keep it warm and direct: explain what's needed, why, and what happens if it's delayed — invite questions rather than just re-sending the same request.",
+    "relatedTemplates": ["client-stalled-claim-message"],
+    "followUp": "3-5 business days after the conversation, if no decision yet",
+    "ifUnsuccessful": "If the client remains unresponsive after a genuine attempt to address their concerns, escalate to your lead or client specialist.",
+    "escalationPoint": "Escalate if hesitation is blocking a time-sensitive step (like an appraisal deadline).",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-client-unresponsive",
+    "slug": "client-unresponsive",
+    "name": "Client Unresponsive",
+    "category": "Client Communication",
+    "statusTags": ["client-unresponsive", "claim-stalled"],
+    "problemTags": ["client-not-responding"],
+    "whatHappened": "The client isn't answering calls, texts, or emails, and the claim needs their input or action to move forward.",
+    "whatToCheck": [
+      "How long it's been and through how many channels you've tried",
+      "Whether there's an alternate contact (spouse, family member, property manager) on file",
+      "Whether anything in the file suggests why (they're traveling, dealing with something else, etc.)"
+    ],
+    "possibleSolutions": [
+      "Try multiple channels (call, text, email) with a clear, specific ask",
+      "Reach out to an alternate contact if one exists",
+      "Give a clear deadline and consequence in writing if there's a time-sensitive step at risk"
+    ],
+    "recommendedFirstMove": "Send one clear, multi-channel outreach that states exactly what's needed and by when, rather than several vague check-ins.",
+    "supportingDocumentation": ["Log of contact attempts and dates"],
+    "whatToSayWrite": "Be direct and specific about what's needed and the timeframe — vague \"just checking in\" messages are easy to ignore.",
+    "relatedTemplates": ["client-stalled-claim-message"],
+    "followUp": "Every 3-5 business days, escalating urgency if time-sensitive",
+    "ifUnsuccessful": "If unresponsive past a time-sensitive deadline, escalate to your lead for guidance on next steps.",
+    "escalationPoint": "Escalate if client unresponsiveness threatens to cause a missed deadline (e.g., appraisal demand, reinspection window).",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-appraisal-demand-delayed",
+    "slug": "appraisal-demand-delayed",
+    "name": "Appraisal Demand Delayed",
+    "category": "Appraisal",
+    "statusTags": ["appraisal-recommended"],
+    "problemTags": ["other"],
+    "whatHappened": "The team has decided appraisal is the right path, but the demand letter hasn't gone out yet — often due to missing information (appraiser selection, documentation) or simply not being prioritized.",
+    "whatToCheck": [
+      "What's actually blocking the demand letter from going out — missing appraiser, missing documentation, or just needs to be done",
+      "Whether the client has been informed appraisal is happening"
+    ],
+    "possibleSolutions": [
+      "Select an appraiser from the roster if that's the holdup",
+      "Complete the demand letter template with what's already in the file",
+      "Set a specific date to send it rather than leaving it open-ended"
+    ],
+    "recommendedFirstMove": "Identify the one specific thing blocking the demand letter and resolve just that — most delays here come down to a single missing piece, not a complicated problem.",
+    "supportingDocumentation": ["Appraisal Demand Letter Template", "Appraiser roster"],
+    "whatToSayWrite": "To the client, if not already informed: use the appraisal client-explanation template.",
+    "relatedTemplates": ["client-explanation-of-appraisal"],
+    "followUp": "Set a firm send date, not \"soon\"",
+    "ifUnsuccessful": "If something outside your control is blocking it (e.g., waiting on client sign-off), escalate for help unblocking it.",
+    "escalationPoint": "Escalate if the demand letter has been pending more than a week without a clear reason.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-appraiser-not-responding",
+    "slug": "appraiser-assigned-but-not-responding",
+    "name": "Appraiser Assigned but Not Responding",
+    "category": "Appraisal",
+    "statusTags": ["appraisal-in-progress"],
+    "problemTags": ["appraiser-issue"],
+    "whatHappened": "Your own selected appraiser isn't responding to updates or requests once appraisal is underway.",
+    "whatToCheck": [
+      "How long it's been since the last response (2-3 weeks is the standard follow-up window)",
+      "Whether you've tried multiple contact methods",
+      "Whether the appraiser has other claims with your team that might explain a backlog"
+    ],
+    "possibleSolutions": [
+      "Send a direct follow-up through your usual contact method",
+      "Try an alternate contact method if you've only used one",
+      "If truly unresponsive over an extended period, loop in your lead about whether a different appraiser should be used going forward"
+    ],
+    "recommendedFirstMove": "If it's been under 2-3 weeks, a single clear follow-up is usually enough. If it's been longer, escalate.",
+    "supportingDocumentation": ["Timeline of appraiser communication"],
+    "whatToSayWrite": "Keep the follow-up specific: what you need, and by when.",
+    "relatedTemplates": ["appraiser-follow-up"],
+    "followUp": "2-3 weeks is the standard check-in window during active appraisal",
+    "ifUnsuccessful": "Escalate to your lead to discuss options, including appraiser selection going forward.",
+    "escalationPoint": "Escalate if an appraiser is unresponsive for an extended period with no explanation.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-disagreement-with-appraiser",
+    "slug": "disagreement-with-appraiser",
+    "name": "Disagreement With Appraiser",
+    "category": "Appraisal",
+    "statusTags": ["appraisal-in-progress"],
+    "problemTags": ["appraiser-issue"],
+    "whatHappened": "During appraisal, your own appraiser and the carrier's appraiser can't agree on the amount of loss — this is a normal part of the process and is exactly what the umpire mechanism exists for.",
+    "whatToCheck": [
+      "Whether the two appraisers have formally reached impasse or are still negotiating",
+      "Whether an umpire has been selected",
+      "What specifically the disagreement is about"
+    ],
+    "possibleSolutions": [
+      "Let the appraisers continue trying to reach agreement — this is normal and not itself a problem",
+      "If truly at impasse, the umpire process resolves it — confirm this is moving forward",
+      "Keep the client informed that this stage can take time without over-explaining the mechanics"
+    ],
+    "recommendedFirstMove": "Confirm with your appraiser whether they consider this a genuine impasse requiring an umpire, or still active negotiation.",
+    "supportingDocumentation": ["N/A — this is a process step, not a documentation gap"],
+    "whatToSayWrite": "To the client: this is a normal part of appraisal, not a sign anything has gone wrong.",
+    "relatedTemplates": ["appraiser-follow-up", "client-explanation-of-appraisal"],
+    "followUp": "Per your standard appraisal follow-up cadence (2-3 weeks)",
+    "ifUnsuccessful": "If the umpire process itself stalls, escalate to your lead.",
+    "escalationPoint": "Escalate if the appraisal process itself seems to be breaking down (e.g., no umpire being selected after a reasonable period).",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-appraisal-award-received",
+    "slug": "appraisal-award-received",
+    "name": "Appraisal Award Received",
+    "category": "Appraisal",
+    "statusTags": ["appraisal-award-received"],
+    "problemTags": [],
+    "whatHappened": "The appraisal process has concluded and an award (the binding amount of loss) has been issued.",
+    "whatToCheck": [
+      "The exact award amount and what it covers",
+      "Whether the carrier has acknowledged the award and issued payment information",
+      "What's needed for close-out (revised estimate, check details, next steps on any denied/partial portions)"
+    ],
+    "possibleSolutions": [
+      "Follow up with the carrier on settlement and payment the same day the award is received",
+      "Kick off the close-out handoffs — revised estimate, payment tracking, and any next-step confirmation for portions not fully resolved",
+      "Update the client with the outcome"
+    ],
+    "recommendedFirstMove": "Follow up with the carrier on the settlement letter and payment information the same day — don't let this sit even a day.",
+    "supportingDocumentation": ["The appraisal award document", "Revised estimate"],
+    "whatToSayWrite": "To the client: share the outcome clearly and what happens next (payment timing, any remaining steps).",
+    "relatedTemplates": ["appraisal-demand-follow-up"],
+    "followUp": "Same day for the carrier follow-up; then per your close-out process",
+    "ifUnsuccessful": "If the carrier delays payment after the award, escalate — an award is binding.",
+    "escalationPoint": "Escalate any delay in carrier follow-through after a binding award — this shouldn't require negotiation.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-payment-incorrect",
+    "slug": "payment-received-but-amount-appears-incorrect",
+    "name": "Payment Received but Amount Appears Incorrect",
+    "category": "Payment",
+    "statusTags": ["payment-pending"],
+    "problemTags": ["payment-issue"],
+    "whatHappened": "A check or payment has come in, but the amount doesn't match what was approved, awarded, or expected.",
+    "whatToCheck": [
+      "The approved or awarded amount vs. the amount actually received",
+      "Whether depreciation was withheld (recoverable depreciation is common and not necessarily an error)",
+      "Whether there's a deductible or prior-payment adjustment that explains the difference",
+      "Whether this is a partial payment with more expected"
+    ],
+    "possibleSolutions": [
+      "Compare the payment breakdown line by line against the approval/award",
+      "If depreciation was withheld, confirm the process for recovering it once work is complete",
+      "If there's a genuine discrepancy with no clear explanation, contact the carrier directly for a breakdown"
+    ],
+    "recommendedFirstMove": "Get the itemized payment breakdown from the carrier before assuming there's an error — depreciation holdbacks and deductibles explain most \"wrong amount\" situations.",
+    "supportingDocumentation": ["Approval or award letter", "Payment breakdown from the carrier", "Original estimate"],
+    "whatToSayWrite": "To the client: explain any depreciation holdback or deductible clearly so the payment amount makes sense to them.",
+    "relatedTemplates": ["adjuster-follow-up"],
+    "followUp": "Within a few business days of identifying a discrepancy",
+    "ifUnsuccessful": "If the carrier can't explain the discrepancy, escalate for review.",
+    "escalationPoint": "Escalate any payment discrepancy that isn't explained by depreciation or deductible.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-missing-documentation",
+    "slug": "missing-documentation",
+    "name": "Missing Documentation",
+    "category": "Documentation",
+    "statusTags": [],
+    "problemTags": ["insufficient-documentation"],
+    "whatHappened": "The claim file is missing something needed to move forward — could be photos, measurements, a report, or client-provided information.",
+    "whatToCheck": [
+      "Exactly what's missing and why it's needed for the next step",
+      "Where it should come from (site visit, client, a report/vendor, existing file)",
+      "Whether it's time-sensitive"
+    ],
+    "possibleSolutions": [
+      "If it requires a site visit — schedule one",
+      "If it's client-provided — request it directly with a clear deadline",
+      "If it's a report (ITEL, storm data, etc.) — order it from the appropriate source"
+    ],
+    "recommendedFirstMove": "Name exactly what's missing and why the next step can't proceed without it — this makes the ask concrete for whoever needs to provide it.",
+    "supportingDocumentation": ["N/A — this scenario is about identifying and closing a documentation gap"],
+    "whatToSayWrite": "Be specific about what's needed and why, whether asking the client, a vendor, or scheduling a visit.",
+    "relatedTemplates": ["documentation-request"],
+    "followUp": "Based on how time-sensitive the missing item is",
+    "ifUnsuccessful": "If the documentation can't be obtained, note that clearly in the file and revisit whether the next step needs to change.",
+    "escalationPoint": "Escalate if the missing documentation is blocking a deadline-driven step (e.g., appraisal demand window).",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-itel-required",
+    "slug": "itel-required",
+    "name": "ITEL Required",
+    "category": "Documentation",
+    "statusTags": [],
+    "problemTags": ["itel-issue"],
+    "whatHappened": "A material identification/availability report (commonly referred to as ITEL, or similar services like RLS/NTS) is needed to resolve a dispute over whether a matching material is available.",
+    "whatToCheck": [
+      "Whether the shingle or material in question is architectural or 3-tab (see the material decision rule in your Playbooks)",
+      "Whether an ITEL-type report has already been ordered for this claim",
+      "The carrier's specific stated basis for requiring or disputing material availability"
+    ],
+    "possibleSolutions": [
+      "Order the appropriate report if one hasn't been obtained yet",
+      "If one exists, make sure it was actually submitted to the carrier and acknowledged",
+      "Use the report as the core of a documentation-based reconsideration request"
+    ],
+    "recommendedFirstMove": "Confirm whether this material dispute actually calls for ITEL under your team's material decision rule before ordering — check the Documentation playbook.",
+    "supportingDocumentation": ["ITEL / RLS / NTS report", "Photos of the material in question", "Manufacturer information"],
+    "whatToSayWrite": "To the adjuster: submit the report with a clear explanation of what it establishes (availability/discontinuation) and why that matters for the claim.",
+    "relatedTemplates": ["documentation-request"],
+    "followUp": "1-2 weeks after submitting the report",
+    "ifUnsuccessful": "If the carrier disputes a clear report finding, this is a solid appraisal candidate.",
+    "escalationPoint": "Escalate if there's uncertainty about whether ITEL applies to the specific material in question.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-material-unavailable-discontinued",
+    "slug": "material-unavailable-discontinued",
+    "name": "Material Unavailable / Discontinued",
+    "category": "Documentation",
+    "statusTags": ["partial-approval"],
+    "problemTags": ["wrong-material", "itel-issue"],
+    "whatHappened": "The carrier is treating a damaged area as repairable/matchable, but the specific material (often shingles) is discontinued or unavailable, which usually supports a full-slope or full-roof replacement argument instead of a partial repair.",
+    "whatToCheck": [
+      "Whether material unavailability has actually been documented (ITEL or manufacturer confirmation), or is just assumed",
+      "What the carrier's position is based on",
+      "Whether this affects one area (e.g., a garage) or a larger portion of the property"
+    ],
+    "possibleSolutions": [
+      "Establish material unavailability formally through an ITEL-type report or manufacturer documentation",
+      "Submit that documentation with a clear explanation connecting unavailability to the need for full replacement of the affected area",
+      "Request reconsideration based on the documented unavailability",
+      "If the carrier maintains their position after solid documentation, escalate"
+    ],
+    "recommendedFirstMove": "Verify and document material availability/discontinuation before doing anything else — this is the fact the whole argument rests on.",
+    "supportingDocumentation": ["Shingle/material identification", "Manufacturer information", "Photos", "Contractor documentation", "Any relevant material availability evidence"],
+    "whatToSayWrite": "To the adjuster: submit the unavailability documentation with a clear, direct explanation — this is a factual question, not a judgment call, so lead with the evidence.",
+    "relatedTemplates": ["documentation-request"],
+    "followUp": "1-2 weeks after submitting reconsideration",
+    "ifUnsuccessful": "If the carrier maintains their position despite documented unavailability, escalate for a decision on next steps.",
+    "escalationPoint": "Escalate if the carrier disputes clearly documented material unavailability.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-matching-issue",
+    "slug": "matching-issue",
+    "name": "Matching Issue",
+    "category": "Documentation",
+    "statusTags": ["partial-approval"],
+    "problemTags": ["matching-issue"],
+    "whatHappened": "There's a dispute over whether replacement materials need to match existing ones (siding, shingles, etc.) closely enough to justify a broader scope of replacement than the carrier approved.",
+    "whatToCheck": [
+      "What specific matching issue is in dispute (color, texture, discontinuation, manufacturer)",
+      "Whether any relevant matching-related documentation exists for this situation",
+      "How visible the mismatch would be if only the damaged portion were repaired"
+    ],
+    "possibleSolutions": [
+      "Document the matching issue clearly with photos comparing existing vs. available replacement material",
+      "Gather manufacturer information supporting the matching concern",
+      "Submit a clear, evidence-based reconsideration request"
+    ],
+    "recommendedFirstMove": "Document the matching problem visually and with manufacturer information before submitting anything — a well-illustrated mismatch is far more persuasive than a description of one.",
+    "supportingDocumentation": ["Side-by-side photos of existing vs. available material", "Manufacturer information", "Any relevant matching documentation"],
+    "whatToSayWrite": "To the adjuster: let the photo comparison do the talking — pair it with a short, direct explanation.",
+    "relatedTemplates": ["documentation-request"],
+    "followUp": "1-2 weeks after submitting documentation",
+    "ifUnsuccessful": "If the carrier maintains their position, this is a reasonable appraisal candidate.",
+    "escalationPoint": "Escalate if you're unsure whether a matching argument applies to a particular material or situation.",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-code-related-issue",
+    "slug": "code-related-issue",
+    "name": "Code-Related Issue",
+    "category": "Documentation",
+    "statusTags": ["partial-approval"],
+    "problemTags": ["wrong-material", "low-scope"],
+    "whatHappened": "A local building code requirement affects the scope of repair (e.g., requiring additional work beyond a like-for-like repair), and the carrier's estimate doesn't reflect it.",
+    "whatToCheck": [
+      "The specific code requirement and its source (local building authority, state code)",
+      "Whether the carrier's estimate acknowledges code upgrade coverage at all",
+      "Whether documentation of the specific code citation exists in the file"
+    ],
+    "possibleSolutions": [
+      "Gather the specific code documentation/citation that applies",
+      "Submit it clearly tied to the specific line items it affects",
+      "Confirm whether the policy includes code upgrade coverage, if that's relevant"
+    ],
+    "recommendedFirstMove": "Get the specific code citation in writing from the applicable authority before submitting anything — a general \"code requires this\" claim is much weaker than a citation.",
+    "supportingDocumentation": ["Code citation/documentation", "Photos", "Estimate showing the affected line items"],
+    "whatToSayWrite": "To the adjuster: tie the code citation directly to the specific scope items it affects, rather than a general code argument.",
+    "relatedTemplates": ["documentation-request"],
+    "followUp": "1-2 weeks after submission",
+    "ifUnsuccessful": "If the carrier disputes a documented code requirement, escalate or consider appraisal depending on claim value.",
+    "escalationPoint": "Escalate if there's any uncertainty about how a code requirement applies to this claim — better to confirm than guess.",
+    "lastUpdated": "2026-09-10"
+  }
+]

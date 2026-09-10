@@ -1,0 +1,221 @@
+{
+  "_readme": "This file drives the Claim Navigator's recommendation engine. It is plain data, not code — an admin can edit it (via /admin/rules for the weights, or directly in this file) without touching the application. 'options' are the five possible paths. 'problemWeights' and 'statusWeights' score each option based on what the specialist selects; the engine sums the weights for everything selected and ranks the options highest-to-lowest. 'nextStepTemplates' are the narrative blocks shown for whichever option comes out on top, with {{carrier}}, {{damageType}}, and {{problems}} filled in from the specialist's inputs. Scores are 0-3 per tag: 0 = not relevant, 1 = worth considering, 2 = commonly the right call, 3 = strongly indicated.",
+
+  "options": [
+    {
+      "id": "reinspection",
+      "label": "Request Reinspection",
+      "shortLabel": "Reinspection",
+      "whenAppropriate": [
+        "Damage may have been missed during the original inspection",
+        "New documentation has become available since the inspection",
+        "The original inspection was incomplete or rushed",
+        "There is a reasonable, documented basis for another look"
+      ]
+    },
+    {
+      "id": "pushEstimate",
+      "label": "Push the Existing Estimate",
+      "shortLabel": "Push Estimate",
+      "whenAppropriate": [
+        "The damage is already documented and in the file",
+        "The carrier has already acknowledged the loss itself",
+        "The dispute is really about scope, quantity, or pricing — not coverage",
+        "No new inspection or new evidence is needed to make the case"
+      ]
+    },
+    {
+      "id": "appraisal",
+      "label": "Appraisal",
+      "shortLabel": "Appraisal",
+      "whenAppropriate": [
+        "There is a genuine dispute over the amount of loss (not whether it's covered)",
+        "The claim has reached a point where standard negotiation is exhausted",
+        "Reinspection or supplement requests have stalled without resolving the amount",
+        "The gap between our estimate and the carrier's estimate isn't closing"
+      ]
+    },
+    {
+      "id": "documentation",
+      "label": "Gather Additional Documentation",
+      "shortLabel": "Documentation",
+      "whenAppropriate": [
+        "The file is missing something a decision-maker would reasonably want to see",
+        "A specific carrier objection could be answered directly with the right evidence",
+        "Material, code, or matching questions need a authoritative source, not just an opinion",
+        "You're not yet ready to escalate or invoke appraisal because the case isn't fully built"
+      ]
+    },
+    {
+      "id": "escalation",
+      "label": "Escalate Internally",
+      "shortLabel": "Escalation",
+      "whenAppropriate": [
+        "The claim value or complexity is high",
+        "The carrier is disputing the process itself, not just the amount",
+        "The client is uncooperative, hostile, or a relationship risk",
+        "You're facing a scenario this tool and your playbooks don't clearly cover"
+      ]
+    }
+  ],
+
+  "problemWeights": {
+    "denial": { "reinspection": 2, "pushEstimate": 0, "appraisal": 1, "documentation": 2, "escalation": 1 },
+    "partial-denial": { "reinspection": 2, "pushEstimate": 1, "appraisal": 2, "documentation": 2, "escalation": 0 },
+    "low-scope": { "reinspection": 1, "pushEstimate": 2, "appraisal": 2, "documentation": 1, "escalation": 0 },
+    "missing-damage": { "reinspection": 3, "pushEstimate": 0, "appraisal": 0, "documentation": 2, "escalation": 0 },
+    "wrong-quantity": { "reinspection": 1, "pushEstimate": 2, "appraisal": 1, "documentation": 2, "escalation": 0 },
+    "wrong-material": { "reinspection": 0, "pushEstimate": 2, "appraisal": 1, "documentation": 2, "escalation": 0 },
+    "matching-issue": { "reinspection": 0, "pushEstimate": 1, "appraisal": 1, "documentation": 3, "escalation": 0 },
+    "wear-and-tear-argument": { "reinspection": 1, "pushEstimate": 0, "appraisal": 1, "documentation": 3, "escalation": 1 },
+    "age-related-argument": { "reinspection": 1, "pushEstimate": 0, "appraisal": 1, "documentation": 3, "escalation": 1 },
+    "prior-damage-argument": { "reinspection": 1, "pushEstimate": 0, "appraisal": 1, "documentation": 3, "escalation": 1 },
+    "no-storm-damage": { "reinspection": 1, "pushEstimate": 0, "appraisal": 0, "documentation": 3, "escalation": 1 },
+    "insufficient-documentation": { "reinspection": 0, "pushEstimate": 0, "appraisal": 0, "documentation": 3, "escalation": 0 },
+    "itel-issue": { "reinspection": 0, "pushEstimate": 1, "appraisal": 1, "documentation": 3, "escalation": 0 },
+    "reinspection-denied": { "reinspection": 0, "pushEstimate": 1, "appraisal": 2, "documentation": 1, "escalation": 2 },
+    "reinspection-delayed": { "reinspection": 1, "pushEstimate": 0, "appraisal": 0, "documentation": 0, "escalation": 2 },
+    "adjuster-not-responding": { "reinspection": 0, "pushEstimate": 0, "appraisal": 1, "documentation": 0, "escalation": 2 },
+    "appraiser-issue": { "reinspection": 0, "pushEstimate": 0, "appraisal": 1, "documentation": 0, "escalation": 2 },
+    "client-not-responding": { "reinspection": 0, "pushEstimate": 0, "appraisal": 0, "documentation": 0, "escalation": 1 },
+    "payment-issue": { "reinspection": 0, "pushEstimate": 1, "appraisal": 0, "documentation": 1, "escalation": 2 },
+    "claim-dropped-closed": { "reinspection": 0, "pushEstimate": 0, "appraisal": 0, "documentation": 1, "escalation": 3 },
+    "other": { "reinspection": 0, "pushEstimate": 0, "appraisal": 0, "documentation": 1, "escalation": 1 }
+  },
+
+  "statusWeights": {
+    "new-claim": { "reinspection": 0, "pushEstimate": 0, "appraisal": 0, "documentation": 1, "escalation": 0 },
+    "inspection-pending": { "reinspection": 0, "pushEstimate": 0, "appraisal": 0, "documentation": 1, "escalation": 0 },
+    "inspection-completed": { "reinspection": 1, "pushEstimate": 1, "appraisal": 0, "documentation": 1, "escalation": 0 },
+    "partial-approval": { "reinspection": 1, "pushEstimate": 1, "appraisal": 1, "documentation": 1, "escalation": 0 },
+    "fully-denied": { "reinspection": 2, "pushEstimate": 0, "appraisal": 1, "documentation": 2, "escalation": 1 },
+    "underpaid": { "reinspection": 1, "pushEstimate": 2, "appraisal": 2, "documentation": 1, "escalation": 0 },
+    "reinspection-needed": { "reinspection": 3, "pushEstimate": 0, "appraisal": 0, "documentation": 1, "escalation": 0 },
+    "reinspection-requested": { "reinspection": 1, "pushEstimate": 0, "appraisal": 0, "documentation": 0, "escalation": 0 },
+    "reinspection-completed": { "reinspection": 0, "pushEstimate": 1, "appraisal": 1, "documentation": 1, "escalation": 0 },
+    "appraisal-recommended": { "reinspection": 0, "pushEstimate": 0, "appraisal": 3, "documentation": 1, "escalation": 0 },
+    "appraisal-demand-sent": { "reinspection": 0, "pushEstimate": 0, "appraisal": 1, "documentation": 0, "escalation": 0 },
+    "appraisal-in-progress": { "reinspection": 0, "pushEstimate": 0, "appraisal": 1, "documentation": 0, "escalation": 0 },
+    "appraisal-award-received": { "reinspection": 0, "pushEstimate": 1, "appraisal": 0, "documentation": 0, "escalation": 0 },
+    "payment-pending": { "reinspection": 0, "pushEstimate": 1, "appraisal": 0, "documentation": 0, "escalation": 1 },
+    "client-unresponsive": { "reinspection": 0, "pushEstimate": 0, "appraisal": 0, "documentation": 0, "escalation": 1 },
+    "adjuster-unresponsive": { "reinspection": 0, "pushEstimate": 0, "appraisal": 1, "documentation": 0, "escalation": 2 },
+    "claim-stalled": { "reinspection": 1, "pushEstimate": 0, "appraisal": 1, "documentation": 0, "escalation": 2 },
+    "other": { "reinspection": 0, "pushEstimate": 0, "appraisal": 0, "documentation": 0, "escalation": 0 }
+  },
+
+  "nextStepTemplates": {
+    "reinspection": {
+      "title": "Request Reinspection",
+      "what": "Request that the carrier send an adjuster back out for a reinspection{{onDamageType}}.",
+      "why": "Based on what you entered{{forCarrier}}, there's a reasonable basis to believe the original inspection didn't capture the full picture{{onProblems}}.",
+      "beforeYouStart": [
+        "Confirm your photos clearly show the disputed damage",
+        "Review the original estimate line by line",
+        "Identify exactly what was omitted or undervalued",
+        "Gather any supporting documentation you already have"
+      ],
+      "steps": [
+        "Send the reinspection request",
+        "Clearly identify the disputed items, not just \"please look again\"",
+        "Attach supporting documentation",
+        "Log the request in Contractors Cloud",
+        "Set a follow-up reminder"
+      ],
+      "gather": ["Photos of the disputed damage", "The original estimate", "Any prior correspondence about the omission", "Measurements or reports, if relevant"],
+      "who": "Carrier / adjuster",
+      "document": "Log the reinspection request, what was disputed, and any response in Contractors Cloud.",
+      "followUp": "2-3 weeks if you haven't heard back",
+      "ifFails": "If reinspection is denied or comes back unchanged, review whether the dispute is better suited for appraisal or another escalation path — see the Reinspection and Appraisal playbooks."
+    },
+    "pushEstimate": {
+      "title": "Push the Existing Estimate",
+      "what": "Go back to the carrier with a clear, itemized case for the existing estimate{{onDamageType}} rather than requesting a new inspection.",
+      "why": "The loss itself doesn't appear to be in dispute{{forCarrier}} — this looks like a scope, quantity, or pricing disagreement{{onProblems}}, which usually doesn't need a new inspection to resolve.",
+      "beforeYouStart": [
+        "Confirm the carrier has already acknowledged the loss",
+        "Line up your estimate against theirs item by item",
+        "Identify exactly where and why the numbers diverge",
+        "Check pricing/measurement sources you can cite (e.g. Xactimate, manufacturer specs)"
+      ],
+      "steps": [
+        "Send a written breakdown of the disputed line items",
+        "Explain the basis for each one (code, manufacturer spec, measurement, pricing source)",
+        "Ask directly for a revised estimate or a written explanation of the difference",
+        "Log the request in Contractors Cloud",
+        "Set a follow-up reminder"
+      ],
+      "gather": ["Side-by-side estimate comparison", "Manufacturer or code documentation for disputed items", "Measurements", "Photos supporting the disputed scope"],
+      "who": "Carrier / adjuster",
+      "document": "Log the comparison sent, the reasoning given, and the carrier's response in Contractors Cloud.",
+      "followUp": "1-2 weeks if you haven't heard back",
+      "ifFails": "If the carrier holds their position without a substantive response, this is a strong candidate for appraisal — see the Appraisal playbook."
+    },
+    "appraisal": {
+      "title": "Consider Appraisal",
+      "what": "Evaluate whether this claim is ready to move into appraisal{{onDamageType}}.",
+      "why": "Standard negotiation appears to be stalling on the amount of loss{{forCarrier}}{{onProblems}} rather than on whether the loss is covered at all — that's the situation appraisal exists for.",
+      "beforeYouStart": [
+        "Confirm the disagreement is genuinely about amount, not coverage",
+        "Confirm other reasonable attempts to close the gap have been made",
+        "Review the policy's appraisal clause for this carrier if available",
+        "Loop in your lead if this is a high-value or complex claim"
+      ],
+      "steps": [
+        "Notify the client and explain what appraisal means in plain terms",
+        "Select an appraiser and prepare the demand package",
+        "Send the demand letter to formally invoke the appraisal clause",
+        "Track the carrier's response and appraiser selection",
+        "Log the decision to move to appraisal in Contractors Cloud"
+      ],
+      "gather": ["Estimate comparison", "Denial or partial-denial letter", "Damage documentation", "Any prior correspondence showing negotiation was attempted"],
+      "who": "Carrier, plus your lead if this is a first appraisal or a high-value claim",
+      "document": "Log the decision to invoke appraisal, the date, and the reasoning in Contractors Cloud.",
+      "followUp": "Per the Appraisal playbook — 2-3 weeks with your appraiser once appraisal is underway",
+      "ifFails": "If the carrier disputes the appraisal process itself or the claim gets more complicated than usual, escalate to your lead."
+    },
+    "documentation": {
+      "title": "Gather Additional Documentation",
+      "what": "Build out the file with documentation that directly answers the carrier's stated objection{{onDamageType}}.",
+      "why": "The strongest move here is making the case airtight before pushing further{{forCarrier}}{{onProblems}} — a well-documented file often resolves a dispute without needing reinspection or appraisal at all.",
+      "beforeYouStart": [
+        "Identify exactly what the carrier is disputing or citing as their reason",
+        "Figure out what kind of evidence would directly answer that specific objection",
+        "Check whether that evidence already exists somewhere in the file"
+      ],
+      "steps": [
+        "Gather the specific documentation type needed (see Gather below)",
+        "Attach it to a clear written explanation of what it shows and why it matters",
+        "Send it to the carrier as a reconsideration request",
+        "Log it in Contractors Cloud",
+        "Set a follow-up reminder"
+      ],
+      "gather": ["Photos", "Measurements", "Manufacturer information", "ITEL / RLS / NTS report if a material issue", "Contractor estimate", "Code documentation", "Matching documentation", "Storm/weather documentation"],
+      "who": "Carrier / adjuster, and the client if they need to provide anything",
+      "document": "Log what was gathered, what it shows, and the date it was sent in Contractors Cloud.",
+      "followUp": "1-2 weeks if you haven't heard back",
+      "ifFails": "If the documentation doesn't move the carrier, revisit whether reinspection or appraisal is the better next path."
+    },
+    "escalation": {
+      "title": "Escalate Internally",
+      "what": "Loop in your lead or manager on this claim before taking the next external step{{onDamageType}}.",
+      "why": "Something about this situation — value, complexity, an unresponsive party, or a scenario outside the standard playbooks{{onProblems}} — calls for another set of eyes before you go further{{forCarrier}}.",
+      "beforeYouStart": [
+        "Write a short summary of what's happened and what you've already tried",
+        "Be specific about what decision or input you need",
+        "Have the claim file ready to share"
+      ],
+      "steps": [
+        "Message your lead with the summary and the specific question",
+        "Share the claim file / Contractors Cloud link",
+        "Log that you escalated, to whom, and why",
+        "Follow their guidance on next steps"
+      ],
+      "gather": ["A short written summary of the situation", "What's already been tried", "The specific question or decision needed"],
+      "who": "Your team lead or manager",
+      "document": "Log the escalation, who you contacted, and the outcome in Contractors Cloud.",
+      "followUp": "As directed by your lead",
+      "ifFails": "If your lead isn't available, use the Internal Escalation template and note it needs a response — don't let the claim sit idle."
+    }
+  }
+}

@@ -1,0 +1,164 @@
+[
+  {
+    "id": "pbk-reinspection",
+    "slug": "reinspection",
+    "name": "Reinspection",
+    "summary": "Step-by-step process from identifying the issue through follow-up.",
+    "whenToUse": "Use this when you believe the carrier's inspection missed damage, was incomplete, or new documentation has come to light since it happened.",
+    "whatToCheck": [
+      "Do you have clear photo or measurement evidence of what was missed?",
+      "Is the original estimate/report available to reference?",
+      "Has reinspection already been requested and denied? (If so, see the Reinspection Denied scenario instead.)"
+    ],
+    "steps": [
+      { "title": "Identify exactly what was missed", "detail": "Pin down the specific area(s) or item(s) you believe weren't captured — vague requests get vague responses." },
+      { "title": "Gather supporting documentation", "detail": "Photos, measurements, or reports that clearly show the disputed damage." },
+      { "title": "Send the reinspection request", "detail": "Use the Reinspection Request template. Name the specific items in dispute and attach documentation." },
+      { "title": "Log the request", "detail": "Record the request, date, and what was disputed in Contractors Cloud." },
+      { "title": "Follow up if needed", "detail": "If you haven't heard back within a reasonable window, send a follow-up using the Reinspection Follow-Up template." },
+      { "title": "Review the outcome", "detail": "If granted and completed, confirm the updated scope reflects what was found. If denied, move to the Reinspection Denied scenario." }
+    ],
+    "templates": ["reinspection-request", "reinspection-follow-up"],
+    "followUp": "1-2 weeks after the request if no response; check in with the client if the reinspection date affects their timeline.",
+    "escalation": "Escalate if reinspection is flatly denied without explanation, or delayed repeatedly with no firm date."
+  },
+  {
+    "id": "pbk-appraisal",
+    "slug": "appraisal",
+    "name": "Appraisal",
+    "summary": "Step-by-step process from identifying appraisal as an option through demand, appraiser coordination, award, carrier follow-up, and closeout.",
+    "whenToUse": "Use this when standard negotiation on the amount of loss has stalled — the carrier isn't disputing coverage, but you and the carrier can't close the gap on scope or price.",
+    "whatToCheck": [
+      "Is this genuinely a dispute over amount, not coverage?",
+      "Have reasonable attempts already been made to resolve it directly (documentation, reinspection, pushing the estimate)?",
+      "Has the client been informed and does the policy support appraisal?"
+    ],
+    "steps": [
+      { "title": "Confirm appraisal is the right path", "detail": "Make sure this is an amount dispute, not a coverage dispute — appraisal doesn't resolve coverage questions." },
+      { "title": "Notify the client", "detail": "Explain what appraisal means in plain terms. Use the Client Explanation of Appraisal template." },
+      { "title": "Prepare the demand package", "detail": "Compile the estimate comparison and documentation, and select an appraiser from your roster." },
+      { "title": "Send the demand letter", "detail": "Formally invoke the appraisal clause, naming your selected appraiser." },
+      { "title": "Track the carrier's response", "detail": "Confirm they've named their own appraiser." },
+      { "title": "Follow up during appraisal", "detail": "Check in with your appraiser roughly every 2-3 weeks if you haven't heard updates." },
+      { "title": "Handle any pushback", "detail": "If the client has doubts or objections during the process, work through them directly rather than letting it stall." },
+      { "title": "Receive the award", "detail": "Once an award is issued, follow up with the carrier on settlement and payment the same day." },
+      { "title": "Close out", "detail": "Complete revised-estimate, payment-tracking, and next-step handoffs; record the outcome; confirm the client is updated." }
+    ],
+    "templates": ["appraisal-demand-follow-up", "appraiser-follow-up", "client-explanation-of-appraisal"],
+    "followUp": "2-3 weeks with your appraiser during active appraisal; same-day carrier follow-up once an award is received.",
+    "escalation": "Escalate high-value or complex claims to your lead before invoking appraisal, and any point where the process itself (not just the amount) is being disputed."
+  },
+  {
+    "id": "pbk-denial",
+    "slug": "denial",
+    "name": "Denial",
+    "summary": "How to analyze a denial and determine the appropriate next move.",
+    "whenToUse": "Use this any time a claim comes back fully or partially denied, to work out whether it's a documentation problem or a coverage problem before doing anything else.",
+    "whatToCheck": [
+      "What exact reason does the denial letter give?",
+      "Is this a dispute about whether there's covered damage, or whether it's covered at all?",
+      "What's already in the file, and what's missing?"
+    ],
+    "steps": [
+      { "title": "Read the denial closely", "detail": "Identify the stated reason — wear and tear, prior damage, no storm damage, insufficient documentation, or a coverage question." },
+      { "title": "Sort the dispute", "detail": "Coverage disputes (is this covered at all) usually need escalation. Amount/damage disputes (is there covered damage here) are documentation, reinspection, or appraisal territory." },
+      { "title": "Build the response", "detail": "Gather the specific documentation that answers the carrier's stated reason — see the Documentation playbook." },
+      { "title": "Submit and track", "detail": "Send the response, log it, and set a follow-up." },
+      { "title": "Reassess if it doesn't move", "detail": "If a well-documented response doesn't change the outcome, escalate or consider appraisal depending on the type of dispute." }
+    ],
+    "templates": ["documentation-request", "adjuster-follow-up"],
+    "followUp": "3-5 business days to begin working a denial; 1-2 weeks after submitting a response.",
+    "escalation": "Escalate immediately if the denial is a coverage dispute rather than a documentation/amount dispute."
+  },
+  {
+    "id": "pbk-underpayment",
+    "slug": "underpayment",
+    "name": "Underpayment",
+    "summary": "How to identify scope gaps and determine how to challenge them.",
+    "whenToUse": "Use this when a claim was approved but the scope or dollar amount is lower than the actual repair requires.",
+    "whatToCheck": [
+      "Where exactly does your estimate diverge from the carrier's — scope, quantity, or price?",
+      "Which differences are factual (a missed item, a wrong measurement) versus judgment calls (pricing, necessity)?",
+      "Is there a supplement process available for specific missing items?"
+    ],
+    "steps": [
+      { "title": "Build a side-by-side comparison", "detail": "Line up your estimate against theirs, item by item." },
+      { "title": "Separate factual gaps from judgment calls", "detail": "Lead with the factual discrepancies — they're usually easier to resolve." },
+      { "title": "Gather supporting documentation", "detail": "Measurements, manufacturer info, or code documentation for disputed items." },
+      { "title": "Submit the comparison", "detail": "Send it as a clear, itemized request — either a supplement or a reconsideration." },
+      { "title": "Follow up", "detail": "1-2 weeks if you haven't heard back." },
+      { "title": "Escalate the path if it stalls", "detail": "If the carrier won't move on a well-documented comparison, this is a strong appraisal candidate." }
+    ],
+    "templates": ["documentation-request", "adjuster-follow-up"],
+    "followUp": "1-2 weeks after submitting the comparison.",
+    "escalation": "Escalate if the underpayment is large enough to affect whether the repair can be completed as scoped."
+  },
+  {
+    "id": "pbk-documentation",
+    "slug": "documentation",
+    "name": "Documentation",
+    "summary": "What documentation may be useful depending on the situation.",
+    "whenToUse": "Use this as a reference any time you need to figure out what evidence would actually move a specific dispute forward.",
+    "whatToCheck": [
+      "What is the carrier's exact stated objection or reason?",
+      "What documentation type would directly answer that specific objection — not just \"more documentation\" in general?",
+      "Does something like it already exist in the file?"
+    ],
+    "steps": [
+      { "title": "Photos", "detail": "For damage, matching, and material disputes — clear, well-lit, and specific to the disputed item or area." },
+      { "title": "Measurements", "detail": "For scope and quantity disputes." },
+      { "title": "Manufacturer information", "detail": "For material, matching, and discontinuation disputes." },
+      { "title": "ITEL / RLS / NTS", "detail": "For material availability and matching disputes — see the ITEL Required scenario." },
+      { "title": "Contractor estimate", "detail": "To support scope and pricing positions." },
+      { "title": "Code documentation", "detail": "For code-upgrade related scope disputes — get the specific citation." },
+      { "title": "Matching documentation", "detail": "For disputes over whether materials need to match adjacent areas." },
+      { "title": "Storm documentation", "detail": "For wear-and-tear, prior-damage, and no-storm-damage arguments — ties damage to a specific dated event." }
+    ],
+    "templates": ["documentation-request"],
+    "followUp": "Varies by claim — see the specific scenario.",
+    "escalation": "Escalate if you're unsure what documentation type actually applies to a given dispute."
+  },
+  {
+    "id": "pbk-client-follow-up",
+    "slug": "client-follow-up",
+    "name": "Client Follow-Up",
+    "summary": "How to handle stalled or unresponsive clients.",
+    "whenToUse": "Use this when a claim needs client input or action and they've gone quiet, or seem hesitant about a next step.",
+    "whatToCheck": [
+      "How long has it been, and through how many channels have you tried?",
+      "Is there an alternate contact on file?",
+      "Is this a time-sensitive step (like an appraisal deadline)?"
+    ],
+    "steps": [
+      { "title": "Send a clear, specific outreach", "detail": "State exactly what's needed and by when — avoid vague \"just checking in\" messages." },
+      { "title": "Try multiple channels", "detail": "Call, text, and email if one channel alone hasn't worked." },
+      { "title": "Try an alternate contact", "detail": "If one exists and the primary contact is unreachable." },
+      { "title": "Set a clear deadline in writing", "detail": "Especially if a time-sensitive step is at risk." },
+      { "title": "Escalate if needed", "detail": "If a deadline is genuinely at risk, loop in your lead for guidance." }
+    ],
+    "templates": ["client-follow-up", "client-stalled-claim-message"],
+    "followUp": "Every 3-5 business days while unresponsive; sooner if time-sensitive.",
+    "escalation": "Escalate if client unresponsiveness threatens to cause a missed deadline."
+  },
+  {
+    "id": "pbk-carrier-follow-up",
+    "slug": "carrier-follow-up",
+    "name": "Carrier Follow-Up",
+    "summary": "How and when to follow up with the carrier.",
+    "whenToUse": "Use this any time you're waiting on the carrier — a response, a reinspection date, a decision, or payment.",
+    "whatToCheck": [
+      "What exactly are you waiting on, and how long has it been?",
+      "Have you already followed up once? What did they say, if anything?",
+      "Is there a deadline or urgency to factor in?"
+    ],
+    "steps": [
+      { "title": "Send a specific, dated follow-up", "detail": "Reference the original request and restate exactly what you need." },
+      { "title": "Use the right channel", "detail": "If email hasn't worked, try phone, or vice versa." },
+      { "title": "Log every attempt", "detail": "Keep a clear record — this matters if you need to escalate later." },
+      { "title": "Escalate after a reasonable pattern", "detail": "Generally 2+ unanswered attempts over 1-2 weeks, sooner if urgent." }
+    ],
+    "templates": ["adjuster-follow-up", "appraiser-follow-up", "appraisal-demand-follow-up"],
+    "followUp": "Every 3-5 business days while waiting on a response.",
+    "escalation": "Escalate after 2+ unanswered follow-ups, or immediately if a deadline is at risk."
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "id": "kb-what-is-appraisal",
+    "slug": "what-is-appraisal",
+    "title": "What Is Appraisal?",
+    "category": "Glossary",
+    "description": "The contractual process that resolves disputes over the amount of a covered loss.",
+    "whenToUse": "Reference this any time you or a client need a plain-language explanation of appraisal.",
+    "content": "Appraisal is a contractual dispute-resolution process built into most property insurance policies. It resolves disagreements over the amount of a covered loss — not whether the loss is covered in the first place. Both sides have to already agree the damage is covered; appraisal exists purely to settle the dollar value of the repair or replacement.\n\nEach party selects its own independent appraiser. The two appraisers then select a neutral third party called an umpire. The appraisers try to agree on the amount of loss between themselves; if they can't, the disagreement is submitted to the umpire. An agreement between any two of the three (the two appraisers, or one appraiser and the umpire) becomes the binding amount of loss.\n\nAppraisal is generally faster and less expensive than a lawsuit, and the resulting award is typically binding on both sides. Each party usually pays its own appraiser, with the umpire's fee often split evenly — though the exact terms come from the specific policy's appraisal clause, which can vary by carrier and state.",
+    "relatedScenarios": ["appraisal-demand-delayed", "appraisal-award-received", "disagreement-with-appraiser"],
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "kb-what-is-itel",
+    "slug": "what-is-itel",
+    "title": "What Is ITEL (and RLS / NTS)?",
+    "category": "Glossary",
+    "description": "Third-party services that determine whether a roofing material is available or discontinued.",
+    "whenToUse": "Reference this when a claim involves a material-matching or availability dispute.",
+    "content": "ITEL (and similar services like RLS or NTS) are third-party reporting services used in the roofing industry to determine whether a specific shingle or material is still available, discontinued, or a reasonable match to existing product. A report from one of these services is often used to support an argument for full-slope or full-roof replacement when a repair alone would leave a visible, undocumented mismatch.\n\nThese reports carry weight with carriers because they come from an independent third party rather than the contractor's own opinion — which is exactly why they're useful in a documentation-based reconsideration request.",
+    "relatedScenarios": ["itel-required", "material-unavailable-discontinued", "matching-issue"],
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "kb-noa-hail-report",
+    "slug": "what-is-a-noa-hail-impact-report",
+    "title": "What Is a NOA / Hail Impact Report?",
+    "category": "Glossary",
+    "description": "Documentation that ties storm damage to a specific date and location.",
+    "whenToUse": "Reference this when a carrier disputes whether storm damage actually occurred, or when countering a wear-and-tear or prior-damage argument.",
+    "content": "A NOA (Notice of Award, in some contexts) or hail impact report generally refers to storm/weather documentation — data showing that a hail, wind, or other storm event occurred at a specific property on a specific date, and with what intensity. This kind of report is useful for tying damage directly to a dated event, which helps counter arguments that damage is wear and tear, age-related, or pre-existing.",
+    "relatedScenarios": ["wear-and-tear-argument", "prior-damage-argument"],
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "kb-what-is-reinspection",
+    "slug": "what-is-reinspection",
+    "title": "What Is Reinspection?",
+    "category": "Glossary",
+    "description": "A follow-up inspection requested when damage may have been missed or undervalued.",
+    "whenToUse": "Reference this to explain the reinspection process to a newer specialist or a client.",
+    "content": "Reinspection is a request for the carrier to send an adjuster back to the property to review damage that wasn't captured, or wasn't fully captured, in the original inspection. It's typically appropriate when there's a specific, documented basis to believe something was missed — not as a general \"look again\" request. A well-supported reinspection request names the exact items in dispute and includes documentation (photos, measurements) up front.",
+    "relatedScenarios": ["reinspection-denied", "reinspection-delayed", "adjuster-says-no-additional-damage"],
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "kb-wear-and-tear-vs-storm",
+    "slug": "wear-and-tear-vs-storm-damage",
+    "title": "Wear and Tear vs. Storm Damage",
+    "category": "Definitions",
+    "description": "How carriers distinguish gradual deterioration from a covered storm event.",
+    "whenToUse": "Reference this when preparing a response to a wear-and-tear or age-related denial.",
+    "content": "Most property policies exclude damage caused by gradual wear and tear or normal aging, while covering sudden, accidental damage from a specific storm event. Carriers will sometimes attribute roof damage to wear and tear (or age) rather than a specific storm, which limits or eliminates coverage.\n\nThe strongest counter to this argument usually combines two things: documentation tying the damage to a specific storm event (date, location, intensity), and photo evidence showing damage patterns consistent with impact (bruising, fractures, granule loss in a pattern) rather than gradual deterioration.",
+    "relatedScenarios": ["wear-and-tear-argument"],
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "kb-matching-statutes",
+    "slug": "what-is-matching",
+    "title": "What Is \"Matching\"?",
+    "category": "Definitions",
+    "description": "The question of whether replacement material needs to reasonably match existing, undamaged material.",
+    "whenToUse": "Reference this when a claim involves a dispute over whether a partial repair would leave a visible mismatch.",
+    "content": "\"Matching\" refers to the question of whether repair materials need to reasonably match adjacent, undamaged materials in color, texture, or appearance. This becomes a coverage and scope question when the original material is discontinued or otherwise unavailable — repairing only the damaged section could leave a visible, mismatched result. Some states have specific matching statutes or regulatory guidance that carriers must follow; specifics vary by state and by carrier, so confirm current requirements with your lead when a matching argument is central to a claim.",
+    "relatedScenarios": ["matching-issue", "material-unavailable-discontinued"],
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "kb-acv-vs-rcv",
+    "slug": "acv-vs-rcv",
+    "title": "Actual Cash Value (ACV) vs. Replacement Cost Value (RCV)",
+    "category": "Definitions",
+    "description": "The two ways a covered loss can be valued, and why payment amounts sometimes look lower than expected.",
+    "whenToUse": "Reference this when a client questions why a payment amount seems low.",
+    "content": "Replacement Cost Value (RCV) is the cost to repair or replace damaged property with new materials of similar kind and quality, without a deduction for depreciation. Actual Cash Value (ACV) is RCV minus depreciation — an adjustment for the age and condition of the damaged property.\n\nMany policies pay ACV first, and release the depreciation (the difference between ACV and RCV, called \"recoverable depreciation\") once the repair is completed and documented. This is a common and often legitimate reason a first payment looks lower than the full estimate.",
+    "relatedScenarios": ["payment-received-but-amount-appears-incorrect"],
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "kb-supplement",
+    "slug": "what-is-a-supplement",
+    "title": "What Is a Supplement?",
+    "category": "Definitions",
+    "description": "A request to add items or adjust pricing on an already-approved estimate.",
+    "whenToUse": "Reference this when specific items are missing from an otherwise-approved estimate.",
+    "content": "A supplement is a request to add missing items, correct quantities, or adjust pricing on a claim that's already been approved — as opposed to challenging the entire scope or reopening a denial. Supplements are typically used for more targeted, factual corrections (a missed line item, an incorrect measurement) rather than broad disagreements, which are more often resolved through pushing the estimate or appraisal.",
+    "relatedScenarios": ["low-scope-underpayment"],
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "kb-depreciation",
+    "slug": "recoverable-vs-non-recoverable-depreciation",
+    "title": "Recoverable vs. Non-Recoverable Depreciation",
+    "category": "Definitions",
+    "description": "Whether withheld depreciation can be recovered after the repair is completed.",
+    "whenToUse": "Reference this alongside ACV vs. RCV when explaining a payment breakdown to a client.",
+    "content": "Recoverable depreciation is the portion of value withheld from an initial ACV payment that can be claimed back once the repair is completed and documented (often by submitting a final invoice). Non-recoverable depreciation is withheld permanently and never paid out, regardless of whether the repair is completed — this depends on the specific policy language. Always check the policy itself rather than assuming; this varies by carrier and by policy.",
+    "relatedScenarios": ["payment-received-but-amount-appears-incorrect"],
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "kb-appraisal-umpire",
+    "slug": "what-is-an-appraisal-umpire",
+    "title": "What Is an Appraisal Umpire?",
+    "category": "Glossary",
+    "description": "The neutral third party who resolves a disagreement between the two appraisers.",
+    "whenToUse": "Reference this when explaining the appraisal process, especially if the two appraisers reach an impasse.",
+    "content": "An umpire is a neutral third party selected by the two parties' appraisers (or, if they can't agree, sometimes by a court) once appraisal has been invoked. The umpire's role is specifically to resolve disagreements between the two appraisers on the amount of loss. If the appraisers can't agree on a number, the dispute goes to the umpire, and an agreement between any two of the three (the two appraisers, or one appraiser and the umpire) becomes the binding award. Reaching the umpire stage is a normal part of the process, not a sign that anything has gone wrong.",
+    "relatedScenarios": ["disagreement-with-appraiser"],
+    "lastUpdated": "2026-09-10"
+  }
+]

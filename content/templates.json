@@ -1,0 +1,92 @@
+[
+  {
+    "id": "tpl-reinspection-request",
+    "slug": "reinspection-request",
+    "title": "Reinspection Request",
+    "category": "Carrier",
+    "audience": "Adjuster",
+    "body": "Hi {{adjuster_name}},\n\nI'm requesting a reinspection on the claim for {{client_name}} ({{claim_number}}). During review, we identified the following that we don't believe was captured in the original inspection:\n\n- {{disputed_item_1}}\n- {{disputed_item_2}}\n\nI've attached supporting photos/documentation. Could we get this scheduled? Happy to work around your availability.\n\nThanks,\n{{your_name}}",
+    "tips": "Name the specific items in dispute — don't just ask for \"another look.\" Attach documentation in the same message."
+  },
+  {
+    "id": "tpl-reinspection-follow-up",
+    "slug": "reinspection-follow-up",
+    "title": "Reinspection Follow-Up",
+    "category": "Carrier",
+    "audience": "Adjuster",
+    "body": "Hi {{adjuster_name}},\n\nFollowing up on the reinspection request I sent on {{original_request_date}} for {{client_name}} ({{claim_number}}). Do you have a date we can lock in? Let me know if you need anything else from us to get it scheduled.\n\nThanks,\n{{your_name}}",
+    "tips": "Ask for a firm date, not just confirmation it's \"in progress.\""
+  },
+  {
+    "id": "tpl-appraisal-demand-follow-up",
+    "slug": "appraisal-demand-follow-up",
+    "title": "Appraisal Demand Follow-Up",
+    "category": "Carrier",
+    "audience": "Adjuster",
+    "body": "Hi {{adjuster_name}},\n\nFollowing up on the appraisal demand we sent on {{demand_date}} for {{client_name}} ({{claim_number}}). Can you confirm your selected appraiser so we can move forward? Let me know if there's anything outstanding on our end.\n\nThanks,\n{{your_name}}",
+    "tips": "Keep this short — you're just confirming their appraiser is named and the clock is moving."
+  },
+  {
+    "id": "tpl-adjuster-follow-up",
+    "slug": "adjuster-follow-up",
+    "title": "Adjuster Follow-Up (General)",
+    "category": "Carrier",
+    "audience": "Adjuster",
+    "body": "Hi {{adjuster_name}},\n\nFollowing up on {{claim_number}} for {{client_name}} — specifically on {{what_you_need}}. It's been {{time_elapsed}} since my last message. Can you give me an update, or let me know if you need anything further from us?\n\nThanks,\n{{your_name}}",
+    "tips": "State exactly what you're waiting on and how long it's been — this makes the pattern clear if you need to escalate later."
+  },
+  {
+    "id": "tpl-appraiser-follow-up",
+    "slug": "appraiser-follow-up",
+    "title": "Appraiser Follow-Up",
+    "category": "Appraisal",
+    "audience": "Appraiser",
+    "body": "Hi {{appraiser_name}},\n\nChecking in on {{claim_number}} for {{client_name}}. It's been about {{time_elapsed}} since our last update — is there anything new on your end, or anything you need from us to keep things moving?\n\nThanks,\n{{your_name}}",
+    "tips": "2-3 weeks without an update is the standard trigger for this follow-up during active appraisal."
+  },
+  {
+    "id": "tpl-documentation-request",
+    "slug": "documentation-request",
+    "title": "Documentation Request (to client or vendor)",
+    "category": "Documentation",
+    "audience": "Client or Vendor",
+    "body": "Hi {{recipient_name}},\n\nTo move forward on the claim for {{claim_number}}, I need the following:\n\n- {{item_needed_1}}\n- {{item_needed_2}}\n\nThis will help us {{why_it_matters}}. Let me know if you have any questions, or if there's anything I can do to help get this together.\n\nThanks,\n{{your_name}}",
+    "tips": "Explain why you need it, briefly — people respond faster to a request that makes sense to them."
+  },
+  {
+    "id": "tpl-client-follow-up",
+    "slug": "client-follow-up",
+    "title": "Client Follow-Up (General)",
+    "category": "Client",
+    "audience": "Client",
+    "body": "Hi {{client_name}},\n\nJust following up on {{what_you_need}} for your claim ({{claim_number}}). We're ready to move forward once we have this — let me know if you have any questions or if now's not a good time, and we can find something that works.\n\nThanks,\n{{your_name}}",
+    "tips": "Keep it warm, not just a repeat of the same ask — invite a response."
+  },
+  {
+    "id": "tpl-client-explanation-of-appraisal",
+    "slug": "client-explanation-of-appraisal",
+    "title": "Client Explanation of Appraisal",
+    "category": "Client",
+    "audience": "Client",
+    "body": "Hi {{client_name}},\n\nI wanted to walk you through the next step in your claim. Because {{carrier_name}}'s estimate and ours are far enough apart, we're going to invoke something called appraisal — it's a process built into your policy for exactly this kind of disagreement.\n\nHere's how it works: each side picks an independent appraiser to review the damage, and if the two appraisers don't agree, a neutral third person called an umpire settles the difference. This isn't a sign anything has gone wrong — it's a normal, contractual way to resolve a disagreement on scope or pricing.\n\nI'll keep you updated at each step. Do you have any questions before we move forward?\n\nThanks,\n{{your_name}}",
+    "tips": "Avoid promising a specific timeline or outcome — keep it to the mechanics and next steps."
+  },
+  {
+    "id": "tpl-client-stalled-claim-message",
+    "slug": "client-stalled-claim-message",
+    "title": "Client Stalled-Claim Message",
+    "category": "Client",
+    "audience": "Client",
+    "body": "Hi {{client_name}},\n\nI know this claim has been taking longer than either of us would like. Here's where things actually stand: {{current_status}}. Here's what we're doing next: {{next_step}}.\n\nI'll keep you posted as soon as there's an update — feel free to reach out anytime with questions.\n\nThanks,\n{{your_name}}",
+    "tips": "Lead with facts, not just reassurance — clients respond well to knowing exactly where things stand."
+  },
+  {
+    "id": "tpl-internal-escalation-message",
+    "slug": "internal-escalation-message",
+    "title": "Internal Escalation Message",
+    "category": "Internal",
+    "audience": "Lead / Manager",
+    "body": "Hi {{lead_name}},\n\nI need your input on {{claim_number}} ({{client_name}}). Quick summary: {{situation_summary}}.\n\nWhat we've tried so far: {{what_tried}}.\n\nWhat I need from you: {{specific_ask}}.\n\nHappy to hop on a call if that's faster.\n\nThanks,\n{{your_name}}",
+    "tips": "Lead with the specific ask — a lead reading a dozen of these a week will thank you for not burying it."
+  }
+]

@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #faf9f5;
+  color: #1c2b2e;
+}
+
+.prose-body p {
+  margin-bottom: 0.75rem;
+}
+
+::selection {
+  background-color: #d6e3de;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid #2f5d50;
+  outline-offset: 2px;
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "car-state-farm",
+    "name": "State Farm",
+    "notes": "",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "car-allstate",
+    "name": "Allstate",
+    "notes": "",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "car-travelers",
+    "name": "Travelers",
+    "notes": "",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "car-usaa",
+    "name": "USAA",
+    "notes": "",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "car-farmers",
+    "name": "Farmers",
+    "notes": "",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "car-liberty-mutual",
+    "name": "Liberty Mutual",
+    "notes": "",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "car-nationwide",
+    "name": "Nationwide",
+    "notes": "",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "car-progressive",
+    "name": "Progressive",
+    "notes": "",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "car-american-family",
+    "name": "American Family",
+    "notes": "",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "car-auto-owners",
+    "name": "Auto-Owners",
+    "notes": "",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "car-erie",
+    "name": "Erie Insurance",
+    "notes": "",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "car-chubb",
+    "name": "Chubb",
+    "notes": "",
+    "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "car-other",
+    "name": "Other / Not Listed",
+    "notes": "Use this until the carrier is added below by an admin.",
+    "lastUpdated": "2026-09-10"
+  }
+]
