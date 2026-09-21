@@ -1,0 +1,71 @@
+# Trade and material normalization. Same reasoning as carriers.yml.
+#
+# Trade matters because supplement/award norms differ sharply by trade — a 20%
+# award increase on an interior claim is not the same achievement as 20% on a
+# straightforward shingle reroof. Material matters for the same reason: tile and
+# metal claims carry larger line items and behave differently from composition.
+
+trades:
+  Roofing:
+    - Roof
+    - Roofing
+    - Reroof
+    - Re-roof
+    - Roof Replacement
+  Siding:
+    - Siding
+    - Exterior Siding
+  Interior:
+    - Interior
+    - Int
+    - Interior Repairs
+    - Water Mitigation
+    - Water
+  Gutters:
+    - Gutter
+    - Gutters
+  Windows:
+    - Window
+    - Windows
+  Full Exterior:
+    - Full Exterior
+    - Exterior
+    - Ext
+  Multi-Trade:
+    - Multi
+    - Multi-Trade
+    - Multiple
+    - Combo
+
+materials:
+  Composition Shingle:
+    - Comp
+    - Composition
+    - Asphalt
+    - Architectural
+    - 3-Tab
+    - Three Tab
+    - Laminate
+    - Shingle
+  Tile:
+    - Tile
+    - Clay Tile
+    - Concrete Tile
+  Metal:
+    - Metal
+    - Standing Seam
+    - Corrugated
+    - R-Panel
+  Wood Shake:
+    - Shake
+    - Wood Shake
+    - Cedar
+  Flat/Modified:
+    - Flat
+    - TPO
+    - Modified
+    - Mod Bit
+    - EPDM
+    - Rolled
+
+unmapped_label: UNMAPPED

@@ -1,0 +1,113 @@
+# Maps the column headers in YOUR Contractors Cloud CSV export to the canonical
+# field names this pipeline uses. Edit the alias lists — never the keys.
+#
+# Matching is case-insensitive and ignores spaces, underscores and punctuation,
+# so "Claim #" matches "claim_number" style headers. The FIRST alias that is
+# found in the export wins, so put your real header name first.
+#
+# Run `python -m scorecard.cli doctor <export.csv>` after editing. It tells you
+# exactly which required fields it found and which are still missing, instead of
+# failing halfway through a run.
+
+required:
+  job_id:
+    - Job ID
+    - JobID
+    - Job Number
+    - Job #
+    - ID
+  carrier_raw:
+    - Insurance Company
+    - Carrier
+    - Insurance Carrier
+    - Insurance
+  appraiser_raw:
+    - Appraiser
+    - Assigned Appraiser
+    - Appraiser Name
+    - Our Appraiser
+
+optional:
+  claim_number:
+    - Claim Number
+    - Claim #
+    - Claim No
+  customer_name:
+    - Customer
+    - Customer Name
+    - Client Name
+    - Homeowner
+  trade_raw:
+    - Trade
+    - Job Type
+    - Work Type
+    - Division
+    - Department
+  material_raw:
+    - Material
+    - Roof Material
+    - Shingle Type
+    - Product Type
+    - Roof Type
+  home_size_sqft:
+    - Square Footage
+    - Home Size
+    - SqFt
+    - Living Area
+  roof_squares:
+    - Squares
+    - Roof Squares
+    - SQ
+    - Total Squares
+  state:
+    - State
+    - Job State
+    - Property State
+  date_of_loss:
+    - Date of Loss
+    - Loss Date
+    - DOL
+  appraisal_invoked_date:
+    - Appraisal Invoked
+    - Appraisal Demand Date
+    - Demand Sent
+    - Appraisal Demand Sent
+  award_date:
+    - Award Date
+    - Appraisal Award Date
+    - Award Signed
+    - Award Signed Date
+  umpire_used:
+    - Umpire
+    - Umpire Used
+    - Umpire Required
+    - Went to Umpire
+  appraiser_fee:
+    - Appraiser Fee
+    - Appraiser Cost
+    - Appraisal Fee
+  umpire_fee:
+    - Umpire Fee
+    - Umpire Cost
+
+  # If you ALREADY capture the dollar figures in Contractors Cloud fields, name
+  # them here and the PDF extraction step is skipped for those rows. This is the
+  # end state you want — see README "Fixing this at the source".
+  pre_rcv_field:
+    - Pre-Appraisal RCV
+    - Carrier Estimate RCV
+    - Pre Appraisal RCV
+  award_rcv_field:
+    - Award RCV
+    - Appraisal Award Amount
+    - Final Award RCV
+
+  # Filenames (or paths relative to --pdf-dir) of the two source documents.
+  # If absent, the extractor falls back to matching PDFs by job_id / claim_number
+  # in the filename.
+  pre_rcv_pdf:
+    - Carrier Estimate File
+    - Pre-Appraisal Estimate PDF
+  award_pdf:
+    - Award File
+    - Award PDF

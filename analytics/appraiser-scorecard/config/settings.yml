@@ -1,0 +1,71 @@
+# Pipeline thresholds. Every number here is a judgement call that changes the
+# answer, so they live in config where you can see and argue about them — not
+# buried in code.
+
+metric:
+  # Which per-claim metric the ranking is built on.
+  #   net_increase_pct  - increase net of appraiser + umpire fees, over pre-appraisal RCV (default)
+  #   increase_pct      - gross increase over pre-appraisal RCV
+  #   net_increase_usd  - net dollars (NOT size-normalized; use only with tight size bands)
+  target: net_increase_pct
+
+extraction:
+  # A claim enters the scorecard only if BOTH dollar figures meet this bar.
+  # "high" = one unambiguous labelled match. "confirmed" = a human signed off in
+  # the review queue. Loosening this to "medium" will quietly add noise; if you
+  # do it, say so when you present the numbers.
+  min_confidence: high
+  accept_human_confirmed: true
+
+validity:
+  # Claims outside these bounds are NOT silently dropped — they are routed to the
+  # review queue as suspected extraction errors. A -80% "increase" is almost
+  # always a parsing mistake, not an appraisal that went backwards.
+  min_increase_pct: -0.50
+  max_increase_pct: 5.00
+  min_pre_rcv_usd: 1000
+  max_cycle_days: 730
+
+stratification:
+  # Strata are carrier x trade x size band. Size bands are log-spaced quantiles
+  # of pre-appraisal RCV, computed from your own data rather than hardcoded.
+  size_bands: 4
+  # A stratum must have at least this many claims AND at least 2 distinct
+  # appraisers to contribute — otherwise "compared to expected" means nothing.
+  min_stratum_n: 3
+  min_appraisers_per_stratum: 2
+  # Fall back to coarser strata (carrier x size, then trade x size, then size
+  # alone) for claims whose full stratum is too thin, rather than discarding them.
+  enable_fallback_strata: true
+
+scoring:
+  # An appraiser needs this many usable claims to be ranked at all. Below it they
+  # appear in the report as "insufficient data" — which is a finding, not a gap.
+  min_claims_to_rank: 8
+  # Cluster bootstrap resamples for confidence intervals.
+  bootstrap_iterations: 2000
+  confidence_level: 0.90
+  random_seed: 20260921
+  # Appraisers whose intervals overlap are reported as one tier. Raising this
+  # makes the report more willing to declare a winner; 0.0 means "any overlap at
+  # all keeps them in the same tier".
+  tier_overlap_tolerance: 0.0
+
+fees:
+  # Used only when the export has no per-claim fee. Percentage fees are applied
+  # to the gross increase; flat fees are applied as-is.
+  default_model: percent_of_increase   # percent_of_increase | flat | none
+  default_percent: 0.10
+  default_flat_usd: 2500
+  # Umpire fee is normally split between the parties.
+  umpire_share: 0.5
+  default_umpire_fee_usd: 3500
+
+bias_flags:
+  # Thresholds for the assignment-bias diagnostic. These do not change any score;
+  # they decide when the report warns you that a comparison is not apples to
+  # apples.
+  max_single_carrier_share: 0.60
+  max_single_trade_share: 0.70
+  max_size_ratio_vs_roster: 1.50
+  min_usable_stratum_share: 0.50

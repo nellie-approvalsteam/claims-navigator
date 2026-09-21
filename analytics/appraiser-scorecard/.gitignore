@@ -1,0 +1,10 @@
+# Frozen snapshots and generated reports contain real claim and customer data.
+# They are deliberately never committed.
+snapshots/*.csv
+out/*
+!out/.gitkeep
+!snapshots/.gitkeep
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/

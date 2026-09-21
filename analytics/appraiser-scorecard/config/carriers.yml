@@ -1,0 +1,58 @@
+# Carrier name normalization. Free-text carrier names are the single most common
+# cause of a silently wrong scorecard: "State Farm", "St. Farm" and "STATE FARM
+# INS" become three carriers, every per-carrier average splits, and nothing warns
+# you.
+#
+# Each key is the canonical name. Each value is a list of variants seen in the
+# export. Matching is case-insensitive and ignores punctuation, extra whitespace
+# and trailing corporate suffixes (Inc, LLC, Co, Ins, Insurance, Group, Mutual,
+# Company), so you usually only need to add genuinely different spellings.
+#
+# Anything that does not match lands in an "UNMAPPED" bucket and is listed at the
+# top of every report. Do not ignore that list — an unmapped carrier is a hole in
+# the analysis, not a rounding error.
+
+canonical:
+  State Farm:
+    - State Farm
+    - St Farm
+    - Statefarm
+    - State Farm Fire and Casualty
+  Allstate:
+    - Allstate
+    - All State
+    - Allstate Vehicle and Property
+  USAA:
+    - USAA
+    - United Services Automobile Association
+  Farmers:
+    - Farmers
+    - Farmers Insurance Exchange
+  Liberty Mutual:
+    - Liberty Mutual
+    - Liberty
+    - LM
+  Travelers:
+    - Travelers
+    - Travellers
+  Nationwide:
+    - Nationwide
+  American Family:
+    - American Family
+    - AmFam
+    - Am Fam
+  Progressive:
+    - Progressive
+  Safeco:
+    - Safeco
+  Chubb:
+    - Chubb
+  Citizens:
+    - Citizens
+    - Citizens Property Insurance
+    - CPIC
+
+# Carriers with too few claims to stand alone are pooled into this bucket for
+# stratification only. They still appear individually in the raw tables.
+small_carrier_bucket: Other Carriers
+min_claims_to_stand_alone: 8
