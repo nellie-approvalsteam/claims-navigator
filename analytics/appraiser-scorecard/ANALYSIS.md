@@ -66,18 +66,42 @@ the opposite of what more work would suggest.
 
 ## 4. The caveat that matters
 
-**There is no claim size in this data, so none of the above is size-normalized.**
+**The carrier's original pre-appraisal estimate does not exist in any reachable
+source, so no figure here is a percentage increase.** Everything is *dollars per
+deal*.
 
-The sheet records the dollars generated but not the carrier's original estimate.
-I checked all 15 tabs — no original/pre-appraisal/RCV column exists anywhere. So
-every figure here is *dollars per deal*, not efficiency, and **claim size is
-completely uncontrolled**.
+Exhaustively checked, all read-only:
 
-That matters because a $19k increase on a $150k claim is a weaker result than a
-$19k increase on a $40k claim. If Mitchell is routed larger claims, his +14% is
-an artifact of assignment rather than skill, and nothing in this dataset can tell
-the difference. That single missing column is the difference between "suggestive"
-and "decisive".
+| Source | Verdict |
+|---|---|
+| Approval Department workbook, all 15 tabs | Only "Dollar amount generated" — the increase. No original/RCV/pre-appraisal column. |
+| "Proliance estimate" / "Proliance estimate (Approval Department)" | Blank estimate-*building* templates (tabs: Estimate, 1 Trade + Misc…), not a record of carrier estimates. |
+| "appraisal list" | Collateral available to cover the appraisal **fee** — unrelated. |
+| SIGNED APPRAISAL TRACKER, New*Approval Dept Tracker | Appraiser and status, no dollar amounts. |
+| Contractors Cloud | Estimates module unused — `estimate_search` returns zero rows on every project tested. |
+
+### But the size worry is weaker than expected
+
+`Data Test` carries **Number of Squares** on 5,523 rows. Joining it to the
+appraisal deals by street address matched **91 of 583 (16%)**, and on those:
+
+> **correlation between log(roof squares) and log(dollars generated) = +0.02**
+
+Essentially zero. Bigger roofs do *not* produce bigger increases in this data.
+That substantially weakens the "Mitchell just gets bigger claims" objection —
+though squares is only a partial size proxy (it says nothing about interior,
+siding or claim complexity) and covers only 16% of deals.
+
+Size-normalized, dollars per roofing square, on the 91 matched deals:
+
+| Appraiser | Deals | Median sq | Median $ | **$ / square** |
+|---|---:|---:|---:|---:|
+| Zack | 48 | 22.0 | $16,556 | **832** |
+| Jason | 28 | 22.0 | $18,838 | **740** |
+| Jakub | 10 | 25.0 | $7,661 | **502** |
+
+Same ordering as the headline table (Zack > Jason > Jakub). Mitchell had too few
+address matches to appear.
 
 Also unmeasured: no cycle time (the `Data` tab's entry/result dates are
 unreliable — several results predate entry), and the umpire column is nearly
@@ -86,11 +110,11 @@ always blank.
 ## 5. What would settle it
 
 1. **Capture the carrier's original estimate** alongside the dollars generated —
-   one column in the sheet. Everything above becomes a percentage increase,
-   size-normalized, and the tiers likely separate.
-2. **Check assignment.** Pull claim size for a sample of Mitchell's 78 and Zack's
-   282 deals. If Mitchell's are systematically larger, his lead shrinks or
-   reverses.
+   one column in the sheet. Everything above becomes a percentage increase and
+   the tiers likely separate. This remains the single highest-value change.
+2. **Log Number of Squares on every deal**, not 16% of them. It is already a
+   column in `Data Test`; carried onto the `Data` tab it would give a usable size
+   control immediately, without waiting for estimates to be captured.
 3. **Fix `MITCH` / `MITCHELL`.** They are one person spelled two ways across the
    trackers; merged here, but it would have split his record in half.
 

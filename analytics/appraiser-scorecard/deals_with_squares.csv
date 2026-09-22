@@ -1,0 +1,96 @@
+date_in,date_result,year,client,address,state,performed,increase_usd,appraiser,specialist,carrier,umpire,carrier_n,k,sq,per_sq
+,2023-08-28,2023.0,andrew bates,"12154 Meadow Ln
+Indianapolis, IN 46236",IL,Appraisal AND Reinspection,1374.98,ANTHONY,Vlad,,,UNMAPPED,meadow,20.23,67.96737518536827
+2023-09-04 00:00:00,2024-05-20,2024.0,"Fatima Fareesa, Wahab Syed and","17W556 Morningside Dr
+Oakbrook Terrace, IL 60181",IL,Appraisal AND Reinspection,7220.43,ZACK,CJ,Allstate,,Allstate,17w556 morningside,35.78,201.80072666294018
+2024-12-10 00:00:00,2025-02-14,2025.0,Tammie Shepard,"945 East 142nd Street
+Dolton, IL 60419",IL,Appraisal AND Reinspection,13982.44,ZACK,CJ,Allstate,,Allstate,945 east 142nd,15.37,909.7228366948602
+2025-05-20 00:00:00,2025-07-18,2025.0,"Ortega, Alondra","3532 Sangamon St, Steger, IL 60475",IL,Appraisal AND Reinspection,15224.2,ZACK,Nellie,Allstate,,Allstate,3532 sangamon,21.76,699.6415441176471
+2025-05-29 00:00:00,2025-08-05,2025.0,"Macchia, John","319 Fourth St, Downers Grove, IL 60515",IL,Appraisal Only,31.95,ZACK,Nellie,Allstate,,Allstate,319 fourth,34.89,0.9157351676698194
+2025-04-09 00:00:00,2025-08-27,2025.0,"Laseter, Mona","9951 S Morgan St, , Chicago, IL 60643",IL,Appraisal AND Reinspection,21060.09,ZACK,Nellie,Liberty Mutual,,Liberty Mutual,9951 s morgan,17.84,1180.4983183856502
+2025-04-25 00:00:00,2025-09-06,2025.0,"Sims, Herman","2650 W 82nd St, Chicago, IL 60652",IL,Appraisal AND Reinspection,13671.83,ZACK,Nellie,Allstate,,Allstate,2650 w 82nd,26.36,518.6581942336874
+2025-06-10 00:00:00,2025-09-10,2025.0,"Bolden, Eddie","426 E 88th St, Chicago, IL 60619",IL,Appraisal AND Reinspection,42027.2,ZACK,Nellie,Liberty Mutual,,Liberty Mutual,426 e 88th,19.56,2148.629856850716
+2025-05-16 00:00:00,2025-09-10,2025.0,"Dorval, Vickenson","3710 Chatham Ct, Joliet, IL 60435",IL,Appraisal AND Reinspection,15523.6,ZACK,Nellie,Allstate,,Allstate,3710 chatham,24.87,624.1897868918376
+2025-06-20 00:00:00,2025-09-26,2025.0,"Svec, Anthony","2531 Euclid Ave, Berwyn, IL 60402",IL,Appraisal AND Reinspection,802.78,ZACK,Nellie,State Farm,,State Farm,2531 euclid,22.19,36.17755745831455
+2025-05-25 00:00:00,2025-10-02,2025.0,"Tule, Sandra","420 Morris Ave, Bellwood, IL 60104",IL,Appraisal Only,17425.97,ZACK,Nellie,State Farm,,State Farm,420 morris,12.04,1447.339700996678
+2025-01-23 00:00:00,2025-10-02,2025.0,"Kriho, Grace and Jerry","6415 Colonel Holcomb Dr, Crystal Lake, IL 60012",IL,Appraisal Only,43418.93,ZACK,Nellie,State Farm,,State Farm,6415 colonel holcomb,39.19,1107.9083949987241
+2025-03-19 00:00:00,2025-10-06,2025.0,"Giroux, Francis","14100 Edbrooke Ave, Riverdale, IL 60827",IL,Appraisal AND Reinspection,26.11,ZACK,Nellie,State Farm,,State Farm,edbrooke,21.615000000000002,1.2079574369650705
+2025-05-01 00:00:00,2025-10-07,2025.0,"Flosi, Leone","1017 Sheppey Ct, Naperville, IL 60565",IL,Appraisal AND Reinspection,33955.88,ZACK,Nellie,State Farm,,State Farm,1017 sheppey,37.48,905.9733191035219
+2025-01-07 00:00:00,2025-10-08,2025.0,"Brown, Andrew 2","14325 S Dearborn, Riverdale, IL 60827",IL,Appraisal AND Reinspection,13918.2,ZACK,Nellie,State Farm,,State Farm,s dearborn,16.37,850.2260232131948
+2025-07-01 00:00:00,2025-10-10,2025.0,"Williams, Veronica","14337 Minerva Ave, Dolton, IL 60419",IL,Appraisal Only,12762.86,JASON,Nellie,Allstate,,Allstate,minerva,19.69,648.1899441340782
+2025-05-26 00:00:00,2025-10-20,2025.0,"Chapman, Katie","24411 S Arrowhead Dr, Manhattan, IL 60442",IL,Appraisal Only,20106.11,ZACK,Nellie,Allstate,,Allstate,s arrowhead,30.31,663.3490597162653
+2025-05-15 00:00:00,2025-10-27,2025.0,"Perez, Manuel","2623 Clinton Ave., Berwyn, IL 60402",IL,Appraisal Only,45672.54,ZACK,Dave,State Farm,,State Farm,2623 clinton,23.77,1921.4362641985697
+2025-05-08 00:00:00,2025-10-28,2025.0,"Evans, Dell","14924 Grant St, Dolton, IL 60419",IL,Appraisal Only,23089.77,ZACK,Nellie,Berkshire Hathaway,,Berkshire Hathaway,grant,19.99,1155.0660330165083
+2025-05-15 00:00:00,2025-10-31,2025.0,"Villa Sanchez, Guillermo","222 South 15th Avenue, Maywood, IL 60153",IL,Appraisal Only,16334.76,ZACK,Nellie,State Farm,,State Farm,222 south 15th,22.84,715.1821366024518
+2025-06-11 00:00:00,2025-10-31,2025.0,"Nichols, John","26264 Highland Dr, Channahon, IL 60410",IL,Appraisal Only,39697.27,JASON,Nellie,State Farm,,State Farm,highland,22.494999999999997,1764.7152700600134
+2025-04-03 00:00:00,2025-11-20,2025.0,"Halfeldt, Jason","1352 East St, Crete, IL 60417",IL,Appraisal Only,270.71,ZACK,Nellie,State Farm,,State Farm,1352 east,21.81,12.412196240256764
+2025-05-26 00:00:00,2025-11-25,2025.0,"Polenzani, Edward","166 Bayview Ln, Grayslake, IL 60030",IL,Appraisal Only,7508.32,JASON,Nellie,State Farm,,State Farm,166 bayview,20.71,362.54563013037176
+2025-05-15 00:00:00,2025-11-25,2025.0,"Vaughn/Neal, Daniel and Angela","7931 S Lasalle St, Chicago, IL 60620",IL,Appraisal Only,18681.12,ZACK,Nellie,State Farm,,State Farm,7931 s lasalle,22.53,829.1664447403462
+2025-06-04 00:00:00,2025-12-01,2025.0,"De Luna, Julie","2244 121st Pl, Blue Island, IL 60406",IL,Appraisal Only,13377.58,ZACK,Nellie,State Farm,,State Farm,2244 121st,23.76,563.0294612794612
+2025-07-14 00:00:00,2025-12-18,2025.0,"Portillo, Wilson","114 N Roy Ave, Northlake, IL 60164",IL,Appraisal Only,22830.97,JASON,Nellie,State Farm,,State Farm,114 n roy,15.52,1471.0676546391753
+2025-10-27 00:00:00,2026-01-07,2026.0,"Serio, Robert","4849 S Leamington Ave, Chicago, IL 60638",IL,Appraisal AND Reinspection,10237.91,JAKUB,Nellie,Hartford,Never went to Umpire,Hartford,4849 s leamington,17.41,588.047673750718
+2025-11-17 00:00:00,2026-01-13,2026.0,"Klockowski, Wes","19935 Foxborough Dr, Mokena, IL 60448",IL,Appraisal Only,334.55,ZACK,Nellie,State Farm,Never went to Umpire,State Farm,foxborough,61.93,5.402066849668981
+2025-08-27 00:00:00,2026-01-15,2026.0,"Syed, Asif","28W691 Douglas Rd, Naperville, IL 60564",IL,Appraisal Only,44851.09,JASON,Nellie,Allstate,Never went to Umpire,Allstate,28w691 douglas,53.26,842.1158467893353
+2025-04-10 00:00:00,2026-01-22,2026.0,"Kozlowski, Mark","601 Mill St, South Elgin, IL 60177",IL,Appraisal Only,3066.54,ZACK,Nellie,State Farm,"Yes it went to Umpire, but the Umpire denied it",State Farm,601 mill,21.73,141.12011044638749
+2025-07-14 00:00:00,2026-01-28,2026.0,"Diaz, Nina","373 Winona Street, Park Forest, IL 60466",IL,Appraisal Only,21500.97,JASON,Nellie,State Farm,Never went to Umpire,State Farm,373 winona,28.97,742.1805315843977
+2025-08-20 00:00:00,2026-01-29,2026.0,"Williams, April","14434 Kimbark Ave, Dolton, IL 60419",IL,Appraisal Only,13211.21,JASON,Jim,Allstate,,Allstate,kimbark,20.89,632.4179033030157
+2025-10-20 00:00:00,2026-02-13,2026.0,"Viswanthan, Kalyana","2073 Kate Dr, Montgomery, IL 60538",IL,Appraisal Only,2435.32,JAKUB,Nellie,State Farm,,State Farm,2073 kate,29.05,83.83201376936317
+2025-11-10 00:00:00,2026-02-20,2026.0,"Fakih, Pervez","2256 Hiram Dr, Wheaton, IL 60189",IL,Appraisal Only,18235.7,JAKUB,Nellie,State Farm,Never went to Umpire,State Farm,2256 hiram,27.11,672.6558465510882
+2025-07-28 00:00:00,2026-02-23,2026.0,"Velazquez, Violet","3735 W 64th Pl, Chicago, IL 60629",IL,Appraisal Only,26070.33,JASON,Nellie,State Farm,,State Farm,3735 w 64th,17.18,1517.4813736903377
+2025-10-25 00:00:00,2026-02-24,2026.0,"Worley, Jean","28W520 Main St, Warrenville, IL 60555",IL,Appraisal Only,860.43,JAKUB,Nellie,State Farm,Never went to Umpire,State Farm,28w520 main,20.49,41.99267935578331
+2025-10-22 00:00:00,2026-02-24,2026.0,"Sarceda, Mark","1377 Ginger Ln, Naperville, IL 60565",IL,Appraisal Only,29232.38,JAKUB,Nellie,State Farm,Never went to Umpire,State Farm,1377 ginger,31.9,916.3755485893417
+2024-11-15 00:00:00,2026-03-11,2026.0,"Butler, Dwayne","11718 S Throop Street, Chicago, IL 60643",IL,Appraisal Only,1944.44,ZACK,Nellie,founders,,Founders,s throop,15.98,121.67959949937422
+2025-11-26 00:00:00,2026-03-11,2026.0,"Cerasi, Carmine","3120 Treesdale Ct, Naperville, IL 60564",IL,Appraisal Only,86191.1,ZACK,Nellie,Allstate,,Allstate,3120 treesdale,53.24,1618.9162283996995
+2025-09-18 00:00:00,2026-03-12,2026.0,"Pitroda, Satyan","301 Trinity Ln, Oak Brook, IL 60523",IL,Appraisal Only,141518.42,ZACK,Nellie,State Farm,,State Farm,301 trinity,67.09,2109.381726039648
+2025-06-18 00:00:00,2026-03-12,2026.0,"McFarland, Bill","7718 S Indiana Ave, Chicago, IL 60619",IL,Appraisal Only,1183.7,ZACK,Nellie,Homesite,,Homesite,7718 s indiana,24.76,47.806946688206786
+2025-11-01 00:00:00,2026-03-13,2026.0,"Lapinskas, Laura",6029 Ridgeway Dr,IL,Appraisal Only,1925.42,ZACK,Jim,Westbend,Never went to Umpire,Westbend,6029 ridgeway,27.29,70.55404910223525
+2025-09-09 00:00:00,2026-03-16,2026.0,"Marshall, Rebeka","17248 Oconto Ave, Tinley Park, IL 60477",IL,Appraisal Only,9046.3,JASON,Nellie,State Farm,Never went to Umpire,State Farm,oconto,20.38,443.88125613346415
+2025-04-25 00:00:00,2026-03-17,2026.0,"Smith, Dorletha"," 14307 Edbrooke Ave, Riverdale, IL 60827",IL,Appraisal Only,567.01,ZACK,Nellie,State Farm,,State Farm,edbrooke,21.615000000000002,26.232246125375895
+2025-08-05 00:00:00,2026-04-01,2026.0,"Fabila, Abel & Elizabeth Lopez","8014 S May St, Chicago, IL 60620",IL,Appraisal Only,16377.19,JASON,Nellie,State Farm,Never went to Umpire,State Farm,8014 s may,24.02,681.8147377185679
+2025-06-07 00:00:00,2026-04-01,2026.0,"Feliciano, Yulisa","3S447 Warren Ave, Warrenville, IL 60555",IL,Appraisal Only,5084.94,JAKUB,Nellie,Farmers,Never went to Umpire,Farmers,3s447 warren,12.25,415.09714285714284
+2026-01-27 00:00:00,2026-04-02,2026.0,"King, Wayne","2842 W Chayes Park Dr, Flossmoor, IL 60422",IL,Appraisal Only,18716.67,JASON,Nellie,Allstate,Never went to Umpire,Allstate,2842 w chayes park,23.07,811.2990897269179
+2025-06-06 00:00:00,2026-04-07,2026.0,"Hampton, Sandra (NEW)","15304 Evers St, Dolton, IL 60419",IL,Appraisal Only,14371.56,JAKUB,Nellie,Foremost,Never went to Umpire,Foremost,evers,20.62,696.9718719689621
+2025-06-04 00:00:00,2026-04-07,2026.0,"Aguilar, Ezequiel","3234 S 60th Ct, Cicero, IL 60804",IL,Appraisal Only,4811.4,JAKUB,Nellie,State Farm,Never went to Umpire,State Farm,3234 s 60th,22.27,216.04849573417152
+2025-07-31 00:00:00,2026-04-07,2026.0,"Villanueva, Blas","3155 Rhodes Ave, Melrose Park, IL 60164",IL,Appraisal Only,13736.23,JASON,Nellie,State Farm,Never went to Umpire,State Farm,3155 rhodes,27.63,497.1491132826638
+2025-05-28 00:00:00,2026-04-07,2026.0,"Lewandowski, Jennifer","2759 W 99th St, Chicago, IL 60655",IL,Appraisal Only,13255.15,ZACK,Nellie,State Farm,Never went to Umpire,State Farm,2759 w 99th,13.23,1001.9009826152683
+2025-08-06 00:00:00,2026-04-09,2026.0,"Crockett, Earvin","8807 S Emerald Ave, Chicago, IL 60620",IL,Appraisal Only,24071.77,JASON,Nellie,State Farm,Never went to Umpire,State Farm,8807 s emerald,26.405,911.6368112099981
+2025-10-01 00:00:00,2026-04-13,2026.0,"Wilson, Harlie","1036 Hollywood Ave, Des Plaines, IL 60016",IL,Appraisal Only,16005.4,ZACK,Nellie,State Farm,Never went to Umpire,State Farm,1036 hollywood,19.22,832.7471383975027
+2025-05-01 00:00:00,2026-04-21,2026.0,"Reyna, Carlos","13904 Oakdale Ct, Plainfield, IL 60544",IL,Appraisal Only,2439.68,JAKUB,Nellie,AAA,,Aaa,oakdale,27.1,90.0250922509225
+2025-05-28 00:00:00,2026-04-22,2026.0,"Lewis, Salome","10604 S Edbrooke Ave, Chicago, IL 60628",IL,Appraisal Only,269.05,ZACK,Nellie,Travelers ,Never went to Umpire,Travelers,s edbrooke,14.41,18.671061762664817
+2025-04-18 00:00:00,2026-04-29,2026.0,"Flowers-Taylor, Kenisha","13906 S Oakdale Ct, Plainfield, IL 60544",IL,Appraisal Only,15581.95,ZACK,Nellie,Farmers,"Yes it went to Umpire, and the Umpire approved it",Farmers,s oakdale,15.36,1014.4498697916667
+2025-07-18 00:00:00,2026-04-29,2026.0,"Zhang, Bo P2","6841 Didrikson Ln, Woodridge, IL 60517",IL,Appraisal Only,21389.9,ZACK,Nellie,State Farm,"Yes it went to Umpire, and the Umpire approved it",State Farm,6841 didrikson,31.01,689.7742663656885
+2026-02-24 00:00:00,2026-05-01,2026.0,"Catino, Nicholas","759 Laurel Ave, Des Plaines, IL 60016",IL,Appraisal AND Reinspection,7804.78,JASON,Nellie,Allstate,Never went to Umpire,Allstate,759 laurel,19.03,410.13032054650546
+2025-07-18 00:00:00,2026-05-07,2026.0,"Lahola, Frank","6550 Hubbard Ln, Tinley Park, IL 60477",IL,Appraisal Only,39260.23,ZACK,Nellie,State Farm,Never went to Umpire,State Farm,6550 hubbard,16.95,2316.2377581120945
+2026-03-10 00:00:00,2026-05-13,2026.0,"Abbas (205 Willoway Dr), Syed","205 Willoway Dr, Naperville, IL 60540",IL,Appraisal Only,22177.47,JASON,Nellie,State Farm,,State Farm,205 willoway,23.49,944.1238825031929
+2026-01-23 00:00:00,2026-05-13,2026.0,"Walker, Jamia","22407 Lawndale Ave, Richton Park, IL 60471",IL,Appraisal Only,10818.55,JASON,Nellie,Allstate,,Allstate,lawndale,22.7,476.58810572687224
+2025-11-10 00:00:00,2026-05-13,2026.0,"Castello, Gary","3007 Foxmoor Dr, Montgomery, IL 60538",IL,Appraisal Only,22084.66,JASON,Nellie,Allstate,,Allstate,3007 foxmoor,29.95,737.384307178631
+2025-10-24 00:00:00,2026-05-14,2026.0,"Ohlfest, Mark","3011 Foxmoor Dr, Montgomery, IL 60538",IL,Appraisal Only,23052.12,JAKUB,Nellie,State Farm,,State Farm,3011 foxmoor,32.42,711.0462677359653
+2025-09-11 00:00:00,2026-05-15,2026.0,"Perez, Rafael","3629 W 63rd Pl, Chicago, IL 60629",IL,Appraisal Only,22521.26,ZACK,Nellie,Allstate,,Allstate,3629 w 63rd,19.62,1147.8725790010192
+2025-08-18 00:00:00,2026-05-19,2026.0,"Zapata, Enedina","7709 S Peoria St, Chicago, IL 60620",IL,Appraisal Only,22671.25,ZACK,Nellie,Allstate,,Allstate,7709 s peoria,20.35,1114.066339066339
+2025-08-19 00:00:00,2026-05-27,2026.0,"Phillips, Betty","2221 W 54th Pl, Chicago, IL 60609",IL,Appraisal Only,11776.72,JASON,Nellie,Allstate,,Allstate,2221 w 54th,16.71,704.7707959305804
+2025-06-05 00:00:00,2026-06-11,2026.0,"Johnson, Deborah","392 Prairie Knoll Dr, Naperville, IL 60565",IL,Appraisal Only,40830.2,ZACK,Nellie,State Farm,,State Farm,392 prairie knoll,27.8,1468.7122302158273
+2025-10-19 00:00:00,2026-06-15,2026.0,"Schmitt, Matthew","223 Pier Ave, Naperville, IL 60565",IL,Appraisal Only,17423.52,JASON,Nellie,State Farm,,State Farm,223 pier,27.96,623.1587982832618
+,2026-06-15,2026.0,"Nunez, Gonzalo Lechuga","3521 Oak Ave
+Brookfield, IL 60513",IL,Appraisal AND Reinspection,46213.87,ZACK,Bern,Allstate,Never went to Umpire,Allstate,3521 oak,30.47,1516.7006892024945
+2025-11-26 00:00:00,2026-06-17,2026.0,"Powers, Donald","5529 W 64th St, Chicago, IL 60638",IL,Appraisal Only,42802.24,ZACK,Nellie,USAA,Never went to Umpire,USAA,5529 w 64th,22.45,1906.558574610245
+2026-03-04 00:00:00,2026-06-17,2026.0,"Ratcliff, Eric","18109 Orleans Dr, Hazel Crest, IL 60429",IL,Appraisal Only,9316.71,ZACK,Nellie,State Farm,Never went to Umpire,State Farm,orleans,17.09,545.1556465769455
+2025-07-01 00:00:00,2026-06-17,2026.0,"Zamora, Alfredo","1907 Crosswind Dr, Plainfield, IL 60586",IL,Appraisal Only,26953.81,ZACK,Nellie,Allstate,Never went to Umpire,Allstate,1907 crosswind,20.74,1299.605110896818
+2025-04-24 00:00:00,2026-07-02,2026.0,"Wilson, Latoya","8237 S Loomis Boulevard, Chicago, IL 60620",IL,Appraisal Only,18960.0,JASON,Nellie,State Farm,Never went to Umpire,State Farm,8237 s loomis,19.8,957.5757575757575
+2026-04-21 00:00:00,2026-07-02,2026.0,"Williamson, Anthony","22943 Valley Dr, Richton Park, IL 60471",IL,Appraisal Only,16657.06,MITCHELL,Nellie,State Farm,Never went to Umpire,State Farm,valley,14.88,1119.4260752688172
+2025-08-27 00:00:00,2026-07-03,2026.0,"Hou, Minmei","5 Concord Dr, Oak Brook, IL 60523",IL,Appraisal Only,24782.9,JASON,Nellie,State Farm,Never went to Umpire,State Farm,5 concord,28.55,868.0525394045535
+2026-05-25 00:00:00,2026-07-06,2026.0,"Nalla, Uma","917 Lauren Ct, Westmont, IL 60559",IL,Appraisal Only,20478.28,MITCHELL,Nellie,Allstate,,Allstate,917 lauren,30.41,673.4061164090759
+2025-08-05 00:00:00,2026-07-14,2026.0,"Hubeny, Joseph /224 Morris Inc P2","225 N Wilmette Ave, Westmont, IL 60559",IL,Appraisal Only,4210.96,JASON,Nellie,State Farm,,State Farm,225 n wilmette,21.03,200.23585354255823
+2026-04-17 00:00:00,2026-07-16,2026.0,"Nang, Paul","513 S Beverly St, Wheaton, IL 60187",IL,Appraisal Only,11669.41,MITCHELL,Nellie,Allstate,,Allstate,513 s beverly,24.4,478.25450819672136
+2026-05-19 00:00:00,2026-07-28,2026.0,"Yang, Hao Paul","5S446 Radcliff Rd, Naperville, IL 60563",IL,Appraisal Only,32156.06,JASON,Nellie,State Farm,Never went to Umpire,State Farm,5s446 radcliff,12.73,2526.0062843676355
+2026-05-20 00:00:00,2026-08-04,2026.0,"Below, George","1031 N Stratford Rd, Arlington Heights, IL 60004",IL,Appraisal Only,21220.7,JASON,Nellie,State Farm,,State Farm,1031 n stratford,25.53,831.2064238151195
+2026-03-07 00:00:00,2026-08-04,2026.0,"Ravizza, Quentin","5743 S Nottingham Ave, Chicago, IL 60638",IL,Appraisal Only,2482.17,JASON,Nellie,Allstate,,Allstate,5743 s nottingham,17.42,142.48966704936853
+2026-05-06 00:00:00,2026-08-06,2026.0,"Wells, Shannon","3309 Cumberland Trail, Olympia Fields, IL 60461",IL,Appraisal Only,814.26,JASON,Nellie,Allstate,,Allstate,3309 cumberland,58.85,13.836193712829226
+2026-06-29 00:00:00,2026-08-17,2026.0,"Schiszik, Brenda","25W430 Plank Rd, Naperville, IL 60563",IL,Appraisal Only,35464.41,JASON,Nellie,Allstate,,Allstate,25w430 plank,16.72,2121.077153110048
+2026-01-20 00:00:00,2026-09-01,2026.0,"Torres, Judith","6118 S Komensky Ave, Chicago, IL 60629",IL,Appraisal Only,23338.84,ZACK,Nellie,Allstate,,Allstate,6118 s komensky,28.07,831.4513715710723
+2026-03-27 00:00:00,2026-09-04,2026.0,"Brown, Pamela","9141 S Bishop St, Chicago, IL 60620",IL,Appraisal Only,22305.69,ZACK,Nellie,Allstate,,Allstate,9141 s bishop,25.59,871.6565064478311
+2026-07-22 00:00:00,2026-09-09,2026.0,"Saucedo, Amparo","11756 S Harding Ave, Alsip, IL 60803",IL,Appraisal Only,22519.58,ZACK,Nellie,State Farm,Never went to Umpire,State Farm,s harding,20.36,1106.0697445972496
+2026-06-10 00:00:00,2026-09-15,2026.0,"Johnson, Ricky","13911 Edbrooke Ave, Riverdale, IL 60827",IL,Appraisal Only,17877.94,ZACK,Nellie,State Farm,,State Farm,edbrooke,21.615000000000002,827.1080268332175
+2026-06-23 00:00:00,2026-09-16,2026.0,"Ravanam, Vilasini","455 E Main St, East Dundee, IL 60118",IL,Appraisal Only,42377.39,JASON,Nellie,Hartford,Never went to Umpire,Hartford,455 e main,22.15,1913.2004514672687
+2026-07-03 00:00:00,2026-09-17,2026.0,"Pruitt, Kimberly","9220 S Eggleston Ave, Chicago, IL 60620",IL,Appraisal Only,17709.15,MITCHELL,Nellie,State Farm,Never went to Umpire,State Farm,9220 s eggleston,18.9,936.9920634920636
+2026-08-04 00:00:00,2026-09-17,2026.0,"Campuzano, Yurida","6336 S Talman Ave, Chicago, IL 60629",IL,Appraisal Only,16776.45,ZACK,Nellie,State Farm,Never went to Umpire,State Farm,6336 s talman,15.76,1064.4955583756346
+2026-03-24 00:00:00,2026-09-21,2026.0,"Fregoso, Martin","3134 55th Ct, Cicero, IL 60804",IL,Appraisal Only,11592.38,ZACK,Nellie,Allstate,Never went to Umpire,Allstate,3134 55th,23.46,494.1338448422847
