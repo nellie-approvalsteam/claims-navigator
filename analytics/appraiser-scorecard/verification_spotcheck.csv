@@ -1,0 +1,31 @@
+appraiser,which,client,carrier,performed,usd,date_result
+JAKUB,highest,"Rodriguez, Marlene",Allstate,Appraisal Only,40117.55,2026-04-27
+JAKUB,highest,"Paskewits, Amber",State Farm,Appraisal Only,36585.48,2026-04-23
+JAKUB,highest,"Sarceda, Mark",State Farm,Appraisal Only,29232.38,2026-02-24
+JAKUB,lowest,"Harris, Anthony",State Farm,Appraisal Only,347.44,2026-06-15
+JAKUB,lowest,"Lopez, Victor",Country Financial,Appraisal Only,332.55,2026-04-27
+JAKUB,lowest,"Kalombo, Sita Dominic",USAA,Appraisal Only,203.38,2026-07-02
+JASON,highest,"Syed, Asif",Allstate,Appraisal Only,44851.09,2026-01-15
+JASON,highest,"Ravanam, Vilasini",Hartford,Appraisal Only,42377.39,2026-09-16
+JASON,highest,"Mason, Monica",Allstate,Appraisal Only,37937.03,2026-08-25
+JASON,lowest,"Miller, Colleen",Allstate,Appraisal Only,251.47,2026-08-28
+JASON,lowest,"Williams, Kim",Allstate,Appraisal Only,242.88,2026-04-28
+JASON,lowest,"Anderson, Maureen",State Farm,Appraisal Only,216.9,2026-09-07
+JOSEPH,highest,"Allbritton, Anthony",State Farm,Appraisal Only,18262.14,2026-01-03
+JOSEPH,highest,"Coyoteca, Jasmin",Liberty Mutual,Appraisal Only,16190.43,2026-04-16
+JOSEPH,highest,"Fenton, Jay",State Farm,Appraisal Only,12566.53,2026-01-13
+JOSEPH,lowest,"Ballesteros, Omar",Allstate,Appraisal Only,10179.04,2026-06-11
+JOSEPH,lowest,"Ventura, Gloria",Allstate,Appraisal AND Reinspection,9291.55,2026-06-12
+JOSEPH,lowest,"Recinos, Jose",State Farm,Appraisal Only,5745.57,2026-01-27
+MITCHELL,highest,"Patrey, Bob",Allstate,Appraisal Only,91356.84,2026-06-17
+MITCHELL,highest,"Tidmore, Nichole",Allstate,Appraisal Only,65383.34,2026-04-28
+MITCHELL,highest,"Granciano, Omar &Teresa ",State Farm,Appraisal Only,63107.36,2026-07-09
+MITCHELL,lowest,"Garcia, Aida",State Farm,Appraisal Only,1024.56,2026-05-18
+MITCHELL,lowest,"Neff, David",State Farm,Appraisal Only,469.43,2026-06-29
+MITCHELL,lowest,"Montenegro, Jose",State Farm,Appraisal Only,15.82,2026-05-26
+ZACK,highest,"Pitroda, Satyan",State Farm,Appraisal Only,141518.42,2026-03-12
+ZACK,highest,"Zaremba, Virginijus",Openly,Appraisal Only,110931.46,2026-06-11
+ZACK,highest,"Liu, Bruce",State Farm,Appraisal Only,108193.36,2026-07-28
+ZACK,lowest,"Klockowski, Wes",State Farm,Appraisal Only,334.55,2026-01-13
+ZACK,lowest,"Lewis, Salome",Travelers ,Appraisal Only,269.05,2026-04-22
+ZACK,lowest,"Cunningham, Kim",Allstate,Appraisal Only,204.88,2026-06-17

@@ -1,0 +1,9 @@
+segment,my_deals,pivot_deals,my_dollars,pivot_dollars,match
+Appraisal AND Reinspection / JASON,3,3,64720.39,64720,MATCH
+Appraisal AND Reinspection / ZACK,46,46,1084876.18,1084876,MATCH
+Appraisal Only / JASON,54,54,950253.79,950254,MATCH
+Appraisal Only / JOSEPH,12,12,239825.18,239825,MATCH
+Appraisal Only / ZACK,87,87,1657020.13,1657020,MATCH
+Reinspection Only / ALL,304,304,3551768.41,3551768,MATCH
+Supplement / ALL,38,38,355204.69,355205,MATCH
+GRAND TOTAL 2025 (all deal types),562,562,8353278.78,8353279,MATCH
