@@ -18,10 +18,11 @@ instance (re-entry or a genuine second round) — collapsed to first start / las
 end, which understates cycle time on a true second round rather than
 double-counting the project. 1 test row (`Fake, Another`) excluded.
 
-## Populated (10 columns)
+## Populated (15 columns)
 
-project_number, customer, final_approved_amount, date_assigned, date_completed,
-cycle_days, project_status, state, rep, milestone_instances
+project_number, project_id, customer, final_approved_amount, date_assigned,
+date_completed, cycle_days, project_status, state, rep, milestone_instances,
+plus trade / roof squares / siding squares / gutter LF on 27 of 86.
 
 - `date_assigned` / `date_completed` = milestone start / end. These are real and
   timestamped — cycle time is measurable today.
@@ -36,8 +37,8 @@ cycle_days, project_status, state, rep, milestone_instances
 | `original_carrier_estimate` | Exists only inside attached PDFs. The Estimates module is unused in this tenant — `estimate_search` returned **0 estimates** on every project tested, which is why the `Estimated ($)` rollup is `$0.00` on all 86 rows. |
 | `appraisal_award` | Same. Award documents are clearly there and well named (`Pitroda Appraisal - Award.pdf`, `BHA--AWD.PDF`, `13-88P1-54Z IL Appraisal Award Letter.pdf`) — the figures are inside them. |
 | `increase_usd`, `increase_pct` | Derived from the two above. |
-| `claim_number`, `carrier` | On the `claim` entity. Obtainable read-only, one join per project — not done here to stay within a bounded number of API calls. |
-| `trade`, `home_size_roof_squares`, `home_size_siding_squares` | Derivable from the project `name` field, which encodes scope as `R: 50 SQ, S: 0 SQ, G: 0 LF` (roof squares / siding squares / gutter linear feet). Populated on some projects, null on others. |
+| `claim_number`, `carrier` | On the `claim` entity, which has **no `_search` tool** — it is reachable only by building a saved report. Creating one is a write to the tenant, so this was left alone per the read-only instruction. |
+| `trade`, `home_size_*` | **Now pulled** — parsed from the project `name` field, which encodes scope as `R: 50 SQ, S: 0 SQ, G: 0 LF`. See the coverage note below. |
 | `roof_material`, `siding_material` | No field in the CRM. Would come from the estimate or EagleView documents. |
 
 ## The blocker
@@ -60,3 +61,29 @@ problem — the documents exist and are well organised.
    worth checking on a dozen before committing to all 86.
 3. **Fix intake** so this is never a reconstruction job again: an Appraiser
    dropdown, Pre-Appraisal RCV, and Award RCV captured at award time.
+
+
+## Scope coverage — a clean, useful split
+
+Scope strings resolved on **27 of 86** projects. The split is not random:
+
+| Project status | Has scope | No scope |
+|---|---:|---:|
+| Closed - Complete | 27 | 1 |
+| Accounts Receivable | 0 | 42 |
+| Closed Pending | 0 | 13 |
+| Post-Production | 0 | 3 |
+
+The scope name is written at project closeout. Nothing short of `Closed -
+Complete` carries it. So the population that can support a **trade- and
+size-controlled** comparison today is **28 projects**, not 86 — the rest can
+still contribute to an uncontrolled comparison, or once they close.
+
+Trade mix where known: Roofing 17, Roofing + Gutters 7,
+Roofing + Siding + Gutters 2, Siding 1. Roof squares: median 30, range 0–54.
+
+## Second blocked host
+
+`docs.google.com` is also denied by this session's egress policy, so the
+appraiser tracker sheet could not be read here either. Same remedy as the
+document CDNs: allow-list it, or paste/upload the sheet as CSV.
