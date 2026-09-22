@@ -1,0 +1,87 @@
+project_number,project_id,claim_number,customer,appraiser,carrier,trade,roof_material,siding_material,home_size_roof_squares,home_size_siding_squares,gutter_linear_feet,original_carrier_estimate,appraisal_award,final_approved_amount,increase_usd,increase_pct,date_assigned,date_completed,cycle_days,project_status,deal_type,state,rep,milestone_instances,appraisers,insurance_tracker,match_type,n_appraisers
+211903,1662893,,"Esposito, Randal-",,,Roofing + Gutters,,,34.0,0.0,355.0,,,32035.47,,,2023-08-07,2023-12-19,134,Closed - Complete,,IL,Tracy Martinez,1,,,unmatched,0
+211947,1669452,,"Gerhardsteine, Deborah *APPRAISAL*",,,Roofing,,,54.33,0.0,0.0,,,102623.8,,,2023-10-26,2023-12-28,63,Closed - Complete,,IL,Mark Cyras,1,,,unmatched,0
+IL-211972,1665726,,"Skrypets, Iurii and Aleksandra",,,Siding,,,0.0,26.0,0.0,,,36255.04,,,2024-03-08,2024-04-05,28,Closed - Complete,,IL,Tracy Martinez,1,,,unmatched,0
+212039,1670104,,"Verano, Calvin",,,Roofing,,,32.0,0.0,0.0,,,26964.32,,,2024-03-25,2024-05-24,60,Closed - Complete,,IL,Tony Williams,1,,,unmatched,0
+212049,1694713,,"Madigan, John and Joanne- *APPRAISAL*",,,Roofing + Gutters,,,50.0,0.0,435.0,,,110808.78,,,2024-04-02,2024-05-10,38,Closed - Complete,,IL,Gregory Walker,1,,,unmatched,0
+212017,1703722,,"Fatima Fareesa, Wahab Syed and",,,Roofing,,,46.0,0.0,0.0,,,46453.98,,,2024-05-10,2026-06-18,769,Closed - Complete,,IL,Tracy Martinez,1,,,unmatched,0
+212081,1715947,,"Hogg P2, Andrea and Matthew",,,Roofing + Gutters,,,19.0,0.0,244.0,,,14072.48,,,2024-05-13,2024-06-28,46,Closed - Complete,,IN,Laura Self,1,,,unmatched,0
+IL-212074,1679794,,"Welch, Tyler K and Sarah",,,Roofing,,,32.0,0.0,0.0,,,49256.68,,,2024-06-03,2024-07-10,37,Closed - Complete,,IL,Tracy Martinez,1,,,unmatched,0
+212212,1704875,,"Correa Rivera, Beatrice ""APPRAISAL""",,,Roofing + Gutters,,,46.0,0.0,504.0,,,116328.12,,,2024-07-02,2024-11-26,147,Closed - Complete,,IL,Gregory Walker,2,,,unmatched,0
+212358,1742296,,"Bennett, Jane and Thomas",,,Roofing + Gutters,,,32.0,0.0,258.0,,,37652.15,,,2024-09-04,2025-02-20,169,Closed - Complete,,IL,Tracy Martinez,1,,,unmatched,0
+212618,1772095,,"Hood, Kenneth",JASON,,Roofing,,,22.0,0.0,0.0,,,20207.75,,,2025-05-28,2025-09-01,96,Closed - Complete,,IL,Zachary Moskowitz,1,['JASON'],['STATE FARM'],exact,1
+212530,1924206,,"Larson, Robert",,,,,,,,,,,27292.64,,,2025-06-20,2025-08-07,48,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Sean Julian,1,,,unmatched,0
+212803,1931024,,"Rivera, Danny",ZACK,,,,,,,,,,13982.51,,,2025-06-23,2025-11-20,150,Closed Pending,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,1,['ZACK'],['SF'],exact,1
+212690,1928765,,"Shahid, Iffat",ZACK,,,,,,,,,,17287.74,,,2025-06-25,2025-10-09,106,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Ethan Mar,1,['ZACK'],['ALLSTATE'],exact,1
+212634,1924204,,"Martus, Theresa",ZACK,,Roofing,,,11.0,0.0,0.0,,,28036.36,,,2025-06-27,2025-09-25,90,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Edwin Ramos,1,['ZACK'],['ALLSTATE'],exact,1
+212770,1925334,,"Sambugaro, Constance",ZACK,,,,,,,,,,29825.0,,,2025-07-04,2025-10-31,119,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Michele Michalak,1,['ZACK'],['STATE FARM'],exact,1
+212589,1925272,,"Holmes, Duane",,,Roofing,,,19.0,0.0,0.0,,,18852.06,,,2025-07-15,2025-09-05,52,Closed - Complete,ASSIGNMENT OF BENEFITS,IL,Kevin Faucher,1,,,unmatched,0
+212755,1934646,,"Knudtson, Regina",,,,,,,,,,,36017.79,,,2025-07-15,2025-11-18,126,Closed Pending,PUBLIC ADJUSTING DEAL,IL,Ethan Mar,1,,,unmatched,0
+212638,1929338,,"Sullivan, Gerald",ZACK,,Roofing,,,32.0,0.0,0.0,,,25000.0,,,2025-07-15,2025-08-15,31,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,['ZACK'],['ALLSTATE'],exact,1
+212715,1923817,,"Covarrubias, Sergio",JASON,,,,,,,,,,20547.04,,,2025-07-17,2025-10-16,91,Closed Pending,ASSIGNMENT OF BENEFITS,IL,Michael Flanders,2,['JASON'],['STATE FARM'],exact,1
+212718,1929383,,"Stergios, Joseph",,,Roofing,,,34.0,0.0,0.0,,,103253.8,,,2025-07-19,2025-10-21,94,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Ethan Mar,1,,,unmatched,0
+212704,1928064,,"Johnson, Beverly",ZACK,,,,,,,,,,17205.71,,,2025-07-24,2025-10-23,91,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Sean Julian,1,['ZACK'],['ALLSTATE'],exact,1
+212686,1940502,,"Harris, Donna",JASON,,Roofing,,,46.0,0.0,0.0,,,33245.98,,,2025-07-28,2025-10-02,66,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Jason Martinez,1,['JASON'],['STATE FARM'],exact,1
+212664,1922228,,"Erffmeyer, Karen",ZACK,,Roofing + Siding + Gutters,,,17.0,22.0,178.0,,,38551.52,,,2025-07-28,2025-10-13,77,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Laura Self,1,['ZACK'],['STATE FARM'],exact,1
+212726,1937579,,"Mendoza, Irma",,,,,,,,,,,9609.08,,,2025-07-29,2025-10-30,93,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Sean Julian,1,,,unmatched,0
+212899,1929818,,"Lancaster, William",ZACK,,,,,,,,,,55151.09,,,2025-07-29,2025-09-28,61,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,['ZACK'],['ALLSTATE'],exact,1
+213149,1923794,,"Evans, Michael 1",,,,,,,,,,,19977.59,,,2025-07-29,2026-05-28,303,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Sean Julian,1,,,unmatched,0
+212568,1933303,,"Saylor, Todd",,,,,,,,,,,15705.15,,,2025-07-31,2025-08-12,12,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,1,,,unmatched,0
+212897,1944428,,"Olivo, Marcos",JASON,,,,,,,,,,12519.95,,,2025-08-01,2026-03-02,213,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,['JASON'],['ALL STATE'],exact,1
+212587,1940327,,"Cain, Kathy",JASON,,,,,,,,,,13329.17,,,2025-08-03,2025-08-26,23,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Michael Flanders,1,['JASON'],['AMERICAN MODERN'],exact,1
+212651,1929369,,"Anguiano, Sergio",,,,,,,,,,,54518.4,,,2025-08-03,2025-09-16,44,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,1,,,unmatched,0
+212706,1936898,,"Flores, Jaime",ZACK,,Roofing + Gutters,,,19.0,0.0,98.0,,,38422.25,,,2025-08-04,2025-10-23,80,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,1,['ZACK'],['ALLSTATE'],exact,1
+212644,1944444,,"Pardo, Michael",JASON,,,,,,,,,,24602.49,,,2025-08-05,2025-09-24,50,Closed Pending,PUBLIC ADJUSTING DEAL,IL,Michele Michalak,1,['JASON'],['TRAVELLERS'],exact,1
+212777,1923775,,"Rivera, Luisa Salazar & Roberto Robles",ZACK,,,,,,,,,,19603.2,,,2025-08-06,2025-12-03,119,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Claudia Vargas,1,['ZACK'],['STATFARM'],exact,1
+212990,1924191,,"Crockett, Earvin",JASON,,,,,,,,,,30710.62,,,2025-08-07,2026-04-23,259,Accounts Receivable,ASSIGNMENT OF BENEFITS,IL,Kevin Faucher,1,['JASON'],['STATE FARM'],exact,1
+212745,1935100,,"Dolan, Richard",JASON,,,,,,,,,,26606.0,,,2025-08-07,2025-11-12,97,Closed Pending,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,2,['JASON'],['STATE FARM'],exact,1
+212519,1936159,,"Salgado, Margarita",,,Roofing,,,14.0,0.0,0.0,,,12415.98,,,2025-08-07,2025-08-07,0,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,1,,,unmatched,0
+212743,1942836,,"Bhattacharjee, Biswarup",ZACK,,Roofing,,,50.0,0.0,0.0,,,95275.72,,,2025-08-08,2025-11-04,88,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Michele Michalak,1,['ZACK'],['ALLSTATE'],exact,1
+212728,1929357,,"Rodriguez, Luis (2850 Pearl Ave)",JASON,,,,,,,,,,19074.97,,,2025-08-09,2025-09-11,33,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,['JASON'],['ALLSTATE'],exact,1
+212866,1942030,,"Lewis, David (2010 S 3rd Ave)",ZACK,,,,,,,,,,52781.16,,,2025-08-11,2026-01-02,144,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,['ZACK'],['FARMERS'],exact,1
+212781,1953558,,"Marquez, Rodolfo",JASON,,,,,,,,,,33596.4,,,2025-08-12,2025-12-01,111,Closed Pending,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,1,['JASON'],['ALLSTATE'],exact,1
+212678,1939339,,"Heil, Edward",JASON,,,,,,,,,,39425.86,,,2025-08-15,2025-10-15,61,Accounts Receivable,ASSIGNMENT OF BENEFITS,IL,Michael Flanders,1,['JASON'],['ALLSTATE'],exact,1
+212677,1929345,,"Cooper, Shontrell",JASON,,,,,,,,,,13316.1,,,2025-08-15,2025-09-23,39,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Sean Julian,1,['JASON'],['ALLSTATE'],exact,1
+212813,1927106,,"Mcfarland, Matthew",ZACK,,,,,,,,,,31010.15,,,2025-08-19,2025-12-10,113,Closed Pending,PUBLIC ADJUSTING DEAL,IL,Ethan Mar,1,['ZACK'],['ALLSTATE'],exact,1
+212742,1940892,,"Reid, William",JASON,,,,,,,,,,20047.03,,,2025-08-19,2025-10-30,72,Closed Pending,PUBLIC ADJUSTING DEAL,IL,Michele Michalak,1,['JASON'],['STATE FARM'],exact,1
+212676,1954627,,"Chan, Billy",,,Roofing,,,48.0,0.0,0.0,,,138269.93,,,2025-08-20,2025-09-10,21,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Michele Michalak,1,,,unmatched,0
+212620,1923184,,"Ramos, Maricela",ZACK,,Roofing + Gutters,,,25.0,0.0,201.0,,,24205.9,,,2025-08-21,2025-09-15,25,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Michele Michalak,1,['ZACK'],['STATE FARM'],exact,1
+212772,1940433,,"Hernandez, Armando",,,,,,,,,,,26897.99,,,2025-08-24,2025-11-11,79,Accounts Receivable,ASSIGNMENT OF BENEFITS,IL,Kevin Faucher,1,,,unmatched,0
+212779,1927529,,"Mercado, Rhonda",ZACK,,,,,,,,,,38173.58,,,2025-08-25,2025-12-04,101,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,['ZACK'],['STATFARM'],exact,1
+212934,1949146,,"Riter, Joseph & Elizabeth",,,,,,,,,,,43105.14,,,2025-08-25,2025-12-04,101,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Michele Michalak,1,,,unmatched,0
+213062,1949758,,"Leon P2, Miguel",,,,,,,,,,,33828.92,,,2025-08-27,2026-04-24,240,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,"['DANI', 'JOSEPH']",['STATE FARM'],exact,2
+212865,1943911,,"Millan, Sharon Bivian",JASON,,,,,,,,,,15861.62,,,2025-08-28,2025-11-25,89,Closed Pending,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,['JASON'],['ALLSTATE'],exact,1
+212839,1932244,,"Ghosh, Debdeep",,,Roofing,,,24.0,0.0,0.0,,,16805.76,,,2025-08-29,2026-06-16,291,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,1,"['DANI', 'JOSEPH']",['STATE FARM'],exact,2
+212717,1925775,,"Quinn, Edward",JASON,,,,,,,,,,29947.43,,,2025-08-31,2025-10-25,55,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Michael Flanders,1,['JASON'],['STATE FARM'],exact,1
+212653,1925330,,"Hernandez, Alfonso",JASON,,Roofing,,,19.0,0.0,0.0,,,22379.7,,,2025-09-04,2025-09-23,19,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,['JASON'],['STATFARM'],exact,1
+212605,1953566,,"Antunez, Gildardo",,,,,,,,,,,9483.19,,,2025-09-09,2025-09-09,0,Closed Pending,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,1,,,unmatched,0
+212818,1946346,,"Keller, Robert",,,,,,,,,,,30721.48,,,2025-09-09,2025-09-09,0,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Michele Michalak,1,,,unmatched,0
+212616,1932790,,"Garcia, Rafael",,,Roofing + Siding + Gutters,,,16.0,7.0,129.0,,,29682.75,,,2025-09-10,2025-09-10,0,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Michele Michalak,1,,,unmatched,0
+212590,1944397,,"Ali, Syed Yaseen",,,Roofing,,,19.0,0.0,0.0,,,23683.82,,,2025-09-11,2025-09-11,0,Closed - Complete,PUBLIC ADJUSTING DEAL,IL,Ethan Mar,2,,,unmatched,0
+212862,1944801,,"Portillo, Wilson",JASON,,,,,,,,,,25545.78,,,2025-09-11,2026-01-22,133,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,['JASON'],['STATFARM'],exact,1
+212681,1944802,,"Tise, George & Cristina",,,,,,,,,,,32736.62,,,2025-09-13,2026-07-10,300,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,,,unmatched,0
+212769,1924669,,"Johnson, Jared",ZACK,,,,,,,,,,28131.71,,,2025-09-14,2025-11-18,65,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,['ZACK'],['ALLSTATE'],exact,1
+212954,1942825,,"Fabila, Abel & Elizabeth Lopez",JASON,,,,,,,,,,24909.32,,,2025-09-17,2026-04-09,204,Closed Pending,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,['JASON'],['STATE FARM'],exact,1
+212961,1954606,,"Pitroda, Satyan",ZACK,,,,,,,,,,178122.69,,,2025-09-23,2026-04-06,195,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Michele Michalak,1,['ZACK'],['STATE FARM'],exact,1
+212789,1931048,,"Rios, Ciria",ZACK,,,,,,,,,,11195.25,,,2025-09-29,2025-12-05,67,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,1,['ZACK'],['STATE FARM'],exact,1
+212885,1948734,,"Recinos, Jose",,,,,,,,,,,12521.66,,,2025-10-06,2026-02-02,119,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,1,"['DANI', 'JOSEPH']",['STATE FARM'],exact,2
+213104,1949147,,"Cousins, Glenda",JASON,,,,,,,,,,25135.86,,,2025-10-15,2026-05-08,205,Post-Production,PUBLIC ADJUSTING DEAL,IL,Sean Julian,1,['JASON'],['LIBERTY MUTUAL'],exact,1
+213076,1949742,,"Hubeny, Joseph/ 224 Morris Inc P3",,,,,,,,,,,12874.03,,,2025-10-30,2026-04-27,179,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Ethan Mar,1,,,unmatched,0
+212884,1935675,,"Grant, Darryl",,,,,,,,,,,23441.93,,,2025-11-08,2026-01-12,65,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Sean Julian,1,,,unmatched,0
+212847,1933675,,"Hubeny, Joseph",,,,,,,,,,,27807.22,,,2025-11-08,2026-01-23,76,Closed Pending,PUBLIC ADJUSTING DEAL,IL,Ethan Mar,1,,,unmatched,0
+212792,1942088,,"Zavala, Pablo",,,,,,,,,,,18368.06,,,2025-11-13,2025-12-05,22,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Sean Julian,1,,,unmatched,0
+212863,1939759,,"Ledelma, Dora Posada",ZACK,,,,,,,,,,21010.93,,,2025-11-14,2026-01-30,77,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,1,['ZACK'],['ALLSTATE'],exact,1
+212857,1933687,,"Martinez, Sergio (500 Glenview Ave)",ZACK,,,,,,,,,,24756.54,,,2025-11-18,2026-01-27,70,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,1,['ZACK'],['ALLSTATE'],exact,1
+212957,1945751,,"Riddle, Lathario",,,,,,,,,,,14605.41,,,2025-11-18,2026-07-10,234,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Jason Martinez,1,,,unmatched,0
+212889,1940476,,"Widenhoefer, James",,,,,,,,,,,31179.12,,,2025-11-19,2026-02-18,91,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Ethan Mar,1,,,unmatched,0
+212795,1939336,,"Siebold, Autum",JASON,,,,,,,,,,22992.43,,,2025-11-22,2025-11-24,2,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,1,['JASON'],['STATE FARM'],exact,1
+212881,1760862,,"Michalek, Nicholas",,,Roofing,,,30.0,0.0,0.0,,,24345.76,,,2025-12-12,2026-02-18,68,Closed - Complete,,IL,Tracy Martinez,2,,,unmatched,0
+212878,1924363,,"Santillan, Sonia",,,,,,,,,,,44229.62,,,2025-12-17,2026-01-28,42,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Jason Martinez,1,,,unmatched,0
+212882,1946367,,"Garner, Kendall & Adrienne",,,,,,,,,,,17506.53,,,2025-12-29,2026-02-11,44,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Sean Julian,1,,,unmatched,0
+212929,1953594,,"Morales, Pablo",,,,,,,,,,,16278.93,,,2025-12-30,2026-03-20,80,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Fernando Robles,1,,,unmatched,0
+212959,1941493,,"Martinez, Jose",,,,,,,,,,,37849.41,,,2026-01-08,2026-04-02,84,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Luigi Robles,2,,,unmatched,0
+212928,1936184,,"Juarez, Kloie",ZACK,,,,,,,,,,18838.89,,,2026-01-26,2026-03-20,53,Closed Pending,PUBLIC ADJUSTING DEAL,IL,Jason Martinez,1,['ZACK'],['STATEFARM'],exact,1
+213269,1942078,,"Flint, Laura",,,,,,,,,,,22256.55,,,2026-01-27,2026-07-10,164,Post-Production,PUBLIC ADJUSTING DEAL,IL,Sean Julian,1,,,unmatched,0
+212932,1934661,,"Suarez, Reginaldo",,,,,,,,,,,17294.68,,,2026-02-11,2026-03-23,40,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Sean Julian,1,,,unmatched,0
+213197,1955137,,"Rojas, Francisco & Marcela",,,,,,,,,,,25510.71,,,2026-02-16,2026-05-06,79,Post-Production,PUBLIC ADJUSTING DEAL,IL,Ethan Mar,1,,,unmatched,0
+213162,1924508,,"Lahola, Frank",ZACK,,,,,,,,,,38904.99,,,2026-02-17,2026-05-27,99,Accounts Receivable,PUBLIC ADJUSTING DEAL,IL,Sean Julian,1,['ZACK'],['STATE FARM'],exact,1
