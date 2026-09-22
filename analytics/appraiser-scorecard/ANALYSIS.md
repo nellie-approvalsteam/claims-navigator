@@ -121,3 +121,65 @@ always blank.
 Until (1) exists, the defensible statement is: *Mitchell and Zack trend above
 average, Jakub trends below, and the roster is not separable on current data.*
 Do not move vendor volume on this alone.
+
+---
+
+# UPDATE — assignment is by capacity, and it changes the answer
+
+The department confirmed: **appraisers are assigned by whoever has capacity, with
+no set rule.** That is close to as-if random assignment and is the best case for
+this comparison — so I tested whether caseloads actually look balanced, and
+re-ran the model once they did.
+
+## Balance check
+
+Caseloads are well balanced on everything observable **except time**:
+
+| Dimension | Verdict |
+|---|---|
+| Carrier mix | Balanced — State Farm 40–57%, Allstate 18–50% across appraisers |
+| Roof size | Balanced — medians 21.6–24.7 squares |
+| Claim type | Balanced — Approval 56–75% |
+| State | Identical — 100% IL for everyone |
+| Deal type | **Mild imbalance** — Zack 27% Appraisal+Reinspection vs Jakub 3% (already controlled for in the strata) |
+| **Time period** | **Badly imbalanced** — see below |
+
+Mitchell and Jakub appear **only in 2026**. Zack and Jason span 2025–2026. Since
+2026 ran about 8% higher than 2025, an appraiser who only worked 2026 gets a
+free tailwind.
+
+## The like-for-like ranking (2026 only, n=359)
+
+| Tier | Appraiser | Deals | Adjusted | 90% interval | Median $ |
+|---:|---|---:|---:|---|---:|
+| 1 | **Zack** | 136 | **+17%** | +0.0% … +34.9% | $18,349 |
+| 1 | Mitchell | 77 | +8% | −8.3% … +29.4% | $18,801 |
+| 1 | Jason | 100 | −12% | −25.0% … +1.2% | $16,035 |
+| 2 | **Jakub** | 38 | **−22%** | −46.9% … −0.03% | $13,951 |
+
+**Zack moves to the top** once the year effect is removed, and **Mitchell drops
+from +14% to +8%** — a meaningful part of his earlier lead was the stronger 2026
+book, not the appraiser.
+
+## How much to trust the separation
+
+Re-run with 10 different bootstrap seeds:
+
+- **Jakub** excluded zero in **8 of 10** seeds — but his upper bound sat within
+  0.4 percentage points of zero every time.
+- **Zack's** lower bound landed at +0.0% in all 10 and never cleared zero.
+- Jason and Mitchell never separated in any run.
+
+So the tiering is real but fragile. With four appraisers tested at 90%, one
+borderline result is roughly what chance alone would produce.
+
+## The defensible answer
+
+> **Zack produces the strongest increases** on like-for-like data — +17% above
+> expected, the largest median, and 48% of all dollars generated. **Jakub is the
+> weakest**, the only finding that approaches significance. Mitchell and Jason
+> are not distinguishable from average, and Mitchell's all-years lead was partly
+> a calendar artifact.
+
+Enough to watch Jakub's assignments and to keep volume flowing to Zack. Not yet
+enough to move a vendor relationship on.
