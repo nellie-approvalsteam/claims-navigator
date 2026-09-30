@@ -20,7 +20,7 @@ Download the scripts (no repo checkout needed):
 ```bash
 export S=/tmp/appraisal-run && rm -rf $S && mkdir -p $S/batches $S/results $S/files
 R=https://raw.githubusercontent.com/nellie-approvalsteam/claims-navigator/claude/gracious-galileo-8qflyr/appraisal-report
-for f in detect_new.py fetch.py build_report.py to_dashboard.py INSTRUCTIONS.md baseline_keys.txt; do
+for f in detect_new.py fetch.py build_report.py to_dashboard.py claims_csv.py INSTRUCTIONS.md baseline_keys.txt; do
   curl -fsS -o $S/$f $R/$f || echo "FAILED $f"; done
 ls -l $S
 (which pdftotext && which tesseract) || (apt-get update -q && apt-get install -y -q poppler-utils tesseract-ocr) >/dev/null
@@ -36,12 +36,12 @@ The result is saved to a file; decode it:
 `jq -r .content <saved-result-file> | base64 -d > $S/approvals.xlsx`
 
 ## 3. Get the list of claims already in the report
-Search the state folder: `mcp__Google_Drive__search_files` with
-`parentId = '1j8IVK2j0GAt9Ql3IylIGzXqJk8m9fibQ' and title contains 'appraisal-state'`.
-- If one or more files exist, take the newest (by title date / modifiedTime),
-  download it with `download_file_content` and decode the saved result:
-  `jq -r .content <saved-result-file> | base64 -d > $S/known_keys.txt` (one key per line).
-- If none exist, `cp $S/baseline_keys.txt $S/known_keys.txt`.
+Known rows = `baseline_keys.txt` plus every "appraisal-state" file (each holds only the
+keys added that day). Search the state folder with `mcp__Google_Drive__search_files`:
+`parentId = '1j8IVK2j0GAt9Ql3IylIGzXqJk8m9fibQ' and title contains 'appraisal-state'`
+(page through all results). Download each with `download_file_content` and decode:
+`jq -r .content <saved-result-file> | base64 -d >> $S/state_keys.txt`. Then:
+`cat $S/baseline_keys.txt $S/state_keys.txt 2>/dev/null | sort -u > $S/known_keys.txt`
 
 ## 4. Detect new rows
 `python3 $S/detect_new.py $S/approvals.xlsx $S/known_keys.txt $S`
@@ -60,22 +60,25 @@ Before continuing, check every client in batch.json has a valid result file.
 ```bash
 D=$(date -u +%Y-%m-%d); N=$(python3 -c "import json;print(len(json.load(open('$S/batch.json'))))")
 python3 $S/build_report.py --dir $S --clients $S/batch.json --out $S/update.xlsx --title "Appraisal claims added $D"
-base64 -w0 $S/update.xlsx > $S/update.b64
 ```
 If a client in batch.json already appeared in an earlier report (the sheet shows
 an earlier appraisal row for them), mention "updated" for that client in step 9.
 
 ## 7. Upload the update to the report folder
-`mcp__Google_Drive__create_file` with title
-`2026 Appraisal Claims – added <D> (<N> claims)`, `parentId` = report folder,
-`contentMimeType` = `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`,
-`base64Content` = contents of `$S/update.b64` (converted to a Google Sheet).
+```bash
+python3 $S/claims_csv.py $S/update.xlsx $S/update.csv && cat $S/update.csv
+```
+`mcp__Google_Drive__create_file` with title `2026 Appraisal Claims – added <D> (<N> claims)`,
+`parentId` = report folder, `contentMimeType` = `text/csv`, `textContent` = the exact contents
+of `$S/update.csv` (it converts to a Google Sheet). Afterwards download it with
+`exportMimeType` = `text/csv` and check that every client is present.
 
 ## 8. Save the new state
-Only after step 7 succeeded: `mcp__Google_Drive__create_file` with title
-`appraisal-state <D>`, `parentId` = state folder, `contentMimeType` = `text/plain`,
-`disableConversionToGoogleType` = true, `textContent` = contents of
-`$S/all_keys.txt`. (Never edit or delete older state files.)
+Only after step 7 succeeded:
+`comm -13 <(sort $S/known_keys.txt) <(sort $S/all_keys.txt) > $S/new_keys.txt`
+then `mcp__Google_Drive__create_file` with title `appraisal-state <D>`, `parentId` = state folder,
+`contentMimeType` = `text/plain`, `disableConversionToGoogleType` = true, `textContent` =
+contents of `$S/new_keys.txt` (one key per line). Never edit or delete older state files.
 
 ## 8b. Add the new claims to the dashboard
 Dashboard: https://claude.ai/artifact/HphQBYo8TqFDQUeMCfq1XE (collection `claims`).
