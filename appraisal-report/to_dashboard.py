@@ -77,6 +77,19 @@ def city_of(addr):
     return m.group(1).strip().title() if m else None
 
 
+ROOF = [("Laminated", r"laminat|architect|dimensional|landmark|timberline"), ("3-tab", r"3[- ]?tab|three[- ]tab|\b2[05] ?yr"),
+        ("Wood shake", r"cedar|wood shake"), ("Metal", r"metal roof|standing seam"), ("Slate / tile", r"slate|clay tile|concrete tile")]
+SIDING = [("Aluminum / metal", r"alumin\w* sid|metal sid|steel sid"), ("Vinyl", r"vinyl sid"),
+          ("Wood", r"wood sid|cedar sid|t1-11|t-111"), ("Fiber cement", r"hardie|fiber cement")]
+
+
+def material(r, table, default):
+    t = " ".join(json.dumps(x, default=str) for x in [
+        r.get("roof_details"), r.get("other_details"), r.get("property"),
+        g(r, "appraisal_award", "scope"), g(r, "initial_estimate", "scope"), g(r, "reinspection_estimate", "scope")]).lower()
+    return next((k for k, p in table if re.search(p, t)), default)
+
+
 def row(c, r):
     app = [s for s in c.get("sheet_rows", []) if s.get("type") and "Appraisal" in str(s["type"])]
     award = r.get("appraisal_award") or {}
@@ -120,6 +133,8 @@ def row(c, r):
         "roof_sqft": num(g(r, "property", "eagleview_total_sqft")),
         "pitch": g(r, "property", "predominant_pitch"),
         "structures": str(g(r, "property", "structures") or "")[:300] or None,
+        "roof_material": material(r, ROOF, "Unknown"),
+        "siding_material": material(r, SIDING, "None / unknown"),
         "confidence": r.get("confidence") or "not processed",
         "issues": [str(i)[:300] for i in (r.get("issues") or [])][:6],
     }
