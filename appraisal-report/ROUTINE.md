@@ -20,7 +20,7 @@ Download the scripts (no repo checkout needed):
 ```bash
 export S=/tmp/appraisal-run && rm -rf $S && mkdir -p $S/batches $S/results $S/files
 R=https://raw.githubusercontent.com/nellie-approvalsteam/claims-navigator/claude/gracious-galileo-8qflyr/appraisal-report
-for f in detect_new.py fetch.py build_report.py INSTRUCTIONS.md baseline_keys.txt; do
+for f in detect_new.py fetch.py build_report.py to_dashboard.py INSTRUCTIONS.md baseline_keys.txt; do
   curl -fsS -o $S/$f $R/$f || echo "FAILED $f"; done
 ls -l $S
 (which pdftotext && which tesseract) || (apt-get update -q && apt-get install -y -q poppler-utils tesseract-ocr) >/dev/null
@@ -76,6 +76,16 @@ Only after step 7 succeeded: `mcp__Google_Drive__create_file` with title
 `appraisal-state <D>`, `parentId` = state folder, `contentMimeType` = `text/plain`,
 `disableConversionToGoogleType` = true, `textContent` = contents of
 `$S/all_keys.txt`. (Never edit or delete older state files.)
+
+## 8b. Add the new claims to the dashboard
+Dashboard: https://claude.ai/artifact/HphQBYo8TqFDQUeMCfq1XE (collection `claims`).
+```bash
+python3 $S/to_dashboard.py --dir $S --clients $S/batch.json --out $S/dash
+```
+For each `$S/dash/<doc_id>.json`: `ArtifactData` `get` (collection `claims`, that doc_id).
+If it exists, `set` it with `file_path` and `if_version` = the version read; if not, `set` without
+`if_version`. Use one `batch` for all of them. Never touch the `part-*` documents
+(they hold the original 382 claims; a per-claim document with the same key overrides them on the page).
 
 ## 9. Finish
 Reply with: number of new claims, the new file's link, and per client:
