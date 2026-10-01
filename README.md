@@ -141,6 +141,7 @@ filesystem so admin edits stick):**
    git):
    - `ADMIN_PASSWORD` — the shared admin passphrase.
    - `SESSION_SECRET` — a random string (e.g. `openssl rand -hex 32`).
+   - `TEAM_PASSWORD`, `CC_API_TOKEN`, `NOTION_API_KEY` — for Claim Lookup (Section G).
 5. Deploy. You'll get a shared URL (e.g. `claims-navigator-production.up.railway.app`) — this is what
    the whole team uses. Both platforms support attaching a custom domain later
    (e.g. `claims.yourcompany.com`) if you want one.
@@ -176,7 +177,41 @@ Open http://localhost:3000.
 
 ---
 
+## G. Claim Lookup (Contractors Cloud + Notion)
+
+At the top of `/navigator`, a specialist can type a **client name, address, or project number**.
+The app searches Contractors Cloud live, and picking a claim shows:
+
+- the claim's status, current milestone, and rep (plus an "Open in Contractors Cloud" link if
+  `CC_PROJECT_URL_TEMPLATE` is set);
+- the **building codes for the property's city**, read from Notion's Building Codes → Illinois
+  Cities database (code edition, ice & water, drip edge, roof layers, permit, notes, source links);
+- **Notion pages** from the Approvals Team Workspace whose titles match the claim's stage and the
+  optional "What's the problem?" text (e.g. *Appraisal Denial — Resource Kit*);
+- matching **scenarios, playbooks, templates, and KB articles** from this app, plus a suggested
+  Navigator claim status the specialist can apply with one click.
+
+This runs on the app's **own** credentials, not anyone's Claude account, so the whole team can use it.
+Setup, once, in the hosting dashboard (Render → Environment):
+
+1. **`TEAM_PASSWORD`** — a shared passphrase. Lookup shows client data, so it's locked behind this
+   (12-hour session); the rest of the tool stays open. Admins are let in automatically.
+2. **`CC_API_TOKEN`** — in Contractors Cloud, go to **Integrations → API Access Tokens** and create
+   a token. Whatever that user can see, Lookup can see, so use an appropriate account.
+   `CC_API_BASE_URL` defaults to `https://api.contractorscloud.com/api/v1`; if lookups report a 404,
+   confirm the base URL at api.contractorscloud.com/docs and set it.
+3. **`NOTION_API_KEY`** — create an internal integration at notion.so/profile/integrations
+   (read content only), then open **Welcome to the Approvals Team Workspace → ••• → Connections**
+   and add it. Notion is optional; without it the Contractors Cloud and in-app results still work.
+
+Code lives in `lib/contractorsCloud.ts`, `lib/notion.ts`, `lib/claimContext.ts` (stage → status
+mapping), `app/api/claims/*`, and `components/ClaimLookup.tsx`. See `.env.example`.
+
 ## 15. Data Privacy / Claim Information
+
+Claim Lookup reads client name, address, status, and milestone from Contractors Cloud on demand and
+shows them in the browser; **none of it is written to disk or logged** by this app, and the lookup
+endpoints require the team passphrase.
 
 By design, the Claim Navigator and "I'm Stuck" inputs are **not saved anywhere** — they exist only
 in the browser's memory for that session and are sent to the server just long enough to compute a

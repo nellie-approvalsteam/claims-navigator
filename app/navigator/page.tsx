@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { Recommendation } from "@/lib/decisionEngine";
 import type { NavigatorOption, Scenario, Carrier } from "@/lib/types";
 import NextStepCard from "@/components/NextStepCard";
 import SafetyNote from "@/components/SafetyNote";
+import ClaimLookup from "@/components/ClaimLookup";
 
 interface OptionsData {
   claimStatuses: NavigatorOption[];
@@ -24,6 +25,7 @@ export default function NavigatorPage() {
   const [carrierQuery, setCarrierQuery] = useState("");
   const [rec, setRec] = useState<Recommendation | null>(null);
   const [loading, setLoading] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     fetch("/api/navigator-options").then((r) => r.json()).then(setOptions);
@@ -79,13 +81,21 @@ export default function NavigatorPage() {
         <p className="text-xs font-bold uppercase tracking-widest text-brass-600">Claim Navigator</p>
         <h1 className="mt-1 text-2xl font-bold sm:text-3xl">What&apos;s happening with the claim?</h1>
         <p className="mt-2 max-w-2xl text-sm text-ink/65">
-          Nothing entered here is saved — this is a quick, session-only read on the situation. No
-          claim number or client name needed.
+          Look up a claim to pull its details from Contractors Cloud and the matching resources from
+          Notion, or skip straight to the questions below. Nothing entered here is saved.
         </p>
       </div>
 
+      <ClaimLookup
+        claimStatuses={options.claimStatuses}
+        onUseStatus={(s) => {
+          setStatus(s);
+          formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }}
+      />
+
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-        <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-teal-100 bg-white p-5 sm:p-6">
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-teal-100 bg-white p-5 sm:p-6">
           <Field label="Claim status" required>
             <select
               className="field"

@@ -10,7 +10,14 @@ import { cookies } from "next/headers";
 // app, since every admin route checks auth through isAdminRequest() here.
 
 export const SESSION_COOKIE = "cn_admin_session";
-const SESSION_TTL_MS = 1000 * 60 * 60 * 12; // 12 hours
+// Separate cookie for the team (non-admin) passphrase that unlocks Claim
+// Lookup. Lookup returns live client data from Contractors Cloud, so unlike
+// the rest of the tool it can't be open to anyone who has the URL.
+export const TEAM_SESSION_COOKIE = "cn_team_session";
+export const SESSION_TTL_SECONDS = 60 * 60 * 12;
+
+type Role = "admin" | "team";
+const SESSION_TTL_MS = SESSION_TTL_SECONDS * 1000; // 12 hours
 
 function getSecret(): string {
   const secret = process.env.SESSION_SECRET;
@@ -26,19 +33,22 @@ function sign(payload: string): string {
   return crypto.createHmac("sha256", getSecret()).update(payload).digest("hex");
 }
 
-export function createSessionToken(): string {
+export function createSessionToken(role: Role = "admin"): string {
   const expires = Date.now() + SESSION_TTL_MS;
-  const payload = `admin.${expires}`;
+  const payload = `${role}.${expires}`;
   const sig = sign(payload);
   return `${payload}.${sig}`;
 }
 
-export function verifySessionToken(token: string | undefined | null): boolean {
+export function verifySessionToken(
+  token: string | undefined | null,
+  role: Role = "admin"
+): boolean {
   if (!token) return false;
   const parts = token.split(".");
   if (parts.length !== 3) return false;
-  const [role, expiresStr, sig] = parts;
-  const payload = `${role}.${expiresStr}`;
+  const [tokenRole, expiresStr, sig] = parts;
+  const payload = `${tokenRole}.${expiresStr}`;
   let expectedSig: string;
   try {
     expectedSig = sign(payload);
@@ -51,7 +61,7 @@ export function verifySessionToken(token: string | undefined | null): boolean {
   if (!crypto.timingSafeEqual(sigBuf, expectedBuf)) return false;
   const expires = Number(expiresStr);
   if (Number.isNaN(expires) || Date.now() > expires) return false;
-  return role === "admin";
+  return tokenRole === role;
 }
 
 export function checkPassword(candidate: string): boolean {
@@ -61,6 +71,20 @@ export function checkPassword(candidate: string): boolean {
       "ADMIN_PASSWORD is not set. Set it as an environment variable before using the admin area (see .env.example)."
     );
   }
+  return safeEqual(candidate, expected);
+}
+
+export function checkTeamPassword(candidate: string): boolean {
+  const expected = process.env.TEAM_PASSWORD;
+  if (!expected) {
+    throw new Error(
+      "TEAM_PASSWORD is not set. Set it as an environment variable before using Claim Lookup (see .env.example)."
+    );
+  }
+  return safeEqual(candidate, expected);
+}
+
+function safeEqual(candidate: string, expected: string): boolean {
   const a = Buffer.from(candidate);
   const b = Buffer.from(expected);
   if (a.length !== b.length) return false;
@@ -72,6 +96,18 @@ export function isAdminRequest(): boolean {
   try {
     const token = cookies().get(SESSION_COOKIE)?.value;
     return verifySessionToken(token);
+  } catch {
+    return false;
+  }
+}
+
+// Claim Lookup access: a team session, or an admin session (admins are
+// team members too, so they don't need to enter a second passphrase).
+export function isTeamRequest(): boolean {
+  if (isAdminRequest()) return true;
+  try {
+    const token = cookies().get(TEAM_SESSION_COOKIE)?.value;
+    return verifySessionToken(token, "team");
   } catch {
     return false;
   }

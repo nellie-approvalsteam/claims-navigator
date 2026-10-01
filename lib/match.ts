@@ -62,7 +62,12 @@ export function buildSearchIndex(data: {
   return entries;
 }
 
-export function searchIndex(entries: SearchIndexEntry[], query: string, limit = 20) {
+export function searchIndex(
+  entries: SearchIndexEntry[],
+  query: string,
+  limit = 20,
+  threshold = 0.38
+) {
   if (!query.trim()) return [];
   const fuse = new Fuse(entries, {
     keys: [
@@ -70,7 +75,7 @@ export function searchIndex(entries: SearchIndexEntry[], query: string, limit = 
       { name: "snippet", weight: 0.3 },
       { name: "subtitle", weight: 0.2 },
     ],
-    threshold: 0.38,
+    threshold,
     ignoreLocation: true,
   });
   return fuse.search(query, { limit }).map((r) => r.item);
