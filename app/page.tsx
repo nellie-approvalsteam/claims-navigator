@@ -19,7 +19,7 @@ export default function DashboardPage() {
           href="/navigator"
           eyebrow="Claim Navigator"
           title="What's happening with the claim?"
-          description="Answer a few quick questions about the claim and get a read on the situation, your options, and a recommended next step."
+          description="Search a client or address to pull the claim from Contractors Cloud with its building codes and Notion resources, or answer a few quick questions to get a recommended next step."
           icon={<CompassIcon />}
         />
         <DashboardCard
