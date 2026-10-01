@@ -90,6 +90,83 @@ def material(r, table, default):
     return next((k for k, p in table if re.search(p, t)), default)
 
 
+CORE_TRADES = ["House roof", "Garage roof", "Other structure roofs", "Siding", "Gutters & downspouts", "Soffit / fascia",
+               "Windows / screens / wraps", "Doors", "Fence / deck / other exterior", "Interior", "Solar D&R"]
+
+
+def stories_of(r, files_dir):
+    """1 or 2 (meaning 2+) from the EagleView report text when on disk, else from the claim notes."""
+    for t in glob.glob(os.path.join(files_dir, "*", "*.txt")):
+        try:
+            m = re.search(r"Number of Stories\s*(>\s*1|<=\s*1|1|2|3)", open(t, errors="ignore").read())
+        except OSError:
+            m = None
+        if m:
+            return 2 if m.group(1).replace(" ", "") in (">1", "2", "3") else 1
+    t = " ".join(str(x) for x in [g(r, "property", "structures"), r.get("roof_details"), r.get("other_details")]).lower()
+    if re.search(r">\s*1 stor|2[- ]stor|two[- ]stor|2-story|multi[- ]stor", t):
+        return 2
+    if re.search(r"<=\s*1 stor|1[- ]stor|one[- ]stor|single[- ]stor|ranch", t):
+        return 1
+    return None
+
+
+def pitch_num(p):
+    m = re.match(r"\s*(\d+(?:\.\d+)?)\s*/\s*12", str(p or ""))
+    return float(m.group(1)) if m else None
+
+
+def roof_structures(r):
+    t = str(g(r, "property", "structures") or "").lower()
+    n = len(re.findall(r"structure\s*#?\s*\d", t))
+    if not n:
+        n = 1 + bool(re.search(r"garage", t)) + bool(re.search(r"shed|gazebo|carport", t))
+    return max(1, n)
+
+
+def carrier_start(r):
+    ie = r.get("initial_estimate") or {}
+    pre = num(r.get("pre_appraisal_carrier_rcv"))
+    net = [num(g(r, k, "net_payment")) for k in ("initial_estimate", "reinspection_estimate")]
+    note = " ".join(str(g(r, k, "notes") or "") for k in ("initial_estimate", "reinspection_estimate")).lower()
+    if not pre:
+        return "Denied"
+    if all((v or 0) <= 0 for v in net) or "under deductible" in note or "below deductible" in note:
+        return "Under deductible"
+    return "Partial payment"
+
+
+def trade_sets(award_scope, carrier_scope):
+    paid = {x["item"] for x in carrier_scope if x["rcv"] > 0}
+    awarded = {x["item"] for x in award_scope if x["rcv"] > 0}
+    core = lambda s: sorted(t for t in s if t in CORE_TRADES)
+    return core(paid), core(awarded), core(awarded - paid)
+
+
+def profile(d, r, files_dir):
+    sq, p = d["squares"], pitch_num(d["pitch"])
+    stories, structs = stories_of(r, files_dir), roof_structures(r)
+    facets = num(g(r, "property", "facets"))
+    paid, awarded, won = trade_sets(d["award_scope"], d["carrier_scope"])
+    # trades the carrier's estimate dealt with (paid or $0/denied) = what was in dispute before appraisal
+    disputed = sorted({x["item"] for x in d["carrier_scope"] if x["item"] in CORE_TRADES} | set(won))
+    score = (p is not None and p >= 8) + (p is not None and p >= 10) + (stories == 2) + (facets is not None and facets >= 20) \
+        + (structs >= 2) + (len(disputed) >= 6)
+    return {
+        "stories": stories, "pitch_num": p, "facets": facets, "roof_structures": structs,
+        "wall_sqft": num(g(r, "property", "exterior_wall_sqft")),
+        "size": None if not sq else "Small" if sq < 20 else "Medium" if sq < 35 else "Large",
+        "complexity_score": int(score),
+        "complexity": "Standard" if score <= 1 else "Moderate" if score <= 3 else "Complex",
+        "carrier_start": carrier_start(r),
+        "trades_carrier_paid": paid, "trades_awarded": awarded, "trades_won": won,
+        "trades_in_claim": disputed,
+        "days_to_award": (lambda a, b: (a - b).days if a and b else None)(
+            *[__import__("datetime").date.fromisoformat(x[:10]) if x and re.match(r"\d{4}-\d\d-\d\d", str(x)) else None
+              for x in (d["award_date"], d["date_of_loss"])]),
+    }
+
+
 def row(c, r):
     app = [s for s in c.get("sheet_rows", []) if s.get("type") and "Appraisal" in str(s["type"])]
     award = r.get("appraisal_award") or {}
@@ -163,6 +240,7 @@ def main():
             continue
         doc_id = hashlib.sha1(norm(c["client"]).encode()).hexdigest()[:12]
         d = row(c, r)
+        d.update(profile(d, r, os.path.join(a.dir, "files", str(r["id"]))))
         d["key"] = doc_id
         json.dump(d, open(os.path.join(a.out, doc_id + ".json"), "w"), default=str)
         n += 1
