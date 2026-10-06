@@ -143,6 +143,31 @@ def trade_sets(award_scope, carrier_scope):
     return core(paid), core(awarded), core(awarded - paid)
 
 
+SPECIALTY = [("Metal roof", r"standing[- ]seam|metal roof(ing)? (panel|system|covering)|metal (panel|shingle) roof|(steel|aluminum) roof(ing)?\b(?! (vent|jack|flash))"),
+             ("Slate / tile", r"\bslate\b|clay tile|concrete (double-s )?tile|tile roof"),
+             ("Designer / synthetic shingles", r"grand manor|camelot|presidential|carriage house|resawn shake|davinci|synthetic (slate|shake)|designer shingle"),
+             ("Flat / low-slope", r"modified bitumen (roof|membrane)|low-slope modified|modified membrane roof|membrane roof|predominantly low-slope|epdm|\btpo\b")]
+SHINGLE = r"laminat|3[- ]?tab|comp(osition)? shingle|architectural|dimensional"
+
+
+def deal_type(d, r):
+    """One group per claim, in priority order: wood shake, specialty roofing, aluminum siding, standard roofing.
+    Wood shake / specialty describe the main roof covering, not accessories (copper flashing, a small metal section)."""
+    house = [x.get("detail") for k in ("appraisal_award", "reinspection_estimate", "initial_estimate")
+             for x in (g(r, k, "scope") or []) if str(x.get("item", "")).lower() == "house roof"]
+    main = " ".join(str(b or "") for b in [r.get("roof_details")] + house).lower()
+    # "Landmark Resawn Shake" is an asphalt designer shingle, not a wood shake
+    if re.search(r"cedar|wood shake|shake shingle|\bshakes?\b", main.replace("resawn shake", "")):
+        return "Wood shake", "Wood shake roof"
+    hits = [k for k, p in SPECIALTY if re.search(p, main)]
+    # a shingle roof with a metal or low-slope section stays standard; designer shingles and tile/slate always count
+    if [h for h in hits if h in ("Slate / tile", "Designer / synthetic shingles")] or (hits and not re.search(SHINGLE, main)):
+        return "Specialty roofing", ", ".join(hits)
+    if d.get("siding_material") == "Aluminum / metal":
+        return "Aluminum siding", "Aluminum / metal siding"
+    return "Standard roofing", d.get("roof_material") or "Shingle roof"
+
+
 def profile(d, r, files_dir):
     sq, p = d["squares"], pitch_num(d["pitch"])
     stories, structs = stories_of(r, files_dir), roof_structures(r)
@@ -152,7 +177,9 @@ def profile(d, r, files_dir):
     disputed = sorted({x["item"] for x in d["carrier_scope"] if x["item"] in CORE_TRADES} | set(won))
     score = (p is not None and p >= 8) + (p is not None and p >= 10) + (stories == 2) + (facets is not None and facets >= 20) \
         + (structs >= 2) + (len(disputed) >= 6)
+    dt, dt_detail = deal_type(d, r)
     return {
+        "deal_type": dt, "deal_detail": dt_detail,
         "stories": stories, "pitch_num": p, "facets": facets, "roof_structures": structs,
         "wall_sqft": num(g(r, "property", "exterior_wall_sqft")),
         "size": None if not sq else "Small" if sq < 20 else "Medium" if sq < 35 else "Large",
