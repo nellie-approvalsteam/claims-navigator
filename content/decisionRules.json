@@ -74,6 +74,7 @@
     "insufficient-documentation": { "reinspection": 0, "pushEstimate": 0, "appraisal": 0, "documentation": 3, "escalation": 0 },
     "itel-issue": { "reinspection": 0, "pushEstimate": 1, "appraisal": 1, "documentation": 3, "escalation": 0 },
     "reinspection-denied": { "reinspection": 0, "pushEstimate": 1, "appraisal": 2, "documentation": 1, "escalation": 2 },
+    "appraisal-demand-rejected": { "reinspection": 0, "pushEstimate": 0, "appraisal": 3, "documentation": 2, "escalation": 1 },
     "reinspection-delayed": { "reinspection": 1, "pushEstimate": 0, "appraisal": 0, "documentation": 0, "escalation": 2 },
     "adjuster-not-responding": { "reinspection": 0, "pushEstimate": 0, "appraisal": 1, "documentation": 0, "escalation": 2 },
     "appraiser-issue": { "reinspection": 0, "pushEstimate": 0, "appraisal": 1, "documentation": 0, "escalation": 2 },

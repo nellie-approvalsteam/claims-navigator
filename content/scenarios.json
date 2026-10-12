@@ -166,9 +166,9 @@
     "recommendedFirstMove": "Confirm the original reinspection request was specific and well-documented. If it was, a flat refusal is a strong signal to stop pursuing reinspection and consider appraisal instead — don't keep re-requesting the same thing.",
     "supportingDocumentation": ["Copy of the original reinspection request", "Carrier's response (or lack of one)", "Photos and documentation that were included"],
     "whatToSayWrite": "To the adjuster: ask them to confirm in writing that reinspection is declined, and why. To the client: let them know reinspection wasn't granted and you're evaluating the next path.",
-    "relatedTemplates": ["reinspection-follow-up", "internal-escalation-message"],
+    "relatedTemplates": ["reinspection-follow-up", "internal-escalation-message", "appraisal-demand-10-day-compliant"],
     "followUp": "Immediately after a clear denial — don't let this sit",
-    "ifUnsuccessful": "Move to appraisal or escalate, depending on claim value and complexity.",
+    "ifUnsuccessful": "Move to appraisal or escalate, depending on claim value and complexity. On State Farm claims, the appraisal demand can't go out until 10 days after State Farm received our itemized dispute. That clock runs from receipt of the itemized notice, not from the reinspection denial. See the \"Appraisal Demand Rejected — 10-Day Rule\" scenario.",
     "escalationPoint": "Escalate any flat, unexplained reinspection refusal to your lead — this pattern is worth tracking by carrier.",
     "lastUpdated": "2026-09-10"
   },
@@ -606,5 +606,54 @@
     "ifUnsuccessful": "If the carrier disputes a documented code requirement, escalate or consider appraisal depending on claim value.",
     "escalationPoint": "Escalate if there's any uncertainty about how a code requirement applies to this claim — better to confirm than guess.",
     "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-appraisal-demand-rejected-10-day-rule",
+    "slug": "appraisal-demand-rejected-10-day-rule",
+    "name": "Appraisal Demand Rejected — \"10-Day Rule\" (State Farm)",
+    "category": "Appraisal",
+    "statusTags": [
+      "appraisal-demand-sent",
+      "appraisal-recommended",
+      "reinspection-requested"
+    ],
+    "problemTags": [
+      "appraisal-demand-rejected",
+      "reinspection-denied"
+    ],
+    "whatHappened": "State Farm refused to take part in appraisal because the demand went out less than 10 days after our itemized dispute (usually the estimate sent with the reinspection request). This comes from the appraisal condition in State Farm's newer policy forms and the FE-5626 Amendatory Appraisal Endorsement. It requires the party seeking appraisal to give the other side written, itemized documentation of each disputed item at least 10 days before demanding appraisal. Denying the reinspection the next day doesn't shorten that 10 days. The clock runs from when State Farm received the itemized dispute, not from the reinspection decision.",
+    "whatToCheck": [
+      "The exact date State Farm RECEIVED our itemized estimate or dispute. Look for a portal upload confirmation, an email reply or acknowledgment from the adjuster, or certified-mail tracking. The date we sent it is not enough: a 2026 federal case (E.D. Pa.) went against the insured because there was no proof State Farm received the estimate before the demand.",
+      "Whether that submission was actually itemized, with each disputed line item named separately and our amount next to State Farm's. An estimate attached with no comparison invites a second 'not itemized' rejection.",
+      "How many calendar days passed between that receipt date and the appraisal demand date.",
+      "Which policy form and endorsements are on the declarations page (FE-5626, or an HW-21xx form). Older forms may not have the 10-day condition. If you don't have the full policy, ask for a certified copy.",
+      "Whether State Farm gave any other reason, such as 'this is a coverage or causation dispute, not amount of loss' or incomplete duties after loss. Each of those needs its own answer.",
+      "The loss state. In Michigan, a federal court (Hart v. State Farm, E.D. Mich. 2021) held most of the HW-2122 appraisal provisions void under the state's standard fire policy statute. Escalate Michigan files rather than simply waiting out the 10 days."
+    ],
+    "possibleSolutions": [
+      "Cure and re-serve. By the time State Farm rejects a demand, 10 days have usually passed since it received the itemized estimate. If they have, send a new demand today with the 10-Day-Compliant Appraisal Demand template. It states the notice date and attaches proof of receipt.",
+      "Start the clock today. If the earlier submission wasn't itemized or receipt can't be proven, send the Itemized Dispute Notice now, get proof of receipt, and calendar the demand for day 12 after receipt.",
+      "Push back in writing. If our demand already complied (10+ days after provable receipt of an itemized dispute), send the Premature-Demand Rejection Response. Ask State Farm to state in writing which policy language it says we failed to meet.",
+      "Fix it upstream. Every State Farm reinspection request now goes out as the Reinspection Request + Itemized Dispute Notice template, so the 10-day clock runs during the reinspection request and the demand is ready on day 12."
+    ],
+    "recommendedFirstMove": "Don't argue the rule. Find the date State Farm provably received our itemized estimate. If 10 or more days have passed since then, re-serve the demand today, stating that date and attaching the proof. Most rejections are fixed in one letter because the waiting period has already passed.",
+    "supportingDocumentation": [
+      "Proof of State Farm's receipt of the itemized dispute (portal confirmation, adjuster's reply email, or certified-mail tracking)",
+      "Line-item comparison: our estimate vs. State Farm's estimate, with each disputed item listed separately",
+      "State Farm's written rejection of the appraisal demand",
+      "Declarations page and policy form/endorsement list (look for FE-5626 or HW-21xx)",
+      "Client's signed authorization for the demand, per our standard appraisal process"
+    ],
+    "whatToSayWrite": "If the 10 days have already passed, use the 10-Day-Compliant Appraisal Demand. If we were already compliant and State Farm is wrong, use the Premature-Demand Rejection Response. Keep both factual: dates, attachments, and the policy language. No adjectives.",
+    "relatedTemplates": [
+      "itemized-dispute-notice-reinspection",
+      "appraisal-demand-10-day-compliant",
+      "premature-appraisal-rejection-response",
+      "client-explanation-of-appraisal"
+    ],
+    "followUp": "State Farm's form gives each side 20 days after receiving a written demand to name its appraiser. Calendar day 21 after confirmed receipt of the re-served demand and follow up the same day if no appraiser has been named.",
+    "ifUnsuccessful": "If State Farm rejects a demand that was clearly compliant, or keeps finding new procedural grounds (for example 'not itemized' after we sent a line-item comparison), escalate. Lead/attorney review is warranted, and so is a complaint to the state Department of Insurance with the timeline attached.",
+    "escalationPoint": "Escalate right away for Michigan losses, for a second rejection of the same claim, or if State Farm says the dispute is about coverage or causation instead of amount.",
+    "lastUpdated": "2026-10-12"
   }
 ]

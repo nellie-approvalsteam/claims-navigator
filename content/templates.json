@@ -88,5 +88,32 @@
     "audience": "Lead / Manager",
     "body": "Hi {{lead_name}},\n\nI need your input on {{claim_number}} ({{client_name}}). Quick summary: {{situation_summary}}.\n\nWhat we've tried so far: {{what_tried}}.\n\nWhat I need from you: {{specific_ask}}.\n\nHappy to hop on a call if that's faster.\n\nThanks,\n{{your_name}}",
     "tips": "Lead with the specific ask — a lead reading a dozen of these a week will thank you for not burying it."
+  },
+  {
+    "id": "tpl-itemized-dispute-notice-reinspection",
+    "slug": "itemized-dispute-notice-reinspection",
+    "title": "Reinspection Request + Itemized Dispute Notice (State Farm 10-Day)",
+    "category": "Carrier",
+    "audience": "Adjuster",
+    "body": "Hi {{adjuster_name}},\n\nRe: {{client_name}} — Claim {{claim_number}} — Date of loss {{date_of_loss}}\n\nWe're requesting a reinspection of the above loss. This letter, with the attached line-item comparison, also serves as written, itemized documentation of a specific dispute as to the amount of the loss under the Appraisal condition of the policy. Each disputed item is listed separately below:\n\n1. {{disputed_item_1}} — State Farm: {{sf_amount_1}} | Ours: {{our_amount_1}} | Basis: {{reason_1}}\n2. {{disputed_item_2}} — State Farm: {{sf_amount_2}} | Ours: {{our_amount_2}} | Basis: {{reason_2}}\n3. {{disputed_item_3}} — State Farm: {{sf_amount_3}} | Ours: {{our_amount_3}} | Basis: {{reason_3}}\n\nTotal amount in dispute: {{total_difference}} (State Farm estimate {{sf_total}} vs. our estimate {{our_total}}).\n\nAttached: our estimate, the line-item comparison, and supporting photos/documentation.\n\nPlease confirm receipt of this letter and its attachments by reply. If reinspection is declined, or the dispute isn't resolved, the insured reserves the right to demand appraisal once 10 days have passed from your receipt of this notice.\n\nThanks,\n{{your_name}}",
+    "tips": "Use this instead of the plain Reinspection Request on every State Farm file. It starts the 10-day clock on the same day as the reinspection request, so a next-day reinspection denial costs nothing. 1) List EVERY disputed line separately. A bare estimate attachment is the main way State Farm argues the notice wasn't itemized. 2) Get proof of receipt: portal upload confirmation, the adjuster's reply, or certified mail. Save it to the Contractors Cloud project. 3) Calendar the appraisal demand for day 12 after confirmed receipt (2-day buffer over the 10-day minimum)."
+  },
+  {
+    "id": "tpl-appraisal-demand-10-day-compliant",
+    "slug": "appraisal-demand-10-day-compliant",
+    "title": "Appraisal Demand (10-Day-Compliant, State Farm)",
+    "category": "Carrier",
+    "audience": "Adjuster",
+    "body": "Hi {{adjuster_name}},\n\nRe: {{client_name}} — Claim {{claim_number}} — Policy {{policy_number}} — Date of loss {{date_of_loss}}\n\nOn behalf of the named insured(s), {{client_name}}, written demand is made for appraisal under the Appraisal condition of the policy.\n\nPre-appraisal notice: Written, itemized documentation of the specific dispute as to the amount of the loss, identifying each disputed item separately, was provided to State Farm on {{notice_sent_date}} and received on {{notice_received_date}} (proof of receipt attached). That is {{days_elapsed}} days before this demand, which meets the requirement of at least 10 days' notice.\n\nAmount in dispute: {{total_difference}}. The itemized comparison is attached again for reference.\n\nThe insured's appraiser is {{appraiser_name}}, {{appraiser_company}}, {{appraiser_phone}}, {{appraiser_email}}.\n\nPlease name State Farm's appraiser within the time the policy allows and confirm receipt of this demand by reply.\n\nThanks,\n{{your_name}}\n\nAttachments: proof of receipt of the itemized notice (dated {{notice_received_date}}), itemized comparison, insured's signed authorization",
+    "tips": "Send only when days_elapsed is 10 or more, counted from State Farm's RECEIPT of the notice, not our send date. We standardize on day 12 or later. Always attach the proof of receipt: a court has sided with State Farm where the insured couldn't show State Farm got the estimate before the demand. Have the demand signed or authorized by the insured per our standard appraisal process. If you're re-serving after a 'premature' rejection, add one line: 'This demand supersedes our demand dated {{prior_demand_date}}.'"
+  },
+  {
+    "id": "tpl-premature-appraisal-rejection-response",
+    "slug": "premature-appraisal-rejection-response",
+    "title": "Premature-Demand Rejection Response (State Farm 10-Day)",
+    "category": "Carrier",
+    "audience": "Adjuster",
+    "body": "Hi {{adjuster_name}},\n\nRe: {{client_name}} — Claim {{claim_number}}\n\nWe received your {{rejection_date}} letter declining appraisal on the grounds that our demand was made less than 10 days after itemized notice of the dispute. The record shows otherwise:\n\n- {{notice_received_date}}: State Farm received our written, itemized documentation of the disputed items (proof attached).\n- {{demand_date}}: Appraisal demanded, {{days_elapsed}} days later.\n\nState Farm's denial of our reinspection request on {{reinspection_denial_date}} does not change when the itemized notice was received. The Appraisal condition measures the 10 days from that notice, not from any reinspection decision.\n\nPlease withdraw the rejection and name State Farm's appraiser. If State Farm maintains its position, please identify in writing the specific policy language and the specific requirement you say was not met, so we can review it with the insured.\n\nThanks,\n{{your_name}}",
+    "tips": "Use this only when our demand was actually compliant: 10+ days after PROVABLE receipt of an itemized dispute. If it wasn't, don't argue. Re-serve with the 10-Day-Compliant Appraisal Demand, which is faster. Getting the 'specific policy language' answer in writing is what you need for escalation or a DOI complaint if State Farm digs in."
   }
 ]

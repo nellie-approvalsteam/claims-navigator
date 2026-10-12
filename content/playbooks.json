@@ -13,12 +13,12 @@
     "steps": [
       { "title": "Identify exactly what was missed", "detail": "Pin down the specific area(s) or item(s) you believe weren't captured — vague requests get vague responses." },
       { "title": "Gather supporting documentation", "detail": "Photos, measurements, or reports that clearly show the disputed damage." },
-      { "title": "Send the reinspection request", "detail": "Use the Reinspection Request template. Name the specific items in dispute and attach documentation." },
-      { "title": "Log the request", "detail": "Record the request, date, and what was disputed in Contractors Cloud." },
+      { "title": "Send the reinspection request", "detail": "Use the Reinspection Request template. Name the specific items in dispute and attach documentation. On State Farm claims, use the Reinspection Request + Itemized Dispute Notice template instead. It starts the 10-day pre-appraisal clock the same day, so a quick reinspection denial costs no time." },
+      { "title": "Log the request", "detail": "Record the request, date, and what was disputed in Contractors Cloud. On State Farm claims, also save proof that State Farm RECEIVED it (portal confirmation, adjuster reply, or certified-mail tracking) and calendar day 12 after receipt as the earliest appraisal demand date." },
       { "title": "Follow up if needed", "detail": "If you haven't heard back within a reasonable window, send a follow-up using the Reinspection Follow-Up template." },
       { "title": "Review the outcome", "detail": "If granted and completed, confirm the updated scope reflects what was found. If denied, move to the Reinspection Denied scenario." }
     ],
-    "templates": ["reinspection-request", "reinspection-follow-up"],
+    "templates": ["reinspection-request", "itemized-dispute-notice-reinspection", "reinspection-follow-up"],
     "followUp": "1-2 weeks after the request if no response; check in with the client if the reinspection date affects their timeline.",
     "escalation": "Escalate if reinspection is flatly denied without explanation, or delayed repeatedly with no firm date."
   },
@@ -37,14 +37,15 @@
       { "title": "Confirm appraisal is the right path", "detail": "Make sure this is an amount dispute, not a coverage dispute — appraisal doesn't resolve coverage questions." },
       { "title": "Notify the client", "detail": "Explain what appraisal means in plain terms. Use the Client Explanation of Appraisal template." },
       { "title": "Prepare the demand package", "detail": "Compile the estimate comparison and documentation, and select an appraiser from your roster." },
-      { "title": "Send the demand letter", "detail": "Formally invoke the appraisal clause, naming your selected appraiser." },
+      { "title": "Check the pre-appraisal notice (State Farm 10-day rule)", "detail": "On State Farm claims, the demand is only valid 10+ days after State Farm RECEIVED written, itemized documentation of each disputed item. Confirm three things: (1) the itemized notice went out (usually with the reinspection request), (2) we have proof of receipt, and (3) at least 12 days have passed since receipt. A reinspection denial doesn't change this date. See the State Farm 10-Day Pre-Appraisal Notice knowledge-base article." },
+      { "title": "Send the demand letter", "detail": "Formally invoke the appraisal clause, naming your selected appraiser. For State Farm, use the 10-Day-Compliant Appraisal Demand template, which states the notice receipt date and attaches proof." },
       { "title": "Track the carrier's response", "detail": "Confirm they've named their own appraiser." },
       { "title": "Follow up during appraisal", "detail": "Check in with your appraiser roughly every 2-3 weeks if you haven't heard updates." },
       { "title": "Handle any pushback", "detail": "If the client has doubts or objections during the process, work through them directly rather than letting it stall." },
       { "title": "Receive the award", "detail": "Once an award is issued, follow up with the carrier on settlement and payment the same day." },
       { "title": "Close out", "detail": "Complete revised-estimate, payment-tracking, and next-step handoffs; record the outcome; confirm the client is updated." }
     ],
-    "templates": ["appraisal-demand-follow-up", "appraiser-follow-up", "client-explanation-of-appraisal"],
+    "templates": ["appraisal-demand-10-day-compliant", "premature-appraisal-rejection-response", "appraisal-demand-follow-up", "appraiser-follow-up", "client-explanation-of-appraisal"],
     "followUp": "2-3 weeks with your appraiser during active appraisal; same-day carrier follow-up once an award is received.",
     "escalation": "Escalate high-value or complex claims to your lead before invoking appraisal, and any point where the process itself (not just the amount) is being disputed."
   },

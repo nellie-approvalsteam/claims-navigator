@@ -45,6 +45,7 @@
     { "id": "reinspection-denied", "label": "Reinspection denied" },
     { "id": "reinspection-delayed", "label": "Reinspection delayed" },
     { "id": "adjuster-not-responding", "label": "Adjuster not responding" },
+    { "id": "appraisal-demand-rejected", "label": "Appraisal demand rejected (e.g., 10-day rule)" },
     { "id": "appraiser-issue", "label": "Appraiser issue" },
     { "id": "client-not-responding", "label": "Client not responding" },
     { "id": "payment-issue", "label": "Payment issue" },
