@@ -184,6 +184,15 @@ The app searches Contractors Cloud live, and picking a claim shows:
 
 - the claim's status, current milestone, and rep (plus an "Open in Contractors Cloud" link if
   `CC_PROJECT_URL_TEMPLATE` is set);
+- a **claim overview** read from the estimate PDFs in the project's File Cabinet: the newest
+  carrier estimate (or denial letter) is compared with our newest estimate (the one on Proliance
+  letterhead) to classify the claim as **Fully denied** (denial letter, or nothing payable after the
+  deductible), **Partially approved** (carrier RCV under 50% of ours), **Underpaid** (50–95%), or
+  **Approved** (95%+). It shows carrier, claim #, date of loss, RCV, depreciation, deductible and
+  net claim, items in our estimate the carrier left out, and items it allowed for far less. The
+  Navigator's **Claim status** is pre-selected from this (or from the milestone when there's no
+  carrier estimate yet), and the specialist can change it. Logic lives in `lib/estimates.ts`;
+  thresholds are `PARTIAL_BELOW` / `APPROVED_AT`;
 - the **building codes for the property's city**, read from Notion's Building Codes → Illinois
   Cities database (code edition, ice & water, drip edge, roof layers, permit, notes, source links);
 - **Notion pages** from the Approvals Team Workspace whose titles match the claim's stage and the
@@ -209,9 +218,10 @@ mapping), `app/api/claims/*`, and `components/ClaimLookup.tsx`. See `.env.exampl
 
 ## 15. Data Privacy / Claim Information
 
-Claim Lookup reads client name, address, status, and milestone from Contractors Cloud on demand and
-shows them in the browser; **none of it is written to disk or logged** by this app, and the lookup
-endpoints require the team passphrase.
+Claim Lookup reads client name, address, status, milestone, and the project's estimate PDFs from
+Contractors Cloud on demand and shows them in the browser; **none of it is written to disk or
+logged** by this app (parsed estimate figures are kept in memory briefly so repeat lookups are
+fast), and the lookup endpoints require the team passphrase.
 
 By design, the Claim Navigator and "I'm Stuck" inputs are **not saved anywhere** — they exist only
 in the browser's memory for that session and are sent to the server just long enough to compute a

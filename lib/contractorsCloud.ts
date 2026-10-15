@@ -1,4 +1,6 @@
-// Read-only Contractors Cloud client used by Claim Lookup. Server-side only:
+// Read-only Contractors Cloud client used by Claim Lookup. The API token
+// needs API access and financial visibility (sensitive files are hidden from
+// users without it). Server-side only:
 // the API token is read from the environment here and never sent to the
 // browser. Nothing returned from Contractors Cloud is written to disk.
 //
@@ -7,8 +9,8 @@
 //                              under Integrations → API Access Tokens. Create it
 //                              from a user whose permissions are the ceiling
 //                              of what the team should see.
-//   CC_API_BASE_URL          — REST API base URL (default below). Confirm
-//                              against api.contractorscloud.com/docs.
+//   CC_API_BASE_URL          — REST API base URL (default below, per
+//                              api.contractorscloud.com/docs).
 //   CC_PROJECT_URL_TEMPLATE  — optional link to open a project in the
 //                              Contractors Cloud web app, e.g.
 //                              https://<your-subdomain>.contractorscloud.com/projects/{id}
@@ -113,6 +115,26 @@ function toSummary(p: any): ClaimSummary {
 }
 
 const INCLUDE = "status,current_project_milestone";
+
+export interface ProjectFile {
+  id: number;
+  name: string;
+  mime_type: string | null;
+  size: number | null;
+  file_type_id: number | null;
+  url: string;
+  updated_at: string | null;
+}
+
+// The project's File Cabinet (newest first). Carrier estimates, denial
+// letters, and our own estimates all live here as uploaded PDFs.
+export async function listProjectFiles(projectId: number): Promise<ProjectFile[]> {
+  const json = await ccGet(`/projects/${projectId}/files`, {
+    sort: "-updated_at",
+    "page[size]": "50",
+  });
+  return (json?.data ?? []).filter((f: any) => f?.url);
+}
 
 // Matches client name, address, project number, and contact names — the same
 // search the Contractors Cloud whiteboard uses.
