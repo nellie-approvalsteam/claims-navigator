@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import Badge from "@/components/Badge";
+import ClaimNotes from "@/components/ClaimNotes";
 import type { ClaimSummary } from "@/lib/contractorsCloud";
 import type { CityCodes, NotionPageRef } from "@/lib/notion";
 import type { SearchIndexEntry } from "@/lib/match";
@@ -41,6 +42,7 @@ export default function ClaimLookup({
   const [resources, setResources] = useState<ResourcesResponse | null>(null);
   const [loading, setLoading] = useState<"" | "search" | "resources">("");
   const [error, setError] = useState("");
+  const handleUnauthorized = useCallback(() => setAuthed(false), []);
 
   useEffect(() => {
     fetch("/api/auth/team-check")
@@ -176,6 +178,8 @@ export default function ClaimLookup({
                   </button>
                 </div>
               </div>
+
+              <ClaimNotes projectId={selected.id} onUnauthorized={handleUnauthorized} />
 
               {loading === "resources" && <p className="text-sm text-ink/50">Finding resources…</p>}
 

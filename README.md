@@ -190,6 +190,13 @@ The app searches Contractors Cloud live, and picking a claim shows:
   optional "What's the problem?" text (e.g. *Appraisal Denial — Resource Kit*);
 - matching **scenarios, playbooks, templates, and KB articles** from this app, plus a suggested
   Navigator claim status the specialist can apply with one click.
+- the claim's **notes**, read live from Contractors Cloud's Project Notes log:
+  - **Flagged notes**: every team-typed note that mentions a deadline, denial, appraisal,
+    legal/DOI issue, payment or supplement, reinspection, or client concern, shown word-for-word
+    with the trigger words highlighted. The patterns live in `lib/claimNotes.ts`; edit them there.
+  - **Team notes**: notes people typed, newest first, with "Show all".
+  - **System activity**: Contractors Cloud's automatic entries (status changes, uploads),
+    collapsed so they don't drown out what people wrote.
 
 This runs on the app's **own** credentials, not anyone's Claude account, so the whole team can use it.
 Setup, once, in the hosting dashboard (Render → Environment):
@@ -203,14 +210,19 @@ Setup, once, in the hosting dashboard (Render → Environment):
 3. **`NOTION_API_KEY`** — create an internal integration at notion.so/profile/integrations
    (read content only), then open **Welcome to the Approvals Team Workspace → ••• → Connections**
    and add it. Notion is optional; without it the Contractors Cloud and in-app results still work.
+4. **`CC_NOTES_PATH`** (optional) — where the app lists a project's notes. It defaults to
+   `/projects/{id}/notes`. If the notes panel says the endpoint wasn't recognised, look up the
+   project-notes list endpoint at api.contractorscloud.com/docs and set it here (`{id}` is the
+   project id).
 
 Code lives in `lib/contractorsCloud.ts`, `lib/notion.ts`, `lib/claimContext.ts` (stage → status
-mapping), `app/api/claims/*`, and `components/ClaimLookup.tsx`. See `.env.example`.
+mapping), `lib/claimNotes.ts` (note flags), `app/api/claims/*`, and `components/ClaimLookup.tsx` /
+`components/ClaimNotes.tsx`. See `.env.example`.
 
 ## 15. Data Privacy / Claim Information
 
-Claim Lookup reads client name, address, status, and milestone from Contractors Cloud on demand and
-shows them in the browser; **none of it is written to disk or logged** by this app, and the lookup
+Claim Lookup reads client name, address, status, milestone, and project notes from Contractors
+Cloud on demand and shows them in the browser; **none of it is written to disk or logged** by this app, and the lookup
 endpoints require the team passphrase.
 
 By design, the Claim Navigator and "I'm Stuck" inputs are **not saved anywhere** — they exist only

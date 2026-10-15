@@ -13,8 +13,13 @@
 //                              Contractors Cloud web app, e.g.
 //                              https://<your-subdomain>.contractorscloud.com/projects/{id}
 //                              ({id}, {hash} and {number} are substituted).
+//   CC_NOTES_PATH            — optional path for listing a project's notes,
+//                              relative to the base URL (default below; {id}
+//                              is the project id). Change it if Claim Lookup
+//                              reports that the notes endpoint wasn't found.
 
 const DEFAULT_BASE_URL = "https://api.contractorscloud.com/api/v1";
+const DEFAULT_NOTES_PATH = "/projects/{id}/notes";
 
 export interface ClaimSummary {
   id: number;
@@ -45,7 +50,11 @@ function baseUrl(): string {
   return (process.env.CC_API_BASE_URL || DEFAULT_BASE_URL).replace(/\/+$/, "");
 }
 
-async function ccGet(path: string, params: Record<string, string>): Promise<any> {
+async function ccGet(
+  path: string,
+  params: Record<string, string>,
+  notFoundMessage = "Contractors Cloud returned 404. An admin should check CC_API_BASE_URL against api.contractorscloud.com/docs."
+): Promise<any> {
   const token = process.env.CC_API_TOKEN;
   if (!token) {
     throw new ContractorsCloudError(
@@ -74,9 +83,7 @@ async function ccGet(path: string, params: Record<string, string>): Promise<any>
     );
   }
   if (res.status === 404) {
-    throw new ContractorsCloudError(
-      "Contractors Cloud returned 404. An admin should check CC_API_BASE_URL against api.contractorscloud.com/docs."
-    );
+    throw new ContractorsCloudError(notFoundMessage);
   }
   if (!res.ok) {
     throw new ContractorsCloudError(`Contractors Cloud returned an error (${res.status}).`);
@@ -133,4 +140,76 @@ export async function getClaim(id: number): Promise<ClaimSummary | null> {
   });
   const p = json?.data?.[0];
   return p ? toSummary(p) : null;
+}
+
+export interface ClaimNote {
+  id: number | string;
+  body: string;
+  // "user" notes were typed by a person; "system" notes are Contractors
+  // Cloud's automatic log entries (status changes, uploads, and so on).
+  source: "user" | "system";
+  type: string | null;
+  author: string | null;
+  createdAt: string | null;
+}
+
+// Notes can come back with simple HTML formatting; the brief shows plain text.
+function plainText(html: string): string {
+  return html
+    .replace(/<br\s*\/?>|<\/(p|div|li)>/gi, "\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#0?39;/g, "'")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+// The notes payload isn't in the public docs we can reach, so read the
+// fields defensively: a note with a typed-in author and no system marker is
+// treated as a user note.
+function toNote(n: any): ClaimNote {
+  const author = n.user_name || n.user?.name || n.created_by_name || n.created_by?.name || null;
+  const systemMarker =
+    n.is_system === true ||
+    n.system === true ||
+    /^system$/i.test(String(n.input ?? n.source ?? n.input_type ?? ""));
+  return {
+    id: n.id,
+    body: plainText(String(n.body ?? n.note ?? n.content ?? n.text ?? "")),
+    source: systemMarker || (!author && !n.user_id) ? "system" : "user",
+    type: n.type?.name ?? n.note_type?.name ?? n.type_name ?? null,
+    author,
+    createdAt: n.created_at ?? null,
+  };
+}
+
+const NOTES_PAGE_SIZE = 100;
+const NOTES_MAX_PAGES = 3;
+
+// Newest first, capped at a few hundred notes so a long-running claim can't
+// stall the lookup.
+export async function getClaimNotes(projectId: number): Promise<{ notes: ClaimNote[]; truncated: boolean }> {
+  const path = (process.env.CC_NOTES_PATH || DEFAULT_NOTES_PATH).replace(
+    "{id}",
+    encodeURIComponent(String(projectId))
+  );
+  const notes: ClaimNote[] = [];
+  let lastPage = 1;
+  for (let page = 1; page <= NOTES_MAX_PAGES; page++) {
+    const json = await ccGet(
+      path,
+      { sort: "-created_at", "page[size]": String(NOTES_PAGE_SIZE), "page[number]": String(page) },
+      "Contractors Cloud didn't recognise the notes endpoint. An admin should check CC_NOTES_PATH (see README)."
+    );
+    const rows: any[] = json?.data ?? [];
+    notes.push(...rows.map(toNote).filter((n) => n.body));
+    lastPage = Number(json?.meta?.last_page ?? page);
+    if (rows.length < NOTES_PAGE_SIZE || page >= lastPage) break;
+  }
+  notes.sort((a, b) => (b.createdAt ?? "").localeCompare(a.createdAt ?? ""));
+  return { notes, truncated: lastPage > NOTES_MAX_PAGES };
 }
