@@ -28,12 +28,16 @@ python3 -c "import openpyxl" 2>/dev/null || pip install -q openpyxl
 ```
 If any download failed, stop and report it.
 
-## 2. Download the Approval Department sheet
-Load `mcp__Google_Drive__download_file_content` (ToolSearch) and call it with the
-sheet ID and `exportMimeType` =
-`application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`.
-The result is saved to a file; decode it:
+## 2. Download the Approval Department data
+The full Approval Department workbook is now too large to export through Drive, so read the
+small import sheet "Approvals Data import (do not edit)" in the state folder
+(ID `1PcgH_gSnCzRnmTJzD6VWfcS2hpn7bGOmxt_KR4_m6tI`). It mirrors the workbook's "Data" tab with
+=IMPORTRANGE. Call `mcp__Google_Drive__download_file_content` with that ID and
+`exportMimeType` = `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`, then:
 `jq -r .content <saved-result-file> | base64 -d > $S/approvals.xlsx`
+If detect_new.py (step 4) stops with "the import sheet is not loading", do not continue:
+report that someone needs to open the import sheet and click "Allow access".
+(Only if the import sheet is missing, fall back to the full workbook ID above with the same export.)
 
 ## 3. Get the list of claims already in the report
 Known rows = `baseline_keys.txt` plus every "appraisal-state" file (each holds only the

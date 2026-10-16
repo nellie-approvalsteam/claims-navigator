@@ -36,9 +36,16 @@ def row_key(client, address, result, amount):
 def main():
     xlsx, known_path, out = sys.argv[1:4]
     known = {l.strip() for l in open(known_path) if l.strip()}
-    ws = openpyxl.load_workbook(xlsx, read_only=True, data_only=True)["Data"]
+    wb = openpyxl.load_workbook(xlsx, read_only=True, data_only=True)
+    # the full Approval Department workbook has a "Data" tab; the small import sheet holds the same rows on its only tab
+    ws = wb["Data"] if "Data" in wb.sheetnames else wb[wb.sheetnames[0]]
+    sheet_rows = list(ws.iter_rows(values_only=True))
+    if len(sheet_rows) < 100:
+        sys.exit(f"ERROR: only {len(sheet_rows)} rows in {xlsx} - the import sheet is not loading "
+                 "(IMPORTRANGE not approved yet, or the source tab moved). First cell: {!r}".format(
+                     sheet_rows[0][0] if sheet_rows and sheet_rows[0] else None))
     rows = []
-    for r in list(ws.iter_rows(values_only=True))[3:]:
+    for r in sheet_rows[3:]:
         r = list(r)[:14] + [None] * 14
         entered, result, year, client, address, state, typ, amount, appraiser, specialist, insurer, umpire, notes = r[1:14]
         if not client:
