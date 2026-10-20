@@ -1,8 +1,11 @@
-# Call Assistant — Phase 1: Assessment & Architecture
+# Call Assistant — Architecture (zero-cost plan)
 
-Status: **proposal, nothing built yet.** Everything below marked *verified* was checked
-against official documentation on 2026-10-20. Anything marked *untested* has not been run on a
-real Windows or Mac machine yet. The first build step (below) exists to test those items.
+Status: **proposal, nothing built yet.** Items marked *verified* were checked against official
+documentation on 2026-10-20. Items marked *untested* haven't been run on a real Windows PC or Mac
+yet. The first build step (§8) exists to test them.
+
+**Requirement (from you): no additional fees.** No paid APIs, no subscriptions, no hosting,
+no signing certificates. Everything below costs $0. The trade-offs are listed honestly in §7.
 
 ---
 
@@ -10,231 +13,148 @@ real Windows or Mac machine yet. The first build step (below) exists to test tho
 
 | Item | Finding | What it means |
 |---|---|---|
-| This repository | A Next.js **web app** (Claims Navigator) deployed on Render, with team login and a Contractors Cloud API client. It doesn't capture any audio and doesn't call an AI model yet. | The call assistant has to be a **separate desktop app**, because a website can't reliably capture other apps' audio. I propose putting it in this repo under `call-assistant/` with its own `package.json` so the team has one place to look. The existing web app isn't touched. |
-| Development machine | A cloud **Linux** container with Node 22, Python 3.13, Rust and ffmpeg. There's no Mac, no Windows, no speakers, no microphone. | I can write the app, unit-test it, run the interface and test the transcribe → summarize pipeline using recorded audio files. **I can't test live system-audio capture on either OS from here.** A teammate has to run a small test build on one Mac and one Windows PC (see §8). |
-| Current versions | Electron 44.9 (stable), electron-builder 26.x | These are recent enough to include the macOS audio API described below. |
+| This repository | A Next.js **web app** (Claims Navigator) deployed on Render. | The call assistant has to be a **separate desktop app**, because a website can't capture other apps' audio. It will live in `call-assistant/` with its own `package.json`. The website isn't touched. |
+| Development machine | A cloud **Linux** container (Node 22, Python 3.13, Rust, ffmpeg). No Mac, no Windows, no audio devices. | I can build the app and test transcription and the interface using recorded call files. **Live capture has to be tested on a real Windows PC and Mac** (§8). |
+| Current versions | Electron 44.9, electron-builder 26.x | Recent enough for the macOS audio API described below. |
 
-## 2. The key decision: Electron vs. Tauri
+## 2. Desktop framework: Electron + TypeScript (free, open source)
 
-**Recommendation: Electron + TypeScript.**
+Electron has system-audio capture **built in on both Windows and macOS** through one JavaScript
+call (*verified*: Electron docs). Tauri would need separate native audio code for each OS. One
+codebase means teammates on Windows and Mac get the same app.
 
-| | Electron | Tauri |
-|---|---|---|
-| System audio on **Windows** | Built in. Chromium's capture API with `audio: 'loopback'` uses WASAPI loopback. No driver needed. | Not built in. The webview (WebView2) doesn't expose loopback, so we'd write Rust audio code ourselves. |
-| System audio on **macOS** | Built in (*verified*: Electron docs). On macOS 14.2+, Electron 39+ uses Apple's **Core Audio Tap API** through the same JavaScript call. | Not built in. Safari's webview can't capture system audio, so we'd write native ScreenCaptureKit or Core Audio code ourselves. |
-| One codebase for both OSes | Yes. The *same* JavaScript call works on both; only setup and permissions differ. | Two native audio implementations to maintain. |
-| Installer size | ~100–150 MB | ~10–20 MB |
-| Maintainability for a non-developer | TypeScript only | TypeScript + Rust + OS-specific native code |
+## 3. Audio capture (free, no drivers on modern systems)
 
-Tauri's smaller download isn't worth maintaining two native audio stacks. Electron is what most
-cross-platform meeting-notes tools use for exactly this reason.
-
-## 3. How audio capture will work
-
-### The design trick: two separate streams = reliable "Me" vs "Other Party"
-
-Speaker separation done by AI ("diarization") is often wrong on phone audio. We avoid relying on it:
+Two separate streams give reliable speaker labels without AI guessing:
 
 ```
- Your microphone ──────────────► stream "Me"           ─┐
-                                                        ├─► transcription (labelled by stream)
- Computer output (loopback) ───► stream "Other Party"  ─┘
+ Your microphone ─────────────► "Me"
+ Computer output (loopback) ──► "Other Party"
 ```
 
-* The other party's voice only comes out of your speakers/headset, so the **loopback** stream is
-  "Other Party". This meets the "don't rely on the microphone" requirement.
-* Your voice comes in through your **microphone**, so that stream is "Me".
-* If there are several other people on the call (adjuster + appraiser), AI diarization is used
-  *within* the Other Party stream only ("Other Party 1 / 2"). You can rename them afterwards.
+**Use a headset.** With laptop speakers the mic also picks up the other party.
 
-**Limitation: use a headset.** If you use laptop speakers, your mic also picks up the other party,
-which creates duplicate lines labelled "Me". Chromium's echo cancellation should reduce this
-(*untested*). The app will recommend headphones on first run.
-
-### Windows (10 and 11)
-
-* Uses **WASAPI loopback** via Electron. **No virtual audio driver needed.**
-* Captures everything the PC is playing: Teams, Zoom, RingCentral, Dialpad, browser calls, softphones.
-  It also captures notification sounds and music, so the app should tell users to mute other audio.
-* Picking a specific output device: loopback captures the **default output device**. If a user's
-  calls play through a non-default headset, they set that headset as the default in Windows sound
-  settings. The app will detect silence and show this tip. Per-device capture would need native
-  code, so that's deferred until someone actually needs it.
-* Microphone permission: Windows Settings → Privacy → Microphone → "Let desktop apps access your
-  microphone" must be on.
-
-### macOS
-
-| macOS version | How it works | Permission the user grants |
+| Platform | Method | Permission the user grants once |
 |---|---|---|
-| **14.2 Sonoma and newer** (recommended) | Core Audio Tap API, used automatically by Electron 39+ (*verified*, Electron docs) | "System Audio Recording Only" (System Settings → Privacy & Security → Screen & System Audio Recording), plus Microphone |
-| 13 Ventura – 14.1 | Older ScreenCaptureKit path in Chromium (*untested*, may need extra flags) | "Screen & System Audio Recording" + Microphone |
-| 12 Monterey and older | No built-in API. Needs the free **BlackHole** virtual audio driver plus a Multi-Output Device | Microphone |
+| Windows 10/11 | WASAPI loopback, built into Electron. **No driver.** Captures the default output device. | Microphone (Settings → Privacy → Microphone → allow desktop apps) |
+| macOS 14.2+ | Apple Core Audio Tap API, built into Electron 39+ (*verified*) | "System Audio Recording Only" + Microphone |
+| macOS 13–14.1 | Older ScreenCaptureKit path (*untested*) | Screen & System Audio Recording + Microphone |
+| macOS 12 and older | Free **BlackHole** virtual audio driver | Microphone |
 
-Gotchas the app must handle (*verified*, Electron docs):
+Known gotchas the app handles:
+- If macOS permission is missing, capture **silently returns nothing** (*verified*). The app checks
+  the audio level after Start and shows "No call audio detected — check permission" instead of
+  transcribing silence.
+- Windows loopback captures *all* PC sound (notifications, music), so the app reminds users to mute them.
+- Windows and Mac capture code sit behind one `AudioCaptureSource` interface, so a change to one
+  can't break the other.
 
-1. The packaged app must declare `NSAudioCaptureUsageDescription` in its Info.plist, or capture silently fails.
-2. **If permission is missing or denied, macOS gives the app a silent audio track with no
-   error.** So the app will run a **level-meter check** at Start and show a clear message like
-   "No call audio detected — check System Audio permission" instead of transcribing silence.
-3. Electron still asks for a "screen" source to attach the audio to. Whether macOS shows the
-   Screen Recording prompt in addition to System Audio is **untested**. The capture test (§8) checks this.
-4. macOS ties permissions to the app's code signature. **Unsigned builds may lose permission after
-   every update** (see §7 on signing).
+## 4. Transcription: Whisper running **on each computer** (free, private)
 
-**Fallback if Core Audio Tap misbehaves:** a small open-source helper (a Swift command-line tool
-that wraps the Core Audio Tap API) bundled inside the Mac app. It plugs in behind the same audio
-interface, so nothing else changes. We'd only build this if the capture test fails.
+* Uses **whisper.cpp**, an open-source, free speech-to-text engine. It runs offline inside the app,
+  so **call audio never leaves the computer.**
+* The speech model (about 150–500 MB) downloads once during first-run setup. The app picks the model
+  size based on how fast the computer is.
+* **Near-live, not instant:** text appears in chunks every ~5–10 seconds while you talk.
+* The insurance vocabulary (carrier names, ITEL, RCV, ACV, appraisal, umpire…) is given to Whisper as
+  a hint list to improve spelling.
+* Silent stretches are skipped. This saves CPU and stops Whisper from inventing text during silence, a known Whisper problem.
 
-### Common audio interface (keeps Windows and Mac code apart)
+Speed expectations (*untested on your team's machines*):
+- **Apple Silicon Macs (M1 and newer):** comfortably fast.
+- **Recent Windows laptops:** fine with the smaller model.
+- **Older or low-end Windows laptops:** the text may lag behind the call. If that happens, the
+  app finishes transcribing in the minute after you press Stop. Nothing is lost.
 
-```ts
-interface AudioCaptureSource {
-  start(onChunk: (pcm16k: Int16Array) => void): Promise<void>;
-  pause(): void; resume(): void; stop(): Promise<void>;
-  onLevel(cb: (rms: number) => void): void;    // drives the "is audio flowing?" indicator
-  onError(cb: (e: CaptureError) => void): void; // device unplugged, permission denied…
-}
-// Implementations: ElectronLoopbackSource (Win + Mac), MicSource (both),
-// VirtualDeviceSource (BlackHole fallback), [later] MacCoreAudioTapHelperSource
-```
+Not used: free tiers of cloud transcription APIs. They're rate-limited, can change at any time,
+and would send claim audio to a third party.
 
-The app detects the OS and macOS version at startup and picks an implementation automatically.
+## 5. Summary: free, two options, user picks in Settings
 
-## 4. Transcription (speech-to-text)
+### Option A (default): "Copy to Claude", using the Claude access you already have
 
-| Option | Accuracy on phone audio | Live? | Privacy | Cost (approx.) | Setup |
-|---|---|---|---|---|---|
-| **Deepgram Nova-3 streaming** (recommended) | High. Good at formatting numbers, dates and money. Accepts up to 100 **key terms** (carrier names, "ITEL", "RCV"…) | Yes, < 1 s | Audio sent to Deepgram | ~$0.005–0.008 per minute per stream | API key |
-| AssemblyAI Universal-Streaming | High | Yes | Audio sent to AssemblyAI | ~$0.15/hour per stream (cheaper) | API key |
-| Local Whisper (whisper.cpp) | Good on Apple Silicon. Slow on older Windows laptops | Near-live in chunks | **Audio never leaves the PC** | Free | Bundles a 0.5–1.5 GB model per user |
+1. After the call you review and correct the transcript in the app.
+2. You click **Copy for Claude**. The app copies the transcript **plus** a built-in instruction
+   block (your exact summary template, the insurance terminology rules, "Not mentioned" /
+   "Needs verification", who-said-what, never invent amounts).
+3. You paste it into Claude (claude.ai or the Claude desktop app) and copy back the result.
+4. You paste the result into the app's editable **Documentation Note** box. The app checks every dollar
+   amount, date and claim number against the transcript and **flags anything that isn't in it**.
+   Then you click Copy Documentation Note.
 
-**Recommendation:** Deepgram Nova-3 for the MVP because it's the most reliable for live claim numbers and
-dollar amounts, and supports key terms and short-lived tokens (§6) (*verified*, Deepgram docs). Swapping
-in AssemblyAI is a small change behind the same interface if cost matters more. Local Whisper is a
-Phase 3 option for anyone who must keep audio on the machine.
+Cost: $0 beyond the Claude access you already have. Quality: the best available. Extra effort: two pastes per call.
 
-Uncertain words: the transcription service returns a confidence score for each word. Low-confidence
-words, **and any number with low confidence**, are highlighted in the transcript and passed to the
-summarizer marked as uncertain.
+### Option B: fully automatic, offline (Ollama)
 
-```ts
-interface Transcriber {
-  connect(streamLabel: 'me' | 'other', keyterms: string[]): Promise<void>;
-  send(pcm: Int16Array): void;
-  onSegment(cb: (s: TranscriptSegment) => void): void; // text, words+confidence, start/end time
-  close(): Promise<void>;                                 // auto-reconnects on network blips
-}
-```
+* **Ollama** (free) runs an AI model on the computer. The app sends the transcript to it and
+  fills in the summary automatically. **Nothing leaves the computer.**
+* Requires installing Ollama once and a 4–5 GB model download.
+* Works well on Apple Silicon Macs with 16 GB+ memory. **Slow on most Windows laptops** without a good graphics card.
+* Local models are **noticeably less accurate** than Claude. They're more likely to mix up who said
+  what or miss a commitment, so review matters even more.
 
-## 5. Summarization (AI)
+### Built-in (free, always on): local fact extraction
 
-* **Claude** through Anthropic's official TypeScript SDK, default model `claude-opus-5-5`. One
-  request per call, made **only when you press "Generate Summary"**, after you've reviewed the transcript.
-* The output comes back as **structured JSON matching your template** (Call Summary, Person Contacted,
-  Claim Information, Key Discussion Points, Status/Outcome, Commitments, Dates & Amounts, Documentation
-  Note), so every heading is always present.
-* Guardrails in the instructions: every claim fact is tagged by **who said it** (Me / Other Party /
-  agreed). Disputed carrier positions are labelled as positions, not facts. Missing fields =
-  "Not mentioned". Low-confidence items = "Needs verification". No inventing amounts or dates.
-* A programmatic check after the AI responds: every dollar amount, date and claim number in the
-  summary must actually appear in the transcript. Any that don't are flagged "Needs verification".
-* The insurance terminology list and note template are plain JSON files (like `/content` in
-  Claims Navigator), so they can be edited without changing code and later served centrally.
+Before any AI step, the app itself pulls out claim numbers, dollar amounts, dates, and policy and
+deductible mentions with simple pattern matching. These fill in the **Important Dates and
+Amounts** section and are used for the fact-check above.
 
-## 6. Keys, data flow, and team setup
+## 6. Data and privacy
 
-### What leaves the computer
+| Data | Where it goes |
+|---|---|
+| Call audio | **Stays on the computer.** Transcribed locally, never saved. |
+| Transcript | Stays on the computer. It only leaves if *you* paste it into Claude (Option A). |
+| Contractor Cloud / teammates / company | **Never automatic.** You copy and paste. |
+| Call history | Off by default. If on, saved **encrypted** (OS keychain) in your user folder, with Delete. |
+| Logs | Events only (e.g. "capture started"), never transcript text. |
 
-| Data | Goes to | When |
+There are no API keys or accounts to manage, so there's nothing to leak.
+
+## 7. Free distribution and what "unsigned" means
+
+* **Builds:** GitHub Actions makes the Windows `.exe` and Mac `.dmg`. It's free within your GitHub
+  plan's monthly minutes (a build uses roughly 100–150 of them).
+* **Sharing:** upload the two installer files to a **shared Google Drive folder**. Teammates
+  download and double-click. They don't need Python, Node or a GitHub account.
+* **Updates:** the app shows "New version available" with a link to the Drive folder. Updates
+  aren't automatic, because automatic updates on Mac require paid signing.
+
+**No code signing** (it costs $99/yr Apple, ~$120/yr Windows). The one-time consequences:
+
+| Platform | What users see the first time | Ongoing |
 |---|---|---|
-| Live call audio (both streams) | Transcription vendor (Deepgram) | Only while "Listening" is on |
-| Transcript text | Anthropic (Claude) | Only when you press "Generate Summary" |
-| Anything | Contractor Cloud / teammates / company | **Never automatically.** You copy and paste. |
-| Raw audio | Nowhere, and not saved locally | — |
+| Windows | "Windows protected your PC" → **More info → Run anyway** | Nothing further |
+| macOS | "App can't be opened" → System Settings → Privacy & Security → **Open Anyway** | After **each update**, macOS may ask again for audio/microphone permission. Re-granting takes ~30 seconds. |
 
-Both vendors offer business terms where API data isn't used to train their models. Your company should
-confirm their data-processing terms are acceptable for homeowner and claim data before cloud
-processing is turned on. **The app won't send anything until cloud processing has been
-explicitly turned on in Settings.**
+The install guide will include screenshots of these steps. Signing can be added later if the
+company ever wants to, with no code changes.
 
-### Team key management — two modes, same app
+**Total cost: $0.**
 
-1. **Personal keys (MVP):** each user pastes their own Deepgram and Anthropic keys into Settings.
-   Keys are encrypted with the OS keychain (Electron `safeStorage`: Keychain on Mac, DPAPI on
-   Windows). They're never written to logs, source code or the installer.
-2. **Company broker (recommended for the team rollout):** add two small endpoints to the
-   **Claims Navigator server you already host on Render**:
-   * `POST /api/call-assistant/stt-token` returns a **30-second Deepgram token** (*verified*:
-     Deepgram's `/auth/grant`), so the company's Deepgram key never leaves the server.
-   * `POST /api/call-assistant/summarize` passes the transcript to Claude and returns the summary. It **doesn't store** it.
-   * Both use the team login that already exists. **Extra hosting cost: $0** (it's the same server).
-     One trade-off: transcript text passes through your Render server in memory.
-   * It also gives one place to update the note template and terminology list for everyone (`GET /api/call-assistant/config`).
+## 8. Build plan
 
-### Local storage (call history)
-
-* Off by default. When it's on, transcripts and summaries are saved under the app's per-user data folder,
-  **encrypted** with the same OS-keychain key. Users can delete one session or all of them. Audio is never saved.
-* App logs record events only (e.g. "capture started", "device lost"), never transcript text or keys.
-
-## 7. Packaging, signing, and costs
-
-### Distribution
-
-* **electron-builder** produces a Windows `.exe` installer (NSIS) and a macOS `.dmg` (Apple
-  Silicon + Intel). Teammates install nothing else.
-* Builds run on **GitHub Actions** (one Windows runner and one macOS runner), because macOS apps must be built on a Mac.
-* Updates: `electron-updater` checks GitHub Releases at startup. The version number shows in Settings → About.
-
-### Code signing (strongly recommended before team rollout)
-
-| Platform | Without signing | With signing | Cost |
-|---|---|---|---|
-| macOS | Users must go to System Settings → Privacy & Security → "Open Anyway". **Audio permission may reset after each update.** | Opens normally; permissions stay | **Apple Developer Program $99/year** (company account) + notarization (free) |
-| Windows | SmartScreen "Windows protected your PC" → More info → Run anyway | Clean install | **Azure Artifact Signing (formerly Trusted Signing) ~$9.99/month** for US companies, or an OV certificate (~$200–400/year) |
-
-You can pilot with unsigned builds on 2–3 machines, but sign before giving it to the whole team.
-
-### Running costs (estimates, check vendor pricing pages)
-
-Per **15-minute call** (two streams transcribed + one summary):
-
-| | Deepgram (recommended) | AssemblyAI (cheaper) |
-|---|---|---|
-| Transcription (2 × 15 min) | ~$0.15–0.23 | ~$0.08 |
-| Claude summary (`claude-opus-5-5`, ~6k tokens in, ~3k out incl. reasoning) | ~$0.08 | ~$0.08 |
-| **Total per call** | **~$0.23–0.31** | **~$0.16** |
-
-Example: 10 people × 8 calls/day × 22 workdays ≈ 1,760 calls/month ≈ **$280–550/month**. Cost
-levers if needed: AssemblyAI, Sonnet 5.5 for summaries (~half the cost), or local Whisper.
-Deepgram and Anthropic both bill pay-as-you-go, with no subscription.
-
-## 8. Build plan (smallest working version first)
-
-**Step 1 — Capture test app (first build):** a tiny Electron app with only Start/Stop, two level
-meters (Me / Other Party) and a "save 30-second test clip" button. GitHub Actions builds the Windows
-`.exe` and Mac `.dmg`. **One teammate on Windows and one on a Mac** play a call through RingCentral,
-Teams, Zoom, or a browser call and report whether the meters move. This answers every *untested*
-item above before the rest of the app gets built on top of it.
-
-**Step 2 — MVP:** live two-stream transcription → transcript review/edit → Generate Summary →
-editable documentation note → Copy buttons → Clear Session. Includes the consent reminder at Start,
-a recording indicator, Pause/Resume, and the silent-audio detector.
-
-**Step 3 — Accuracy:** key-term list, uncertain-word highlighting, number/date cross-check,
-speaker renaming, a prompt test set built from 5–10 real (approved) call transcripts.
-
-**Step 4 — Privacy & reliability:** encrypted optional history and delete, reconnect on network
-drop or device change, log scrubbing check, first-run setup wizard.
-
-**Step 5 — Packaging & rollout:** signing, auto-update, install guide for Windows/Mac,
-troubleshooting page, optional Claims Navigator broker endpoints.
+1. **Capture test app:** Start/Stop plus two sound meters (Me / Other Party). One teammate on
+   Windows and one on a Mac play a real call and confirm the meters move. This settles every
+   *untested* capture item.
+2. **MVP:**
+   - Live local transcription and transcript review/edit
+   - "Copy for Claude" plus the editable documentation note with fact-check
+   - Copy buttons and Clear Session
+   - Consent reminder at Start, recording indicator, Pause/Resume, silent-audio detector
+3. **Accuracy:** vocabulary hints, uncertain-word highlighting, speaker renaming, prompt tuning on
+   real (approved) calls.
+4. **Privacy & reliability:**
+   - Optional encrypted history with delete
+   - Device-change recovery
+   - First-run setup wizard (model download and permission checks)
+   - Optional Ollama mode
+5. **Packaging:** installers via GitHub Actions, install guide with screenshots, troubleshooting page.
 
 ### What I can and can't verify
 
 | Can verify here (Linux) | Needs a real Windows PC / Mac |
 |---|---|
-| UI, transcript editing, copy buttons, settings, encrypted storage, log scrubbing | Live system-audio capture and permission prompts |
-| Transcribe + summarize pipeline using recorded test calls | Specific calling apps (RingCentral, Teams, Zoom, browser) |
-| Installer **builds** (via CI) | Installing on a clean machine; SmartScreen/Gatekeeper behaviour |
+| Interface, editing, copy buttons, fact-check, encrypted storage, log scrubbing | Live system-audio capture and permission prompts |
+| Local Whisper transcription using recorded test calls | Transcription speed on teammates' actual laptops |
+| Installer **builds** (via CI) | Installing on a clean machine; Run anyway / Open Anyway steps |
