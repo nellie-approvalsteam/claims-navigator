@@ -33,8 +33,11 @@ The full Approval Department workbook is now too large to export through Drive, 
 small import sheet "Approvals Data import (do not edit)" in the state folder
 (ID `1PcgH_gSnCzRnmTJzD6VWfcS2hpn7bGOmxt_KR4_m6tI`). It mirrors the workbook's "Data" tab with
 =IMPORTRANGE. Call `mcp__Google_Drive__download_file_content` with that ID and
-`exportMimeType` = `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`, then:
-`jq -r .content <saved-result-file> | base64 -d > $S/approvals.xlsx`
+`exportMimeType` = `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`.
+The tool either saves the workbook itself (a `...blob-....xlsx` path in the result): copy it with
+`cp <saved .xlsx path> $S/approvals.xlsx`; or returns JSON with base64 `content` (saved to a .txt
+file when large): `jq -r .content <saved-result-file> | base64 -d > $S/approvals.xlsx`.
+Small text files (step 3's state files) can also come back as plain text instead of base64.
 If detect_new.py (step 4) stops with "the import sheet is not loading", do not continue:
 report that someone needs to open the import sheet and click "Allow access".
 (Only if the import sheet is missing, fall back to the full workbook ID above with the same export.)
