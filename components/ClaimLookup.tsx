@@ -7,10 +7,14 @@ import type { ClaimSummary } from "@/lib/contractorsCloud";
 import type { CityCodes, NotionPageRef } from "@/lib/notion";
 import type { SearchIndexEntry } from "@/lib/match";
 import type { NavigatorOption } from "@/lib/types";
+import type { ClaimOutcome, ClaimOverview } from "@/lib/estimates";
 
 interface ResourcesResponse {
   claim: ClaimSummary;
+  overview: ClaimOverview | null;
+  overviewError: string | null;
   suggestedStatus: string | null;
+  statusSource: "estimate" | "milestone" | null;
   notion: {
     status: "ok" | "not-configured" | "error";
     cityCodes: CityCodes | null;
@@ -29,9 +33,12 @@ const TYPE_LABEL: Record<string, string> = {
 export default function ClaimLookup({
   claimStatuses,
   onUseStatus,
+  onGoToNavigator,
 }: {
   claimStatuses: NavigatorOption[];
-  onUseStatus: (status: string) => void;
+  // Called when a claim loads, to pre-select the Navigator's claim status.
+  onUseStatus: (status: string, note: string) => void;
+  onGoToNavigator: () => void;
 }) {
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [query, setQuery] = useState("");
@@ -84,6 +91,14 @@ export default function ClaimLookup({
       if (res.status === 401) setAuthed(false);
       if (!res.ok) throw new Error(data.error || "Couldn't load resources.");
       setResources(data);
+      if (data.suggestedStatus) {
+        onUseStatus(
+          data.suggestedStatus,
+          data.statusSource === "estimate"
+            ? `Set from ${data.claim.client}'s carrier estimate.`
+            : `Set from ${data.claim.client}'s current milestone (no carrier estimate to read).`
+        );
+      }
     } catch (err: any) {
       setError(err.message);
       setResources(null);
@@ -183,7 +198,7 @@ export default function ClaimLookup({
                 <Resources
                   data={resources}
                   statusLabel={claimStatuses.find((s) => s.id === resources.suggestedStatus)?.label}
-                  onUseStatus={onUseStatus}
+                  onGoToNavigator={onGoToNavigator}
                 />
               )}
             </div>
@@ -215,17 +230,24 @@ function ClaimLine({ claim }: { claim: ClaimSummary }) {
 function Resources({
   data,
   statusLabel,
-  onUseStatus,
+  onGoToNavigator,
 }: {
   data: ResourcesResponse;
   statusLabel?: string;
-  onUseStatus: (status: string) => void;
+  onGoToNavigator: () => void;
 }) {
-  const { notion, internal, claim, suggestedStatus } = data;
+  const { notion, internal, claim, statusSource } = data;
   const codes = notion.cityCodes;
 
   return (
     <div className="grid gap-4 md:grid-cols-2">
+      <OverviewPanel
+        data={data}
+        statusLabel={statusLabel}
+        statusSource={statusSource}
+        onGoToNavigator={onGoToNavigator}
+      />
+
       <Panel title={`Building codes · ${claim.city ?? "unknown city"}`}>
         {notion.status === "not-configured" && <Muted>Notion isn&apos;t connected yet — ask an admin to set NOTION_API_KEY.</Muted>}
         {notion.status === "error" && <Muted>Couldn&apos;t reach Notion right now. Try again shortly.</Muted>}
@@ -285,19 +307,6 @@ function Resources({
       </Panel>
 
       <Panel title="Scenarios, playbooks & templates" className="md:col-span-2">
-        {suggestedStatus && statusLabel && (
-          <div className="mb-3 flex flex-wrap items-center gap-2 text-sm">
-            <span className="text-ink/70">
-              Based on its milestone, this claim looks like <strong>{statusLabel}</strong>.
-            </span>
-            <button
-              onClick={() => onUseStatus(suggestedStatus)}
-              className="focus-ring rounded-md border border-teal-600 px-2.5 py-1 text-xs font-semibold text-teal-800 hover:bg-teal-50"
-            >
-              Use this in the Navigator below
-            </button>
-          </div>
-        )}
         {internal.length === 0 ? (
           <Muted>Nothing matched yet — add a short description of the problem above.</Muted>
         ) : (
@@ -314,6 +323,149 @@ function Resources({
           </ul>
         )}
       </Panel>
+    </div>
+  );
+}
+
+const OUTCOME_LABEL: Record<ClaimOutcome, { label: string; color: "rust" | "brass" | "teal" | "gray" }> = {
+  "fully-denied": { label: "Fully denied", color: "rust" },
+  "partial-approval": { label: "Partially approved", color: "brass" },
+  underpaid: { label: "Underpaid", color: "brass" },
+  approved: { label: "Approved", color: "teal" },
+  "carrier-only": { label: "Carrier estimate received", color: "gray" },
+  "no-carrier-estimate": { label: "No carrier decision yet", color: "gray" },
+};
+
+const money = (n: number | null | undefined) =>
+  n === null || n === undefined
+    ? "—"
+    : "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+function OverviewPanel({
+  data,
+  statusLabel,
+  statusSource,
+  onGoToNavigator,
+}: {
+  data: ResourcesResponse;
+  statusLabel?: string;
+  statusSource: ResourcesResponse["statusSource"];
+  onGoToNavigator: () => void;
+}) {
+  const { overview, overviewError, claim } = data;
+  const carrier = overview?.carrier;
+  const ours = overview?.ours;
+  const outcome = overview ? OUTCOME_LABEL[overview.outcome] : null;
+
+  return (
+    <Panel title="Claim overview" className="md:col-span-2">
+      {overviewError && <Muted>{overviewError}</Muted>}
+      {overview && outcome && (
+        <div className="space-y-3 text-sm">
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge color={outcome.color}>{outcome.label}</Badge>
+            {claim.milestone && <span className="text-xs text-ink/55">Now at: {claim.milestone}</span>}
+          </div>
+          <p className="text-ink/85">{overview.headline}</p>
+
+          {carrier && (
+            <dl className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs sm:grid-cols-4">
+              <Fact label="Carrier" value={carrier.insurer} />
+              <Fact label="Claim #" value={carrier.claimNumber} />
+              <Fact label="Date of loss" value={carrier.dateOfLoss} />
+              <Fact label="Type of loss" value={carrier.typeOfLoss} />
+              <Fact label="Carrier RCV" value={money(carrier.rcv)} />
+              <Fact label="Depreciation" value={money(carrier.depreciation)} />
+              <Fact label="Deductible" value={money(carrier.deductible)} />
+              <Fact label="Net claim" value={money(carrier.netClaim)} />
+              {ours && <Fact label="Our estimate" value={money(ours.rcv)} />}
+              {overview.percentApproved !== null && (
+                <Fact label="Approved share" value={`${Math.round(overview.percentApproved * 100)}%`} />
+              )}
+            </dl>
+          )}
+
+          {overview.reduced.length > 0 && (
+            <div>
+              <div className="mb-1 text-xs font-semibold text-ink/70">
+                Included by the carrier, but for far less
+              </div>
+              <ul className="space-y-0.5 text-xs">
+                {overview.reduced.slice(0, 6).map((r, i) => (
+                  <li key={i} className="flex justify-between gap-2 border-b border-teal-50 py-0.5">
+                    <span className="text-ink/80" title={`Carrier: ${r.carrierDescription}`}>
+                      {r.description}
+                    </span>
+                    <span className="shrink-0 text-ink/60">
+                      ours {money(r.ours)} · carrier {money(r.carrier)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {overview.leftOut.length > 0 && (
+            <div>
+              <div className="mb-1 text-xs font-semibold text-ink/70">
+                In our estimate but not the carrier&apos;s ({money(overview.leftOutTotal)} total)
+              </div>
+              <ul className="grid gap-x-4 text-xs sm:grid-cols-2">
+                {overview.leftOut.slice(0, 10).map((l, i) => (
+                  <li key={i} className="flex justify-between gap-2 border-b border-teal-50 py-0.5">
+                    <span className="text-ink/80">
+                      {l.description}
+                      {l.count && l.count > 1 ? <span className="text-ink/45"> ×{l.count}</span> : null}
+                    </span>
+                    <span className="shrink-0 text-ink/60">{money(l.total)}</span>
+                  </li>
+                ))}
+              </ul>
+              {overview.leftOut.length > 10 && (
+                <p className="mt-1 text-xs text-ink/50">+ {overview.leftOut.length - 10} more items</p>
+              )}
+            </div>
+          )}
+
+          <div className="flex flex-wrap gap-3 text-xs">
+            {carrier && (
+              <a href={carrier.fileUrl} target="_blank" rel="noreferrer" className="font-semibold text-teal-800 underline">
+                Carrier: {carrier.fileName}
+              </a>
+            )}
+            {ours && (
+              <a href={ours.fileUrl} target="_blank" rel="noreferrer" className="text-teal-800 underline">
+                Ours: {ours.fileName}
+              </a>
+            )}
+            <span className="text-ink/45">{overview.filesChecked} file(s) checked</span>
+          </div>
+        </div>
+      )}
+
+      {statusLabel && (
+        <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-teal-50 pt-3 text-sm">
+          <span className="text-ink/70">
+            Navigator claim status set to <strong>{statusLabel}</strong>
+            {statusSource === "milestone" ? " (from the current milestone)" : ""}.
+          </span>
+          <button
+            onClick={onGoToNavigator}
+            className="focus-ring rounded-md border border-teal-600 px-2.5 py-1 text-xs font-semibold text-teal-800 hover:bg-teal-50"
+          >
+            Go to the Navigator
+          </button>
+        </div>
+      )}
+    </Panel>
+  );
+}
+
+function Fact({ label, value }: { label: string; value: string | null }) {
+  return (
+    <div>
+      <dt className="text-ink/50">{label}</dt>
+      <dd className="font-semibold text-ink/85">{value ?? "—"}</dd>
     </div>
   );
 }

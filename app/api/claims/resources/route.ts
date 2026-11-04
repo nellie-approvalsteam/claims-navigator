@@ -9,6 +9,7 @@ import {
   type NotionPageRef,
 } from "@/lib/notion";
 import { resourceTerms, suggestNavigatorStatus } from "@/lib/claimContext";
+import { buildClaimOverview, OUTCOME_STATUS, type ClaimOverview } from "@/lib/estimates";
 import { getScenarios, getPlaybooks, getTemplates, getFaqArticles } from "@/lib/content";
 import { buildSearchIndex, searchIndex, type SearchIndexEntry } from "@/lib/match";
 
@@ -44,8 +45,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "That claim wasn't found in Contractors Cloud." }, { status: 404 });
   }
 
-  const suggestedStatus = suggestNavigatorStatus(claim);
-  const terms = resourceTerms(claim, issue);
+  // The carrier's estimate is the best evidence of where the claim stands;
+  // fall back to the workflow milestone when there isn't one to read.
+  let overview: ClaimOverview | null = null;
+  let overviewError: string | null = null;
+  try {
+    overview = await buildClaimOverview(claim.id);
+  } catch (e) {
+    overviewError =
+      e instanceof ContractorsCloudError ? e.message : "Couldn't read the claim's estimates.";
+  }
+  const statusFromEstimate = overview ? OUTCOME_STATUS[overview.outcome] ?? null : null;
+  const suggestedStatus = statusFromEstimate ?? suggestNavigatorStatus(claim);
+  const statusSource = statusFromEstimate ? "estimate" : suggestedStatus ? "milestone" : null;
+  const terms = resourceTerms(claim, issue, overview?.outcome);
 
   // Notion is optional: if it's down or not configured, the rest still works.
   let notion: {
@@ -106,5 +119,14 @@ export async function POST(req: NextRequest) {
     .slice(0, 8)
     .forEach((h) => add(h.entry));
 
-  return NextResponse.json({ claim, suggestedStatus, terms, notion, internal });
+  return NextResponse.json({
+    claim,
+    overview,
+    overviewError,
+    suggestedStatus,
+    statusSource,
+    terms,
+    notion,
+    internal,
+  });
 }

@@ -1,4 +1,5 @@
 import type { ClaimSummary } from "./contractorsCloud";
+import type { ClaimOutcome } from "./estimates";
 import { keywords, sameStem } from "./notion";
 
 // Words in a Contractors Cloud status/milestone name that say something
@@ -29,11 +30,24 @@ export function suggestNavigatorStatus(claim: ClaimSummary): string | null {
   return STATUS_RULES.find((r) => r.pattern.test(text))?.status ?? null;
 }
 
+// What the carrier's decision means for which resources are useful.
+const OUTCOME_WORDS: Partial<Record<ClaimOutcome, string[]>> = {
+  "fully-denied": ["denial"],
+  "partial-approval": ["partial", "denial", "scope"],
+  underpaid: ["underpaid", "supplement"],
+};
+
 // Search terms for finding resources: everything the specialist typed about
-// the problem, plus any claim-stage words from the Contractors Cloud record.
-export function resourceTerms(claim: ClaimSummary, issue: string): string[] {
+// the problem, the carrier's decision, and any claim-stage words from the
+// Contractors Cloud record.
+export function resourceTerms(
+  claim: ClaimSummary,
+  issue: string,
+  outcome?: ClaimOutcome
+): string[] {
   const stageWords = keywords(`${claim.milestone ?? ""} ${claim.status ?? ""}`).filter((w) =>
     CLAIM_VOCABULARY.some((v) => sameStem(v, w))
   );
-  return Array.from(new Set([...keywords(issue), ...stageWords]));
+  const outcomeWords = (outcome && OUTCOME_WORDS[outcome]) || [];
+  return Array.from(new Set([...keywords(issue), ...outcomeWords, ...stageWords]));
 }

@@ -19,6 +19,8 @@ export default function NavigatorPage() {
   const [options, setOptions] = useState<OptionsData | null>(null);
   const [scenarios, setScenarios] = useState<Scenario[]>([]);
   const [status, setStatus] = useState("");
+  // Why the status was pre-filled by Claim Lookup; cleared on a manual change.
+  const [statusNote, setStatusNote] = useState("");
   const [carrier, setCarrier] = useState("");
   const [damageType, setDamageType] = useState("");
   const [problems, setProblems] = useState<string[]>([]);
@@ -88,10 +90,13 @@ export default function NavigatorPage() {
 
       <ClaimLookup
         claimStatuses={options.claimStatuses}
-        onUseStatus={(s) => {
+        onUseStatus={(s, note) => {
           setStatus(s);
-          formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+          setStatusNote(note);
         }}
+        onGoToNavigator={() =>
+          formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+        }
       />
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
@@ -100,7 +105,10 @@ export default function NavigatorPage() {
             <select
               className="field"
               value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={(e) => {
+                setStatus(e.target.value);
+                setStatusNote("");
+              }}
               required
             >
               <option value="">Select a status…</option>
@@ -110,6 +118,7 @@ export default function NavigatorPage() {
                 </option>
               ))}
             </select>
+            {statusNote && <p className="mt-1.5 text-xs text-teal-800">{statusNote} Change it if that&apos;s not right.</p>}
           </Field>
 
           <Field label="Carrier">
