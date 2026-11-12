@@ -628,7 +628,7 @@
       "That written authorization from the insured is on file"
     ],
     "possibleSolutions": [
-      "Send the Illinois ITEL matching rebuttal (template) asking for reconsideration",
+      "Send the first Illinois ITEL rebuttal letter asking for reconsideration; if the adjuster repeats \"no matching in Illinois,\" send the second-round full position letter",
       "Require the carrier to name a specific matching product (manufacturer, line, color, supplier) if it disputes the ITEL finding",
       "Require a written denial that cites the specific policy provision",
       "If the carrier still refuses, invoke appraisal or have the insured file an Illinois DOI complaint"
@@ -642,13 +642,14 @@
       "Contractor estimate",
       "Carrier's written denial"
     ],
-    "whatToSayWrite": "\"This isn't a request for matching coverage. Allstate's policy pays to restore the roof with like kind and quality, and the independent ITEL report shows that can't be done with a partial repair. If Allstate believes a matching product exists, please identify it. If not, please cite the specific policy language you rely on.\"",
+    "whatToSayWrite": "Agree that Illinois has no matching statute, then pivot: \"We're not relying on a statute. We're relying on the policy. Allstate's replacement cost coverage promises like kind and quality, and the independent ITEL report shows a partial repair can't do that. If Allstate believes a matching product exists, please identify it. If not, please send us the specific policy language you're relying on.\" See the KB article 'Handling \"There's No Matching in Illinois\"' for objection-by-objection responses.",
     "relatedTemplates": [
       "illinois-itel-matching-rebuttal",
+      "illinois-no-matching-second-rebuttal",
       "documentation-request"
     ],
     "followUp": "Follow up 10 business days after sending; request a written response.",
-    "ifUnsuccessful": "Escalate for an appraisal decision and/or an Illinois DOI complaint by the insured. Refer to counsel if the delay or denial looks vexatious (215 ILCS 5/155).",
+    "ifUnsuccessful": "Send the second-round full position letter (illinois-no-matching-second-rebuttal) with the supervisor copied. If that is also refused, consider appraisal or an Illinois DOI complaint by the insured, and refer to counsel if the delay or denial looks vexatious (215 ILCS 5/155).",
     "escalationPoint": "Escalate after a second written refusal, or right away if the carrier won't put its denial basis in writing.",
     "lastUpdated": "2026-11-12"
   }
