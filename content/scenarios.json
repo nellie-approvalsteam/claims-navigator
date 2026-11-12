@@ -606,5 +606,50 @@
     "ifUnsuccessful": "If the carrier disputes a documented code requirement, escalate or consider appraisal depending on claim value.",
     "escalationPoint": "Escalate if there's any uncertainty about how a code requirement applies to this claim — better to confirm than guess.",
     "lastUpdated": "2026-09-10"
+  },
+  {
+    "id": "scn-itel-denied-no-matching-illinois",
+    "slug": "itel-denied-no-matching-illinois",
+    "name": "ITEL Denied – \"No Matching Coverage in Illinois\"",
+    "category": "Documentation",
+    "statusTags": [
+      "partial-approval"
+    ],
+    "problemTags": [
+      "itel-issue",
+      "matching-issue"
+    ],
+    "whatHappened": "An ITEL report shows the existing material is discontinued or can't be matched, but the carrier (frequently Allstate) refuses to extend the scope, saying Illinois has no matching law or the policy has no matching coverage.",
+    "whatToCheck": [
+      "The exact replacement cost wording in the insured's policy form (\"like kind and quality\" / \"comparable material and quality\"), and whether there is an actual matching exclusion or a cosmetic/matching endorsement",
+      "Whether the policy is RCV or ACV/roof-schedule (this changes the dollars, not the like kind and quality argument)",
+      "That the ITEL report covers this roof (sample location, date, finding) and that the carrier has acknowledged receiving it",
+      "Whether the denial cites a specific policy provision or only a general statement about Illinois law",
+      "That written authorization from the insured is on file"
+    ],
+    "possibleSolutions": [
+      "Send the Illinois ITEL matching rebuttal (template) asking for reconsideration",
+      "Require the carrier to name a specific matching product (manufacturer, line, color, supplier) if it disputes the ITEL finding",
+      "Require a written denial that cites the specific policy provision",
+      "If the carrier still refuses, invoke appraisal or have the insured file an Illinois DOI complaint"
+    ],
+    "recommendedFirstMove": "Pull the insured's actual Allstate policy form and quote its replacement cost language in the rebuttal. The argument is that Allstate owes like kind and quality, not that matching is an extra coverage.",
+    "supportingDocumentation": [
+      "ITEL report",
+      "Policy declarations and form",
+      "Photos of the ITEL sample site and full roof",
+      "Manufacturer discontinuation notice",
+      "Contractor estimate",
+      "Carrier's written denial"
+    ],
+    "whatToSayWrite": "\"This isn't a request for matching coverage. Allstate's policy pays to restore the roof with like kind and quality, and the independent ITEL report shows that can't be done with a partial repair. If Allstate believes a matching product exists, please identify it. If not, please cite the specific policy language you rely on.\"",
+    "relatedTemplates": [
+      "illinois-itel-matching-rebuttal",
+      "documentation-request"
+    ],
+    "followUp": "Follow up 10 business days after sending; request a written response.",
+    "ifUnsuccessful": "Escalate for an appraisal decision and/or an Illinois DOI complaint by the insured. Refer to counsel if the delay or denial looks vexatious (215 ILCS 5/155).",
+    "escalationPoint": "Escalate after a second written refusal, or right away if the carrier won't put its denial basis in writing.",
+    "lastUpdated": "2026-11-12"
   }
 ]

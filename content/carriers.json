@@ -8,8 +8,8 @@
   {
     "id": "car-allstate",
     "name": "Allstate",
-    "notes": "",
-    "lastUpdated": "2026-09-10"
+    "notes": "Illinois: Allstate often denies ITEL-supported scope by saying there's \"no matching coverage in Illinois.\" Rebut using the policy's own like kind and quality / replacement cost language plus the ITEL finding, and require a specific policy citation and a named matching product. See scenario 'itel-denied-no-matching-illinois' and template 'illinois-itel-matching-rebuttal'.",
+    "lastUpdated": "2026-11-12"
   },
   {
     "id": "car-travelers",
